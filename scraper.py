@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """
-Vakantiewoning Scraper - v4
+Vakantiewoning Scraper - v5
 ============================
-Bronnen  : recreatievastgoed.nl · Marktplaats · vakantiehuistekoop.nl
-           · Landal Makelaardij · Jaap.nl · Huislijn.nl
+Bronnen  : recreatievastgoed.nl · Marktplaats (per provincie) ·
+           vakantiehuistekoop.nl · Landal Makelaardij ·
+           RecreatiewoningenTekoop.nl · EuroParcs Makelaardij ·
+           Veluwechalets.nl · UwTweedeHuisMakelaar.nl ·
+           UwBuitenleven.nl · TopParkenVerkoop.nl ·
+           Vakantiemakelaar.nl · CenterParcs Vastgoed ·
+           Jaap.nl · Huislijn.nl
 Notificatie : HTML-e-mail via SMTP (nieuw / 14-daagse alert)
 Website  : docs/data.json → GitHub Pages (docs/index.html)
 """
@@ -50,7 +55,7 @@ SESSION.headers.update(HEADERS)
 WEBSITE_URL     = "https://mcv13-wp.github.io/vacay-cabin"
 NOMINATIM_URL   = "https://nominatim.openstreetmap.org/search"
 SCREENSHOTS_DIR = Path("docs/screenshots")
-ALERT_DAYS      = 14   # stuur alert als er X dagen niets nieuws is gevonden
+ALERT_DAYS      = 14
 
 
 # ════════════════════════════════════════════════════════════
@@ -58,11 +63,6 @@ ALERT_DAYS      = 14   # stuur alert als er X dagen niets nieuws is gevonden
 # ════════════════════════════════════════════════════════════
 
 def load_known() -> tuple[dict[str, dict], dict]:
-    """
-    Laad known_listings.json.
-    Retourneert (listings_dict, meta_dict).
-    De '_meta'-sleutel wordt nooit als woning behandeld.
-    """
     path = Path(config.KNOWN_LISTINGS_FILE)
     if path.exists():
         with open(path, encoding="utf-8") as f:
@@ -81,13 +81,11 @@ def save_known(listings: dict[str, dict], meta: dict) -> None:
 
 
 def url_key(url: str) -> str:
-    """Waterdichte, stabiele sleutel op basis van URL."""
     url = url.strip().split("#")[0].split("?")[0].rstrip("/")
     return url.lower()
 
 
 def write_data_json(all_listings: list[dict], new_listings: list[dict]) -> None:
-    """Schrijf docs/data.json voor de GitHub Pages website."""
     docs_dir = Path(config.DATA_JSON_FILE).parent
     docs_dir.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -148,11 +146,7 @@ def _safe_int(val: str) -> int | None:
 
 
 def is_complete(l: dict) -> bool:
-    """
-    Failsafe: woning moet minimaal een geldige URL, een prijs
-    en een herkenbare locatie of titel hebben.
-    Incomplete woningen vervuilen de output niet.
-    """
+    """Vereist: geldige URL + prijs + locatie/titel."""
     url = (l.get("url") or "").strip()
     if not url.startswith("http"):
         return False
@@ -167,10 +161,6 @@ def is_complete(l: dict) -> bool:
 
 
 def geocode(location: str) -> tuple[float, float] | None:
-    """
-    Geocodeer een locatie via Nominatim (OpenStreetMap).
-    Houd de 1-verzoek-per-seconde rate-limit aan door de aanroeper.
-    """
     try:
         params = {
             "q": f"{location}, Nederland",
@@ -189,11 +179,6 @@ def geocode(location: str) -> tuple[float, float] | None:
 
 
 def take_screenshot(url: str, save_path: Path) -> bool:
-    """
-    Maak een screenshot van de woning-URL via Playwright Chromium.
-    Retourneert True als het gelukt is.
-    Vereist: pip install playwright && playwright install chromium
-    """
     try:
         from playwright.sync_api import sync_playwright  # type: ignore
         SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -216,6 +201,14 @@ def take_screenshot(url: str, save_path: Path) -> bool:
     except Exception as exc:
         log.debug("Screenshot mislukt voor %s: %s", url, exc)
         return False
+
+
+def _parse_persons_range(val: str) -> int | None:
+    m = re.search(r"(\d+)\s*[-–]\s*(\d+)", val.strip())
+    if m:
+        return int(m.group(2))
+    m2 = re.search(r"(\d+)", val.strip())
+    return int(m2.group(1)) if m2 else None
 
 
 # ════════════════════════════════════════════════════════════
@@ -294,10 +287,7 @@ def _parse_rv_card(card, base: str) -> dict | None:
 
 
 def enrich_with_details(listings: list[dict]) -> list[dict]:
-    """
-    Haal slaapkamers, personen en foto op van detailpagina.
-    Geocodeer tegelijkertijd indien nog geen coördinaten bekend.
-    """
+    """Haal slaapkamers, personen, foto en geocoördinaten op van detailpagina."""
     for listing in listings:
         needs_beds = listing.get("bedrooms") is None
         needs_geo  = listing.get("lat") is None and bool(listing.get("location"))
@@ -326,109 +316,110 @@ def enrich_with_details(listings: list[dict]) -> list[dict]:
             coords = geocode(listing["location"])
             if coords:
                 listing["lat"], listing["lng"] = coords
-            time.sleep(1.1)   # Nominatim: max 1 req/sec
+            time.sleep(1.1)
 
     return listings
 
 
 # ════════════════════════════════════════════════════════════
-#  Scraper: Roompot (stub)
+#  Scraper: Marktplaats — per provincie, vereist beds + pers
 # ════════════════════════════════════════════════════════════
 
-def scrape_roompot() -> list[dict]:
-    log.info("Scrapen: Roompot (geen publieke verkooppagina)")
-    return []
+# RegionIds per provincie (uit Marktplaats URL-structuur)
+_MP_PROVINCES = {
+    "gelderland":   4555,
+    "overijssel":   4557,
+    "drenthe":      4561,
+    "limburg":      4556,
+    "noord-brabant": 4554,
+    "utrecht":      4558,
+}
 
-
-# ════════════════════════════════════════════════════════════
-#  Scraper: Marktplaats
-# ════════════════════════════════════════════════════════════
 
 def scrape_marktplaats() -> list[dict]:
-    log.info("Scrapen: Marktplaats recreatiewoningen")
+    log.info("Scrapen: Marktplaats recreatiewoningen (per provincie)")
     listings: list[dict] = []
-    base_tpl = (
-        "https://www.marktplaats.nl/l/huizen-en-kamers/"
-        "recreatiewoningen-te-koop/?PriceTo={max_price}&currentPage={page}"
-    )
     seen_ids: set[str] = set()
-    page = 0
 
-    while True:
-        url = base_tpl.format(max_price=config.MAX_PRICE, page=page)
-        soup = get_page(url)
-        if not soup:
-            break
-        script = soup.find("script", string=re.compile(r"itemId|vipUrl"))
-        if not script or not script.string:
-            break
-        try:
-            data = json.loads(script.string)
-        except json.JSONDecodeError:
-            break
-
-        page_items = _find_mp_listings(data)
-        if not page_items:
-            break
-
-        new_on_page = 0
-        for item in page_items:
-            item_id = item.get("itemId", "")
-            if not item_id or item_id in seen_ids:
-                continue
-            seen_ids.add(item_id)
-            new_on_page += 1
-
-            price_cents = item.get("priceInfo", {}).get("priceCents") or 0
-            price = int(price_cents / 100) if price_cents else None
-            city  = item.get("location", {}).get("cityName", "").strip()
-            desc  = item.get("description") or item.get("categorySpecificDescription") or ""
-            title = item.get("title", "").strip()
-            vip   = item.get("vipUrl", "")
-            url_l = f"https://www.marktplaats.nl{vip}" if vip.startswith("/") else vip
-            imgs  = item.get("imageUrls") or []
-            image = imgs[0] if imgs else ""
-
-            # ── Failsafe: sla vage advertenties over ──────────
-            # Marktplaats-advertenties zonder URL, prijs of stad
-            # bevatten te weinig info en vervuilen de output.
-            if not url_l.startswith("http"):
-                log.debug("Marktplaats: overgeslagen (geen URL) – %s", title)
-                continue
-            if price is None:
-                log.debug("Marktplaats: overgeslagen (geen prijs) – %s", title)
-                continue
-            if not city:
-                log.debug("Marktplaats: overgeslagen (geen stad) – %s", title)
-                continue
-
-            beds = _safe_int(m.group(1)) if (
-                m := re.search(r"(\d+)\s*slaapkamer", desc, re.IGNORECASE)
-            ) else None
-            pers_m = re.search(
-                r"(\d+)[- ]persoons|(\d+)\s*personen", desc, re.IGNORECASE
+    for province, region_id in _MP_PROVINCES.items():
+        page = 0
+        while True:
+            url = (
+                f"https://www.marktplaats.nl/l/huizen-en-kamers/"
+                f"recreatiewoningen-te-koop/f/{province}/{region_id}/"
+                f"?PriceTo={config.MAX_PRICE}&currentPage={page}"
             )
-            persons = int(pers_m.group(1) or pers_m.group(2)) if pers_m else None
+            soup = get_page(url)
+            if not soup:
+                break
+            script = soup.find("script", string=re.compile(r"itemId|vipUrl"))
+            if not script or not script.string:
+                break
+            try:
+                data = json.loads(script.string)
+            except json.JSONDecodeError:
+                break
 
-            listings.append({
-                "source":   "Marktplaats",
-                "title":    title,
-                "url":      url_l,
-                "price":    price,
-                "bedrooms": beds,
-                "persons":  persons,
-                "location": city,
-                "image":    image,
-                "sold":     bool(item.get("reserved", False)),
-                "raw":      f"{title} {city} {desc[:200]}",
-            })
+            page_items = _find_mp_listings(data)
+            if not page_items:
+                break
 
-        if new_on_page == 0:
-            break
-        page += 1
-        time.sleep(0.8)
+            new_on_page = 0
+            for item in page_items:
+                item_id = item.get("itemId", "")
+                if not item_id or item_id in seen_ids:
+                    continue
+                seen_ids.add(item_id)
+                new_on_page += 1
 
-    log.info("Marktplaats: %d woningen (na failsafe filter)", len(listings))
+                price_cents = item.get("priceInfo", {}).get("priceCents") or 0
+                price  = int(price_cents / 100) if price_cents else None
+                city   = item.get("location", {}).get("cityName", "").strip()
+                desc   = item.get("description") or ""
+                title  = item.get("title", "").strip()
+                vip    = item.get("vipUrl", "")
+                url_l  = f"https://www.marktplaats.nl{vip}" if vip.startswith("/") else vip
+                imgs   = item.get("imageUrls") or []
+                image  = imgs[0] if imgs else ""
+
+                # ── Failsafe: vereist URL, prijs, stad ──────────
+                if not url_l.startswith("http") or price is None or not city:
+                    log.debug("Marktplaats: overgeslagen (onvolledig) – %s", title)
+                    continue
+
+                bed_m  = re.search(r"(\d+)\s*slaapkamer", desc, re.IGNORECASE)
+                pers_m = re.search(
+                    r"(\d+)[- ]persoons|(\d+)\s*personen", desc, re.IGNORECASE
+                )
+                beds   = int(bed_m.group(1)) if bed_m else None
+                persons = int(pers_m.group(1) or pers_m.group(2)) if pers_m else None
+
+                # ── Stricter: vereist slaapkamer- én personeninformatie ──
+                if beds is None or persons is None:
+                    log.debug(
+                        "Marktplaats: overgeslagen (geen beds/pers) – %s", title
+                    )
+                    continue
+
+                listings.append({
+                    "source":   "Marktplaats",
+                    "title":    title,
+                    "url":      url_l,
+                    "price":    price,
+                    "bedrooms": beds,
+                    "persons":  persons,
+                    "location": f"{city}, {province.replace('-', ' ').title()}",
+                    "image":    image,
+                    "sold":     bool(item.get("reserved", False)),
+                    "raw":      f"{title} {city} {desc[:150]}",
+                })
+
+            if new_on_page == 0:
+                break
+            page += 1
+            time.sleep(0.8)
+
+    log.info("Marktplaats: %d woningen (per provincie, met beds+pers)", len(listings))
     return listings
 
 
@@ -455,12 +446,10 @@ def scrape_vakantiehuistekoop() -> list[dict]:
     base = "https://www.vakantiehuistekoop.nl"
     soup = get_page(f"{base}/")
     if not soup:
-        log.warning("vakantiehuistekoop.nl: niet bereikbaar")
         return []
 
     listings: list[dict] = []
     cards = [c for c in soup.select("[class*=property-card]") if "€" in c.get_text()]
-
     for card in cards:
         title_el = card.select_one(".property-card__title")
         price_el = card.select_one(".property-card__price")
@@ -494,22 +483,14 @@ def scrape_vakantiehuistekoop() -> list[dict]:
     return listings
 
 
-def _parse_persons_range(val: str) -> int | None:
-    """'6 - 8' → 8 (neem maximum van de range)."""
-    m = re.search(r"(\d+)\s*[-–]\s*(\d+)", val.strip())
-    if m:
-        return int(m.group(2))
-    m2 = re.search(r"(\d+)", val.strip())
-    return int(m2.group(1)) if m2 else None
-
-
 # ════════════════════════════════════════════════════════════
 #  Scraper: Landal Makelaardij
 # ════════════════════════════════════════════════════════════
 
 _LM_TARGET_PROVINCES = {
     "gelderland", "overijssel", "utrecht", "drenthe",
-    "friesland", "flevoland", "noord-brabant", "limburg", "zeeland",
+    "noord-brabant", "limburg",
+    # Friesland en Zeeland verwijderd (>2,5 uur rijden)
 }
 
 
@@ -517,7 +498,6 @@ def scrape_landalmakelaardij() -> list[dict]:
     log.info("Scrapen: Landal Makelaardij")
     soup_xml = get_page("https://www.landalmakelaardij.nl/vm_object_cpt-sitemap.xml")
     if not soup_xml:
-        log.warning("Landal Makelaardij: sitemap niet bereikbaar")
         return []
 
     all_urls = [loc.get_text().strip() for loc in soup_xml.find_all("loc")]
@@ -563,7 +543,6 @@ def _parse_lm_detail(url: str, province: str) -> dict | None:
 
     h1    = soup.find("h1")
     title = h1.get_text(" ", strip=True) if h1 else url.rstrip("/").split("/")[-1]
-
     og_img = soup.find("meta", property="og:image")
     image  = og_img.get("content", "") if og_img else ""
 
@@ -582,14 +561,589 @@ def _parse_lm_detail(url: str, province: str) -> dict | None:
 
 
 # ════════════════════════════════════════════════════════════
+#  Scraper: RecreatiewoningenTekoop.nl
+# ════════════════════════════════════════════════════════════
+
+_RWT_PROVINCES = [
+    "gelderland", "overijssel", "drenthe", "limburg", "noord-brabant", "utrecht"
+]
+
+
+def scrape_recreatiewoningentekoop() -> list[dict]:
+    log.info("Scrapen: RecreatiewoningenTekoop.nl")
+    base      = "https://www.recreatiewoningentekoop.nl"
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    for province in _RWT_PROVINCES:
+        page = 1
+        while True:
+            url  = f"{base}/recreatiewoning/nederland/{province}?pagina={page}"
+            soup = get_page(url)
+            if not soup:
+                break
+
+            # Kaartlinks volgen het patroon /recreatiewoning/nederland/{prov}/{stad}/{slug}
+            pattern  = re.compile(
+                rf"/recreatiewoning/nederland/{province}/[^/?#]+/[^/?#]+"
+            )
+            new_on_page = 0
+
+            for a in soup.find_all("a", href=pattern):
+                href  = a.get("href", "").split("?")[0]
+                url_l = href if href.startswith("http") else base + href
+                if url_l in seen_urls:
+                    continue
+                seen_urls.add(url_l)
+                new_on_page += 1
+
+                # Card = dichtstbijzijnde artikel-/list-element
+                card      = a.find_parent(["article", "li"]) or a
+                full_text = card.get_text(" ", strip=True)
+                price     = extract_price(full_text)
+
+                # Titel: h2/h3 in card of linktekst
+                title_el = card.find(["h2", "h3", "h4"])
+                title    = (
+                    title_el.get_text(strip=True) if title_el
+                    else a.get_text(strip=True)[:80]
+                )
+                if not title:
+                    parts = href.rstrip("/").split("/")
+                    title = parts[-1].replace("-", " ").title()
+
+                img_el = card.find("img")
+                image  = img_el.get("src", "") if img_el else ""
+
+                # Locatie uit URL
+                parts    = href.rstrip("/").split("/")
+                city     = parts[-2].replace("-", " ").title() if len(parts) >= 2 else ""
+                location = f"{city}, {province.replace('-', ' ').title()}"
+
+                listings.append({
+                    "source":   "RecreatiewoningenTekoop.nl",
+                    "title":    title,
+                    "url":      url_l,
+                    "price":    price,
+                    "bedrooms": None,
+                    "persons":  None,
+                    "location": location,
+                    "image":    image,
+                    "sold":     is_sold(full_text),
+                    "raw":      full_text[:200],
+                })
+
+            # Volgende pagina?
+            has_next = bool(soup.find("a", href=re.compile(rf"pagina={page + 1}")))
+            if not has_next or new_on_page == 0:
+                break
+            page += 1
+            time.sleep(0.8)
+
+    log.info("RecreatiewoningenTekoop.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: EuroParcs Makelaardij
+# ════════════════════════════════════════════════════════════
+
+def scrape_europarcsmakelaardij() -> list[dict]:
+    log.info("Scrapen: EuroParcs Makelaardij")
+    base     = "https://www.europarcsmakelaardij.nl"
+    listings: list[dict] = []
+    page = 1
+
+    while True:
+        url  = f"{base}/woningen/" if page == 1 else f"{base}/woningen/page/{page}/"
+        soup = get_page(url)
+        if not soup:
+            break
+
+        # Geprobeerde selectors op basis van onderzoek
+        cards = (
+            soup.select(".card-wrapper")
+            or soup.select("[class*='card-wrapper']")
+            or soup.select("article")
+        )
+        if not cards:
+            break
+
+        new_on_page = 0
+        for card in cards:
+            title_el = (
+                card.select_one(".card-title")
+                or card.select_one("h3")
+                or card.select_one("h2")
+            )
+            price_el = (
+                card.select_one(".card-price")
+                or card.select_one("[class*='price']")
+            )
+            link_el  = (
+                card.select_one(".card-link")
+                or card.select_one("a[href*='/europarcs']")
+                or card.select_one("a[href]")
+            )
+            loc_els  = (
+                card.select(".card-location")
+                or card.select("[class*='location']")
+            )
+            img_el   = card.select_one("img")
+            bed_el   = (
+                card.select_one(".bedroom-count")
+                or card.select_one("[class*='bedroom']")
+            )
+            pers_el  = (
+                card.select_one(".person-count")
+                or card.select_one("[class*='person']")
+            )
+
+            if not link_el:
+                continue
+            href  = link_el.get("href", "")
+            url_l = href if href.startswith("http") else base + href
+            if not url_l.startswith("http"):
+                continue
+
+            full_text = card.get_text(" ", strip=True)
+            title     = title_el.get_text(strip=True) if title_el else full_text[:60]
+            price_str = price_el.get_text(strip=True) if price_el else full_text
+            price     = extract_price(price_str)
+            # "Vanaf € X,-" → prijs kan "Vanaf" prefix hebben
+            location  = loc_els[-1].get_text(strip=True) if loc_els else ""
+            image     = img_el.get("src", "") if img_el else ""
+            bedrooms  = _safe_int(bed_el.get_text()) if bed_el else None
+            persons   = _safe_int(pers_el.get_text()) if pers_el else None
+
+            # Fallback: haal slaapk./pers. uit tekst (notatie: "2 slaapk.", "4 pers.")
+            if bedrooms is None:
+                bm = re.search(r"(\d+)\s*slaapk", full_text, re.IGNORECASE)
+                bedrooms = int(bm.group(1)) if bm else None
+            if persons is None:
+                pm = re.search(r"(\d+)\s*pers\b", full_text, re.IGNORECASE)
+                persons = int(pm.group(1)) if pm else None
+
+            listings.append({
+                "source":   "EuroParcs Makelaardij",
+                "title":    title,
+                "url":      url_l,
+                "price":    price,
+                "bedrooms": bedrooms,
+                "persons":  persons,
+                "location": location,
+                "image":    image,
+                "sold":     is_sold(full_text),
+                "raw":      full_text[:200],
+            })
+            new_on_page += 1
+
+        if new_on_page == 0:
+            break
+        page += 1
+        time.sleep(0.8)
+
+    log.info("EuroParcs Makelaardij: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: Veluwechalets.nl
+# ════════════════════════════════════════════════════════════
+
+def scrape_veluwechalets() -> list[dict]:
+    """
+    Veluwechalets.nl: 6 pagina's, ~152 items.
+    Structuur: <h3> titel, <h4> locatie, prijs in tekst, link /chalet/[slug].
+    """
+    log.info("Scrapen: Veluwechalets.nl")
+    base     = "https://www.veluwechalets.nl"
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    for page in range(1, 10):   # maximaal 10 pagina's
+        url  = f"{base}/aanbod/chalets/{page}"
+        soup = get_page(url)
+        if not soup:
+            break
+
+        chalet_links = soup.find_all("a", href=re.compile(r"/chalet/"))
+        if not chalet_links:
+            break
+
+        new_on_page = 0
+        for a in chalet_links:
+            href  = a.get("href", "")
+            url_l = href if href.startswith("http") else base + href
+            if url_l in seen_urls:
+                continue
+            seen_urls.add(url_l)
+            new_on_page += 1
+
+            # Kaart = parent artikel/div
+            card      = a.find_parent(["article", "div", "li"]) or a
+            full_text = card.get_text(" ", strip=True)
+
+            h3  = card.find("h3") or a.find("h3")
+            h4  = card.find("h4") or a.find("h4")
+            img = card.find("img")
+
+            title    = h3.get_text(strip=True) if h3 else href.rstrip("/").split("/")[-1].replace("-", " ").title()
+            location = h4.get_text(strip=True) if h4 else "Veluwe"
+            price    = extract_price(full_text)
+            image    = img.get("src", "") if img else ""
+
+            # Slaapkamers / personen: niet altijd op lijstpagina
+            bed_m  = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+            pers_m = re.search(r"(\d+)[- ]persoons|(\d+)\s*personen", full_text, re.IGNORECASE)
+
+            listings.append({
+                "source":   "Veluwechalets.nl",
+                "title":    title,
+                "url":      url_l,
+                "price":    price,
+                "bedrooms": int(bed_m.group(1)) if bed_m else None,
+                "persons":  int(pers_m.group(1) or pers_m.group(2)) if pers_m else None,
+                "location": f"{location}, Veluwe",
+                "image":    image,
+                "sold":     is_sold(full_text),
+                "raw":      full_text[:200],
+            })
+
+        if new_on_page == 0:
+            break
+        time.sleep(0.8)
+
+    log.info("Veluwechalets.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: UwTweedeHuisMakelaar.nl
+# ════════════════════════════════════════════════════════════
+
+def scrape_uwtweedehuismakelaar() -> list[dict]:
+    """
+    WordPress-site. Paginering: /aanbod/page/N/.
+    Kaarten bevatten titel, prijs, slaapkamers, personen.
+    """
+    log.info("Scrapen: UwTweedeHuisMakelaar.nl")
+    base     = "https://uwtweedehuismakelaar.nl"
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+    page = 1
+
+    while True:
+        url  = f"{base}/aanbod/" if page == 1 else f"{base}/aanbod/page/{page}/"
+        soup = get_page(url)
+        if not soup:
+            break
+
+        # WordPress: articles of divs met aanbod-links
+        cards: list = []
+        for a in soup.select("a[href*='/aanbod/']"):
+            href = a.get("href", "")
+            if href.rstrip("/") in {f"{base}/aanbod", "/aanbod"}:
+                continue
+            parent = (
+                a.find_parent("article")
+                or a.find_parent("li")
+                or a.find_parent("div")
+            )
+            if parent and parent not in cards:
+                cards.append(parent)
+
+        if not cards:
+            break
+
+        new_on_page = 0
+        for card in cards:
+            link_el = card.select_one("a[href*='/aanbod/']")
+            if not link_el:
+                continue
+            href  = link_el.get("href", "")
+            url_l = href if href.startswith("http") else base + href
+            if url_l in seen_urls or url_l.rstrip("/") == f"{base}/aanbod":
+                continue
+            seen_urls.add(url_l)
+            new_on_page += 1
+
+            full_text = card.get_text(" ", strip=True)
+            title_el  = card.select_one("h2, h3, [class*='title']")
+            img_el    = card.select_one("img")
+
+            title    = title_el.get_text(strip=True) if title_el else full_text[:60]
+            price    = extract_price(full_text)
+            image    = img_el.get("src", "") if img_el else ""
+
+            bed_m  = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+            pers_m = re.search(r"(\d+)\s*personen", full_text, re.IGNORECASE)
+
+            # Locatie: bijv. "EuroParcs ..., Maarn, Utrecht"
+            loc_el   = card.select_one("[class*='location'],[class*='city'],[class*='place']")
+            location = loc_el.get_text(strip=True) if loc_el else ""
+            if not location:
+                lm = re.search(
+                    r",\s*([A-Za-z\-]+),\s*"
+                    r"(Utrecht|Gelderland|Overijssel|Drenthe|Noord-Brabant|Limburg)",
+                    full_text,
+                )
+                location = lm.group(0).strip(", ") if lm else title[:40]
+
+            listings.append({
+                "source":   "UwTweedeHuisMakelaar.nl",
+                "title":    title,
+                "url":      url_l,
+                "price":    price,
+                "bedrooms": int(bed_m.group(1)) if bed_m else None,
+                "persons":  int(pers_m.group(1)) if pers_m else None,
+                "location": location,
+                "image":    image,
+                "sold":     is_sold(full_text),
+                "raw":      full_text[:200],
+            })
+
+        if new_on_page == 0:
+            break
+        page += 1
+        time.sleep(0.8)
+
+    log.info("UwTweedeHuisMakelaar.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: Uw Buitenleven
+# ════════════════════════════════════════════════════════════
+
+def scrape_uwbuitenleven() -> list[dict]:
+    """
+    WordPress-site. Alle woningen op /aanbod/ (Laad meer = single page).
+    Kaart: <a href="/aanbod/slug/"> wrapper met <h3> en prijs.
+    """
+    log.info("Scrapen: UwBuitenleven.nl")
+    base = "https://www.uw-buitenleven.nl"
+    soup = get_page(f"{base}/aanbod/")
+    if not soup:
+        return []
+
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    for a in soup.select("a[href*='/aanbod/']"):
+        href  = a.get("href", "")
+        url_l = href if href.startswith("http") else base + href
+        if url_l.rstrip("/") in {f"{base}/aanbod", base + "/aanbod"}:
+            continue
+        if url_l in seen_urls:
+            continue
+        seen_urls.add(url_l)
+
+        full_text = a.get_text(" ", strip=True)
+        h3        = a.find("h3")
+        img       = a.find("img")
+
+        title    = h3.get_text(strip=True) if h3 else full_text[:60]
+        price    = extract_price(full_text)
+        image    = img.get("src", "") if img else ""
+        bed_m    = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+
+        # Locatie: postcode + stad patroon of uit titel
+        loc_m    = re.search(r"\d{4}\s*[A-Z]{2}\s+([A-Za-z\s]+)", full_text)
+        location = loc_m.group(1).strip() if loc_m else title[:40]
+
+        listings.append({
+            "source":   "UwBuitenleven.nl",
+            "title":    title,
+            "url":      url_l,
+            "price":    price,
+            "bedrooms": int(bed_m.group(1)) if bed_m else None,
+            "persons":  None,
+            "location": location,
+            "image":    image,
+            "sold":     is_sold(full_text),
+            "raw":      full_text[:200],
+        })
+
+    log.info("UwBuitenleven.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: TopParkenVerkoop.nl
+# ════════════════════════════════════════════════════════════
+
+def scrape_topparkenverkoop() -> list[dict]:
+    log.info("Scrapen: TopParkenVerkoop.nl")
+    base = "https://www.topparkenverkoop.nl"
+    soup = get_page(f"{base}/aanbod-vakantiewoningen")
+    if not soup:
+        return []
+
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    # Zoek naar alle links die naar individuele woningpagina's wijzen
+    for a in soup.find_all("a", href=re.compile(r"/aanbod-vakantiewoningen/.+")):
+        href  = a.get("href", "")
+        url_l = href if href.startswith("http") else base + href
+        if url_l in seen_urls:
+            continue
+        seen_urls.add(url_l)
+
+        card      = a.find_parent(["article", "li", "div"]) or a
+        full_text = card.get_text(" ", strip=True)
+        price     = extract_price(full_text)
+        img       = card.find("img")
+        title_el  = card.find(["h2", "h3", "h4"]) or a
+        title     = title_el.get_text(strip=True)[:80]
+
+        bed_m  = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+        pers_m = re.search(r"(\d+)\s*personen", full_text, re.IGNORECASE)
+        loc_m  = re.search(
+            r"([A-Za-z\s\-]+),\s*(Gelderland|Overijssel|Drenthe|Utrecht|Noord-Brabant|Limburg)",
+            full_text,
+        )
+        location = loc_m.group(0) if loc_m else title[:40]
+
+        listings.append({
+            "source":   "TopParkenVerkoop.nl",
+            "title":    title,
+            "url":      url_l,
+            "price":    price,
+            "bedrooms": int(bed_m.group(1)) if bed_m else None,
+            "persons":  int(pers_m.group(1)) if pers_m else None,
+            "location": location,
+            "image":    img.get("src", "") if img else "",
+            "sold":     is_sold(full_text),
+            "raw":      full_text[:200],
+        })
+
+    log.info("TopParkenVerkoop.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: Vakantiemakelaar.nl
+# ════════════════════════════════════════════════════════════
+
+def scrape_vakantiemakelaar() -> list[dict]:
+    log.info("Scrapen: Vakantiemakelaar.nl")
+    base = "https://www.vakantiemakelaar.nl"
+    # Probeer de meest waarschijnlijke listing-URLs
+    for path in ["/aanbod", "/woningen", "/te-koop", "/"]:
+        soup = get_page(f"{base}{path}")
+        if not soup:
+            continue
+
+        listings: list[dict] = []
+        seen_urls: set[str]  = set()
+
+        # Zoek naar kaartjes met een prijs en een interne link
+        for a in soup.find_all("a", href=True):
+            href  = a.get("href", "")
+            url_l = href if href.startswith("http") else base + href
+            if not url_l.startswith(base):
+                continue
+            if url_l in seen_urls or url_l == base + path:
+                continue
+
+            card      = a.find_parent(["article", "li", "div"]) or a
+            full_text = card.get_text(" ", strip=True)
+            price     = extract_price(full_text)
+            if not price:
+                continue
+
+            seen_urls.add(url_l)
+            img       = card.find("img")
+            title_el  = card.find(["h2", "h3", "h4"])
+            title     = title_el.get_text(strip=True)[:80] if title_el else full_text[:60]
+            bed_m     = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+            pers_m    = re.search(
+                r"(\d+)[- ]persoons|(\d+)\s*personen", full_text, re.IGNORECASE
+            )
+            loc_m = re.search(
+                r"([A-Za-z\s\-]+),\s*(Gelderland|Overijssel|Drenthe|Utrecht|Noord-Brabant|Limburg)",
+                full_text,
+            )
+            location  = loc_m.group(0) if loc_m else title[:40]
+
+            listings.append({
+                "source":   "Vakantiemakelaar.nl",
+                "title":    title,
+                "url":      url_l,
+                "price":    price,
+                "bedrooms": int(bed_m.group(1)) if bed_m else None,
+                "persons":  int(pers_m.group(1) or pers_m.group(2)) if pers_m else None,
+                "location": location,
+                "image":    img.get("src", "") if img else "",
+                "sold":     is_sold(full_text),
+                "raw":      full_text[:200],
+            })
+
+        if listings:
+            log.info("Vakantiemakelaar.nl: %d woningen (via %s)", len(listings), path)
+            return listings
+
+    log.warning("Vakantiemakelaar.nl: geen woningen gevonden")
+    return []
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: CenterParcs Vastgoed
+# ════════════════════════════════════════════════════════════
+
+def scrape_centerparcs_vastgoed() -> list[dict]:
+    log.info("Scrapen: CenterParcs Vastgoed")
+    base = "https://www.centerparcs-vastgoed.nl"
+    soup = get_page(f"{base}/recreatiewoningen-te-koop")
+    if not soup:
+        return []
+
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    for a in soup.find_all("a", href=True):
+        href  = a.get("href", "")
+        url_l = href if href.startswith("http") else base + href
+        if not url_l.startswith(base) or url_l in seen_urls:
+            continue
+
+        card      = a.find_parent(["article", "li", "div"]) or a
+        full_text = card.get_text(" ", strip=True)
+        price     = extract_price(full_text)
+        if not price:
+            continue
+
+        seen_urls.add(url_l)
+        img      = card.find("img")
+        title_el = card.find(["h2", "h3", "h4"])
+        title    = title_el.get_text(strip=True)[:80] if title_el else full_text[:60]
+        bed_m    = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+        pers_m   = re.search(r"(\d+)\s*personen|(\d+)[- ]persoons", full_text, re.IGNORECASE)
+
+        listings.append({
+            "source":   "CenterParcs Vastgoed",
+            "title":    title,
+            "url":      url_l,
+            "price":    price,
+            "bedrooms": int(bed_m.group(1)) if bed_m else None,
+            "persons":  int(pers_m.group(1) or pers_m.group(2)) if pers_m else None,
+            "location": title[:40],
+            "image":    img.get("src", "") if img else "",
+            "sold":     is_sold(full_text),
+            "raw":      full_text[:200],
+        })
+
+    log.info("CenterParcs Vastgoed: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
 #  Scraper: Jaap.nl
 # ════════════════════════════════════════════════════════════
 
 def scrape_jaap() -> list[dict]:
-    """
-    Jaap.nl aggregeert aanbod van veel NVM-makelaars.
-    Zoek op recreatiewoning, prijs tot MAX_PRICE.
-    """
     log.info("Scrapen: Jaap.nl")
     base = "https://www.jaap.nl"
     url  = (
@@ -598,15 +1152,10 @@ def scrape_jaap() -> list[dict]:
     )
     soup = get_page(url)
     if not soup:
-        log.warning("Jaap.nl: niet bereikbaar")
         return []
 
     listings: list[dict] = []
-    # Jaap.nl gebruikt article-elementen met class 'property-list-item-inner' of vergelijkbaar
-    cards = soup.select("article.property-list-item, .property-item, [class*='property-list']")
-    if not cards:
-        # Probeer ruimer te zoeken
-        cards = soup.select("article")
+    cards = soup.select("article.property-list-item, .property-item, article")
 
     for card in cards:
         link_el  = card.select_one("a[href]")
@@ -618,85 +1167,20 @@ def scrape_jaap() -> list[dict]:
             continue
         href  = link_el.get("href", "")
         url_l = href if href.startswith("http") else base + href
-        title = title_el.get_text(" ", strip=True) if title_el else card.get_text(" ", strip=True)[:60]
-        price = extract_price(price_el.get_text() if price_el else card.get_text())
-        image = img_el.get("src", "") if img_el else ""
-
-        full_text = card.get_text(" ", strip=True)
-        location  = ""
-        loc_el    = card.select_one("[class*='location'], [class*='city'], [class*='address']")
-        if loc_el:
-            location = loc_el.get_text(" ", strip=True)
-
-        if not url_l.startswith("http") or not price:
-            continue
-
-        listings.append({
-            "source":   "Jaap.nl",
-            "title":    title[:80],
-            "url":      url_l,
-            "price":    price,
-            "bedrooms": None,
-            "persons":  None,
-            "location": location or title[:40],
-            "image":    image,
-            "sold":     is_sold(full_text),
-            "raw":      full_text[:200],
-        })
-
-    log.info("Jaap.nl: %d woningen", len(listings))
-    return listings
-
-
-# ════════════════════════════════════════════════════════════
-#  Scraper: Huislijn.nl
-# ════════════════════════════════════════════════════════════
-
-def scrape_huislijn() -> list[dict]:
-    """
-    Huislijn.nl aggregeert NVM- en andere makelaarssites.
-    Zoekt op recreatiewoningen, filter op prijs.
-    """
-    log.info("Scrapen: Huislijn.nl")
-    base = "https://www.huislijn.nl"
-    url  = (
-        f"{base}/koopwoning/recreatiewoning/nederland"
-        f"?pricemax={config.MAX_PRICE}"
-    )
-    soup = get_page(url)
-    if not soup:
-        log.warning("Huislijn.nl: niet bereikbaar")
-        return []
-
-    listings: list[dict] = []
-    cards = soup.select(
-        ".search-result-item, [class*='result-item'], "
-        ".object-list-item, article"
-    )
-
-    for card in cards:
-        link_el  = card.select_one("a[href]")
-        title_el = card.select_one("h2, h3, [class*='title'], [class*='address']")
-        price_el = card.select_one("[class*='price'], .price, [class*='koopprijs']")
-        img_el   = card.select_one("img")
-
-        if not link_el:
-            continue
-        href  = link_el.get("href", "")
-        url_l = href if href.startswith("http") else base + href
         title = title_el.get_text(" ", strip=True) if title_el else ""
         price = extract_price(price_el.get_text() if price_el else card.get_text())
         image = img_el.get("src", "") if img_el else ""
-
-        if not url_l.startswith("http") or not price or not title:
+        if not url_l.startswith("http") or not price:
             continue
 
         full_text = card.get_text(" ", strip=True)
-        loc_el    = card.select_one("[class*='city'], [class*='location'], [class*='place']")
+        loc_el    = card.select_one(
+            "[class*='location'], [class*='city'], [class*='address']"
+        )
         location  = loc_el.get_text(strip=True) if loc_el else title[:40]
 
         listings.append({
-            "source":   "Huislijn.nl",
+            "source":   "Jaap.nl",
             "title":    title[:80],
             "url":      url_l,
             "price":    price,
@@ -708,8 +1192,96 @@ def scrape_huislijn() -> list[dict]:
             "raw":      full_text[:200],
         })
 
+    log.info("Jaap.nl: %d woningen", len(listings))
+    return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: Huislijn.nl  (403 op standaard user-agent; probeer met referer)
+# ════════════════════════════════════════════════════════════
+
+def scrape_huislijn() -> list[dict]:
+    log.info("Scrapen: Huislijn.nl")
+    base = "https://www.huislijn.nl"
+    provinces = [
+        "gelderland", "overijssel", "drenthe", "limburg", "noord-brabant"
+    ]
+    listings: list[dict] = []
+    seen_urls: set[str]  = set()
+
+    for province in provinces:
+        url  = (
+            f"{base}/koopwoning/recreatiewoning/nederland/{province}"
+            f"?pricemax={config.MAX_PRICE}"
+        )
+        try:
+            resp = SESSION.get(
+                url, timeout=15,
+                headers={**HEADERS, "Referer": "https://www.google.nl/"},
+            )
+            if resp.status_code == 403:
+                log.warning("Huislijn.nl: toegang geblokkeerd (403)")
+                return []
+            resp.raise_for_status()
+            soup = BeautifulSoup(resp.text, "html.parser")
+        except requests.RequestException as exc:
+            log.warning("Huislijn.nl: %s", exc)
+            return []
+
+        cards = soup.select(
+            ".search-result-item, [class*='result-item'], "
+            ".object-list-item, article"
+        )
+        for card in cards:
+            link_el  = card.select_one("a[href]")
+            title_el = card.select_one("h2, h3, [class*='title'], [class*='address']")
+            price_el = card.select_one("[class*='price'], .price, [class*='koopprijs']")
+            img_el   = card.select_one("img")
+
+            if not link_el:
+                continue
+            href  = link_el.get("href", "")
+            url_l = href if href.startswith("http") else base + href
+            if url_l in seen_urls:
+                continue
+            title = title_el.get_text(" ", strip=True) if title_el else ""
+            price = extract_price(price_el.get_text() if price_el else card.get_text())
+            if not url_l.startswith("http") or not price or not title:
+                continue
+            seen_urls.add(url_l)
+
+            full_text = card.get_text(" ", strip=True)
+            loc_el    = card.select_one("[class*='city'],[class*='location'],[class*='place']")
+            location  = loc_el.get_text(strip=True) if loc_el else province.title()
+            bed_m     = re.search(r"(\d+)\s*slaapkamer", full_text, re.IGNORECASE)
+            pers_m    = re.search(
+                r"(\d+)[- ]persoons|(\d+)\s*personen", full_text, re.IGNORECASE
+            )
+
+            listings.append({
+                "source":   "Huislijn.nl",
+                "title":    title[:80],
+                "url":      url_l,
+                "price":    price,
+                "bedrooms": int(bed_m.group(1)) if bed_m else None,
+                "persons":  int(pers_m.group(1) or pers_m.group(2)) if pers_m else None,
+                "location": location,
+                "image":    img_el.get("src", "") if img_el else "",
+                "sold":     is_sold(full_text),
+                "raw":      full_text[:200],
+            })
+        time.sleep(0.8)
+
     log.info("Huislijn.nl: %d woningen", len(listings))
     return listings
+
+
+# ════════════════════════════════════════════════════════════
+#  Scraper: Roompot (stub – geen publieke verkooppagina)
+# ════════════════════════════════════════════════════════════
+
+def scrape_roompot() -> list[dict]:
+    return []
 
 
 # ════════════════════════════════════════════════════════════
@@ -717,9 +1289,8 @@ def scrape_huislijn() -> list[dict]:
 # ════════════════════════════════════════════════════════════
 
 def _smtp_ready() -> bool:
-    """Check of SMTP geconfigureerd is."""
     if not config.EMAIL_TO:
-        log.warning("E-mail: geen ontvangers ingesteld (EMAIL_TO is leeg)")
+        log.warning("E-mail: geen ontvangers ingesteld")
         return False
     if not config.SMTP_PASSWORD or "JOUW" in config.SMTP_PASSWORD:
         log.warning("E-mail: SMTP_PASSWORD niet ingesteld – sla e-mail over")
@@ -728,7 +1299,6 @@ def _smtp_ready() -> bool:
 
 
 def _send_raw(subject: str, html_body: str, text_body: str) -> None:
-    """Verstuur een e-mail (intern hulpfunctie)."""
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"]    = config.EMAIL_FROM
@@ -737,9 +1307,7 @@ def _send_raw(subject: str, html_body: str, text_body: str) -> None:
     msg.attach(MIMEText(html_body, "html",  "utf-8"))
     try:
         with smtplib.SMTP(config.SMTP_HOST, config.SMTP_PORT, timeout=30) as server:
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
+            server.ehlo(); server.starttls(); server.ehlo()
             server.login(config.SMTP_USER, config.SMTP_PASSWORD)
             server.sendmail(config.EMAIL_FROM, config.EMAIL_TO, msg.as_bytes())
         log.info("E-mail verstuurd naar: %s", ", ".join(config.EMAIL_TO))
@@ -752,7 +1320,6 @@ def _fmt_price(price: int | None) -> str:
 
 
 def build_email_html(new_listings: list[dict]) -> str:
-    """Bouw een HTML-e-mail: grote knop bovenaan, woningen in grid van 2 per rij."""
     sorted_listings = sorted(new_listings, key=lambda l: l.get("price") or 0, reverse=True)
     count  = len(sorted_listings)
     plural = "en" if count > 1 else ""
@@ -780,7 +1347,6 @@ def build_email_html(new_listings: list[dict]) -> str:
                 'border-radius:8px 8px 0 0;text-align:center;font-size:2rem;'
                 'line-height:80px;">🏡</div>'
             )
-
             cells += f"""
               <td width="50%" valign="top" style="padding:6px;">
                 <div style="background:#ffffff;border-radius:10px;
@@ -808,17 +1374,13 @@ def build_email_html(new_listings: list[dict]) -> str:
                   </div>
                 </div>
               </td>"""
-
         if len(pair) == 1:
             cells += '<td width="50%">&nbsp;</td>'
         rows_html += f"<tr>{cells}</tr>"
 
     return f"""<!DOCTYPE html>
 <html lang="nl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f8f9fa;
              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <div style="max-width:640px;margin:2rem auto;padding:0 1rem;">
@@ -827,9 +1389,7 @@ def build_email_html(new_listings: list[dict]) -> str:
       <h1 style="margin:0 0 .5rem;font-size:1.45rem;color:#ffffff;">
         🏡 {count} Nieuwe vakantiewoning{plural} te koop
       </h1>
-      <p style="margin:0 0 1.5rem;font-size:.875rem;color:#d8f3dc;">
-        Gevonden op {ts}
-      </p>
+      <p style="margin:0 0 1.5rem;font-size:.875rem;color:#d8f3dc;">Gevonden op {ts}</p>
       <a href="{WEBSITE_URL}"
          style="display:inline-block;background:#f4a261;color:#ffffff;
                 text-decoration:none;padding:14px 32px;border-radius:50px;
@@ -846,8 +1406,7 @@ def build_email_html(new_listings: list[dict]) -> str:
                 padding:1rem 1.5rem;font-size:.75rem;color:#495057;text-align:center;">
       Project Vacay Cabin · max €{config.MAX_PRICE:,} ·
       min {config.MIN_BEDROOMS} slaapkamers · min {config.MIN_PERSONS} personen<br>
-      <a href="{WEBSITE_URL}" style="color:#2d6a4f;text-decoration:none;">
-        {WEBSITE_URL}</a>
+      <a href="{WEBSITE_URL}" style="color:#2d6a4f;text-decoration:none;">{WEBSITE_URL}</a>
     </div>
   </div>
 </body>
@@ -862,19 +1421,17 @@ def send_email(new_listings: list[dict]) -> None:
     now      = datetime.now()
     date_str = f"{now.day}-{now.month}-{str(now.year)[2:]}"
     subject  = f"Project Vacay Cabin - {count} nieuwe woning{plural} gevonden - {date_str}"
-
     html_body = build_email_html(new_listings)
-    lines = [f"Nieuwe vakantiewoningen te koop ({count}):\n"]
+    lines = [f"Nieuwe vakantiewoningen ({count}):\n"]
     for l in sorted(new_listings, key=lambda x: x.get("price") or 0, reverse=True):
         lines.append(
             f"- {l['title']} | {_fmt_price(l.get('price'))} | "
-            f"{l.get('bedrooms','?')} slpk | {l.get('persons','?')} pers | {l.get('url','')}"
+            f"{l.get('bedrooms','?')} slpk | {l.get('persons','?')} pers"
         )
     _send_raw(subject, html_body, "\n".join(lines))
 
 
 def send_alert_email(days_since: int, last_new_date: str) -> None:
-    """Verstuur een waarschuwing als er al ALERT_DAYS dagen niets nieuws is."""
     if not _smtp_ready():
         return
     now      = datetime.now()
@@ -883,8 +1440,7 @@ def send_alert_email(days_since: int, last_new_date: str) -> None:
         f"Project Vacay Cabin - Geen nieuwe woningen in {days_since} dagen - {date_str}"
     )
     html_body = f"""<!DOCTYPE html>
-<html lang="nl">
-<head><meta charset="UTF-8"></head>
+<html lang="nl"><head><meta charset="UTF-8"></head>
 <body style="margin:0;padding:0;background:#f8f9fa;
              font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
   <div style="max-width:600px;margin:2rem auto;padding:0 1rem;">
@@ -894,21 +1450,18 @@ def send_alert_email(days_since: int, last_new_date: str) -> None:
         📭 Geen nieuwe woningen in {days_since} dagen
       </h1>
       <p style="margin:0;font-size:.875rem;color:#dee2e6;">
-        Laatste nieuwe woning gevonden op: {last_new_date}
+        Laatste nieuwe woning: {last_new_date}
       </p>
     </div>
     <div style="background:#ffffff;padding:1.5rem;border:1px solid #dee2e6;">
       <p style="color:#212529;margin:0 0 1rem;">
-        De scraper draait dagelijks, maar heeft de afgelopen <strong>{days_since} dagen</strong>
-        geen nieuwe woningen gevonden die aan de filters voldoen.
-      </p>
-      <p style="color:#212529;margin:0 0 1rem;">
-        Dit kan betekenen dat:
+        De scraper draait dagelijks maar vond de afgelopen
+        <strong>{days_since} dagen</strong> geen nieuwe woningen die aan de filters voldoen.
       </p>
       <ul style="color:#343a40;margin:0 0 1rem;padding-left:1.5rem;">
-        <li>Er tijdelijk geen nieuw aanbod is</li>
-        <li>De filters (prijs, slaapkamers, regio) te streng zijn</li>
-        <li>Een of meer bronnen tijdelijk niet bereikbaar zijn</li>
+        <li>Er is tijdelijk geen nieuw aanbod</li>
+        <li>De filters zijn te streng (prijs / slaapkamers / regio)</li>
+        <li>Een of meer bronnen zijn tijdelijk niet bereikbaar</li>
       </ul>
       <a href="{WEBSITE_URL}"
          style="display:inline-block;background:#2d6a4f;color:#ffffff;
@@ -922,15 +1475,12 @@ def send_alert_email(days_since: int, last_new_date: str) -> None:
       Project Vacay Cabin · automatisch gegenereerd
     </div>
   </div>
-</body>
-</html>"""
-    text_body = (
+</body></html>"""
+    _send_raw(
+        subject, html_body,
         f"Geen nieuwe woningen in {days_since} dagen.\n"
-        f"Laatste nieuwe woning: {last_new_date}\n"
-        f"Website: {WEBSITE_URL}"
+        f"Laatste nieuwe woning: {last_new_date}\nWebsite: {WEBSITE_URL}",
     )
-    log.info("Alert-e-mail sturen: %d dagen geen nieuw aanbod", days_since)
-    _send_raw(subject, html_body, text_body)
 
 
 # ════════════════════════════════════════════════════════════
@@ -945,15 +1495,23 @@ def run() -> None:
     log.info("=" * 60)
 
     known, meta = load_known()
-    log.info("Bekende woningen (known_listings.json): %d", len(known))
+    log.info("Bekende woningen: %d", len(known))
 
-    # ── Stap 1: scrapers ─────────────────────────────────────
+    # ── Stap 1: alle scrapers ─────────────────────────────────
     all_raw: list[dict] = []
     for scraper in [
         scrape_recreatievastgoed,
         scrape_marktplaats,
         scrape_vakantiehuistekoop,
         scrape_landalmakelaardij,
+        scrape_recreatiewoningentekoop,
+        scrape_europarcsmakelaardij,
+        scrape_veluwechalets,
+        scrape_uwtweedehuismakelaar,
+        scrape_uwbuitenleven,
+        scrape_topparkenverkoop,
+        scrape_vakantiemakelaar,
+        scrape_centerparcs_vastgoed,
         scrape_jaap,
         scrape_huislijn,
         scrape_roompot,
@@ -965,7 +1523,7 @@ def run() -> None:
 
     log.info("Totaal gescraped (ongefilterd): %d", len(all_raw))
 
-    # ── Bijhouden welke bronnen actief waren en welke URLs gezien ──
+    # ── Bijhouden actieve bronnen en geziene URLs ─────────────
     scraped_url_keys: set[str] = set()
     active_sources:   set[str] = set()
     for l in all_raw:
@@ -975,7 +1533,7 @@ def run() -> None:
         if l.get("source"):
             active_sources.add(l["source"])
 
-    # ── Stap 2: grove filters (regio + prijs + personen) ─────
+    # ── Stap 2: regio + prijs + personen filter ───────────────
     def in_region(l: dict) -> bool:
         return is_in_region(" ".join([
             l.get("location") or "", l.get("title") or "", l.get("raw") or ""
@@ -993,36 +1551,34 @@ def run() -> None:
     # ── Stap 3: slaapkamers + geocoding ophalen ───────────────
     without_beds = [l for l in pre if l.get("bedrooms") is None]
     if without_beds:
-        log.info("Slaapkamers + geocoding ophalen voor %d woningen…", len(without_beds))
+        log.info("Slaapkamers + geocoding voor %d woningen…", len(without_beds))
         pre = enrich_with_details(pre)
 
-    # ── Stap 4: slaapkamer filter + completeness-check ───────
+    # ── Stap 4: slaapkamer filter + volledigheidscheck ────────
     filtered = [l for l in pre if passes_filters(l)]
-    log.info("Na slaapkamer filter: %d woningen", len(filtered))
-
     complete = [l for l in filtered if is_complete(l)]
     skipped  = len(filtered) - len(complete)
     if skipped:
-        log.info("Onvolledige woningen overgeslagen (geen URL/prijs/locatie): %d", skipped)
+        log.info("Onvolledige woningen overgeslagen: %d", skipped)
     filtered = complete
-    log.info("Na volledigheidscheck: %d woningen", len(filtered))
+    log.info("Na volledige filter: %d woningen", len(filtered))
 
-    # ── Stap 5: deduplicatie + prijshistorie + first_seen ────
-    today        = datetime.now().strftime("%Y-%m-%d")
+    # ── Stap 5: deduplicatie + prijshistorie + first_seen ─────
+    today         = datetime.now().strftime("%Y-%m-%d")
     new_listings: list[dict] = []
     updated_known = dict(known)
 
     for l in filtered:
-        key = url_key(l.get("url", "")) or f"{l['source']}::{l['title']}"
+        key      = url_key(l.get("url", "")) or f"{l['source']}::{l['title']}"
+        existing = updated_known.get(key, {})
 
-        # Prijshistorie bijhouden
-        existing     = updated_known.get(key, {})
-        price_hist   = list(existing.get("price_history", []))
+        # Prijshistorie
+        price_hist    = list(existing.get("price_history", []))
         current_price = l.get("price")
         if not price_hist or price_hist[-1].get("price") != current_price:
             price_hist.append({"date": today, "price": current_price})
 
-        # Coördinaten bewaren als al bekend
+        # Coördinaten bewaren indien al bekend
         if not l.get("lat") and existing.get("lat"):
             l["lat"] = existing["lat"]
             l["lng"] = existing.get("lng")
@@ -1037,8 +1593,8 @@ def run() -> None:
         if key not in updated_known:
             new_listings.append(l)
             log.info(
-                "NIEUW ★  %-22s | %-40s | %s slpk | %s pers | %s",
-                l["source"], l["title"][:40],
+                "NIEUW ★  %-28s | %-38s | %s slpk | %s pers | %s",
+                l["source"], l["title"][:38],
                 l.get("bedrooms") or "?",
                 l.get("persons") or "?",
                 _fmt_price(l.get("price")),
@@ -1055,7 +1611,6 @@ def run() -> None:
         if src in active_sources:
             was_seen = key in scraped_url_keys
             if not was_seen and not listing.get("offline"):
-                log.info("OFFLINE  %-22s | %s", src, listing.get("title", "")[:50])
                 offline_count += 1
             listing["offline"] = not was_seen
     if offline_count:
@@ -1065,33 +1620,29 @@ def run() -> None:
     screenshots_taken = 0
     SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
     for l in new_listings:
-        if screenshots_taken >= 5:
-            break
-        if l.get("image"):
+        if screenshots_taken >= 5 or l.get("image"):
             continue
         wurl = l.get("url", "")
         if not wurl.startswith("http"):
             continue
-        # Bestandsnaam: veilige versie van de URL
         safe_name = re.sub(r"[^a-z0-9]", "_", url_key(wurl))[:60] + ".png"
         save_path = SCREENSHOTS_DIR / safe_name
-        if not save_path.exists():
-            if take_screenshot(wurl, save_path):
-                l["image"] = f"screenshots/{safe_name}"
-                # Ook in updated_known bijwerken
-                ukey = url_key(wurl)
-                if ukey in updated_known:
-                    updated_known[ukey]["image"] = l["image"]
-                screenshots_taken += 1
+        if not save_path.exists() and take_screenshot(wurl, save_path):
+            l["image"] = f"screenshots/{safe_name}"
+            ukey = url_key(wurl)
+            if ukey in updated_known:
+                updated_known[ukey]["image"] = l["image"]
+            screenshots_taken += 1
 
-    # ── Stap 6: metadata bijwerken (14-daagse alert) ─────────
+    # ── Stap 6: 14-daagse alert ───────────────────────────────
     last_new_str = meta.get("last_new_found", "")
     if new_listings:
         meta["last_new_found"] = today
     elif last_new_str:
         try:
-            last_new_dt = datetime.strptime(last_new_str, "%Y-%m-%d")
-            days_since  = (datetime.now() - last_new_dt).days
+            days_since = (
+                datetime.now() - datetime.strptime(last_new_str, "%Y-%m-%d")
+            ).days
             if days_since >= ALERT_DAYS:
                 send_alert_email(days_since, last_new_str)
         except ValueError:
@@ -1100,10 +1651,9 @@ def run() -> None:
     # ── Stap 7: opslaan ──────────────────────────────────────
     save_known(updated_known, meta)
 
-    # ── Stap 8: data.json voor website bijwerken ─────────────
-    all_for_website = list(updated_known.values())
+    # ── Stap 8: data.json (alle woningen, ook offline) ───────
     write_data_json(
-        all_listings=all_for_website,
+        all_listings=list(updated_known.values()),
         new_listings=new_listings,
     )
 

@@ -69,11 +69,30 @@ jobs:
           MAX_PRICE    = 350_000
           MIN_BEDROOMS = 4
           MIN_PERSONS  = 8
-          REGION_KEYWORDS = ["veluwe","gelderland","overijssel","drenthe","friesland",
-                             "flevoland","utrecht","noord-brabant","limburg","zeeland",
+          REGION_KEYWORDS = [
+                             # Provincies (Friesland, Zeeland en Flevoland verwijderd)
+                             "veluwe","gelderland","overijssel","drenthe",
+                             "utrecht","noord-brabant","limburg",
+                             # Gelderland / Veluwe
                              "nunspeet","harderwijk","apeldoorn","arnhem","nijmegen",
-                             "zwolle","enschede","deventer","breda","eindhoven",
-                             "haarle","anjum","roggel","gulpen","epe"]
+                             "ede","barneveld","wageningen","doetinchem","winterswijk",
+                             "haarle","epe","hattem","elburg","oldebroek","ermelo",
+                             # Overijssel
+                             "zwolle","enschede","deventer","almelo","hengelo",
+                             "ommen","hardenberg","dalfsen","raalte",
+                             # Drenthe
+                             "emmen","assen","hoogeveen","meppel","coevorden",
+                             "dwingeloo","ruinen","havelte","noordwolde",
+                             # Noord-Brabant
+                             "breda","eindhoven","tilburg","vught","boxtel",
+                             "'s-hertogenbosch","udenhout","oisterwijk",
+                             # Limburg
+                             "roggel","gulpen","venlo","venray","weert","roermond",
+                             "maastricht","sittard","valkenburg",
+                             # Utrecht
+                             "maarn","amersfoort","soest","zeist","veenendaal",
+                             "rhenen","wijk bij duurstede",
+                          ]
           SOLD_KEYWORDS = ["verkocht","sold","in onderhandeling","onder bod",
                            "optie","gereserveerd","reserved"]
           PYEOF
