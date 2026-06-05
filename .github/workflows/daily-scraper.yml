@@ -34,6 +34,10 @@ jobs:
       - name: Installeer packages
         run: pip install -r requirements.txt
 
+      # ── 3b. Playwright Chromium installeren (voor screenshots) ──
+      - name: Installeer Playwright Chromium
+        run: playwright install chromium --with-deps
+
       # ── 4. config.py genereren vanuit GitHub Secrets ─────────
       # config.py staat in .gitignore en wordt NOOIT gecommit.
       # Hier maken we het bestand aan op basis van de Secrets.
@@ -103,7 +107,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -f known_listings.json docs/data.json
+          git add -f known_listings.json docs/data.json docs/screenshots/ 2>/dev/null || true
           # Alleen committen als er iets gewijzigd is
           git diff --cached --quiet || git commit -m "🤖 scraper update $(date -u +'%Y-%m-%d %H:%M UTC')"
           git pull --rebase origin main

@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vakantiewoningen Te Koop</title>
+  <!-- Leaflet voor de kaart -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     :root {
       --green:   #2d6a4f;
@@ -31,19 +34,39 @@
     #last-updated { font-size: .78rem; opacity: .7; margin-top: .4rem; }
 
     /* ── Tabs ── */
-    .tabs { display: flex; background: var(--green); padding: 0 1.5rem; gap: .25rem; }
+    .tabs { display: flex; background: var(--green); padding: 0 1.5rem; gap: .25rem; overflow-x: auto; }
     .tab-btn {
-      padding: .65rem 1.4rem; border: none; background: transparent;
-      color: rgba(255,255,255,.7); cursor: pointer; font-size: .9rem;
-      border-bottom: 3px solid transparent; transition: all .2s;
+      padding: .65rem 1.2rem; border: none; background: transparent;
+      color: rgba(255,255,255,.7); cursor: pointer; font-size: .875rem;
+      border-bottom: 3px solid transparent; transition: all .2s; white-space: nowrap;
     }
     .tab-btn.active { color: #fff; border-bottom-color: var(--accent); font-weight: 600; }
     .tab-btn:hover  { color: #fff; }
 
+    /* ── Toolbar (sort + search) ── */
+    .toolbar {
+      background: #fff; border-bottom: 1px solid var(--border);
+      padding: .75rem 1.5rem; display: flex; gap: .75rem;
+      align-items: center; flex-wrap: wrap;
+    }
+    .sort-group { display: flex; gap: .35rem; }
+    .sort-btn {
+      padding: .35rem .8rem; border: 1px solid var(--border); border-radius: 20px;
+      background: #fff; color: var(--muted); font-size: .78rem; cursor: pointer;
+      transition: all .15s;
+    }
+    .sort-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+    .search-wrap { flex: 1; min-width: 180px; }
+    .search-wrap input {
+      width: 100%; padding: .4rem .8rem; border: 1px solid var(--border);
+      border-radius: 20px; font-size: .85rem; outline: none; color: var(--text);
+    }
+    .search-wrap input:focus { border-color: var(--green); }
+
     /* ── Stats bar ── */
     .stats {
       background: #fff; border-bottom: 1px solid var(--border);
-      padding: .6rem 1.5rem; font-size: .82rem; color: var(--muted);
+      padding: .5rem 1.5rem; font-size: .78rem; color: var(--muted);
       display: flex; gap: 1.5rem; flex-wrap: wrap;
     }
     .stats strong { color: var(--text); }
@@ -66,8 +89,7 @@
     .card.is-offline { opacity: .72; }
 
     .card-img {
-      width: 100%; height: 180px; object-fit: cover; background: var(--border);
-      display: block;
+      width: 100%; height: 180px; object-fit: cover; background: var(--border); display: block;
     }
     .card-img-placeholder {
       width: 100%; height: 180px; background: linear-gradient(135deg, #e9ecef, #dee2e6);
@@ -75,52 +97,49 @@
       font-size: 3rem; color: #adb5bd;
     }
 
-    /* ── Status banner (offline / verkocht) ── */
+    /* ── Status banner ── */
     .status-banner {
       position: absolute; top: 10px; left: 0;
-      padding: 4px 14px 4px 10px;
-      font-size: .72rem; font-weight: 700; letter-spacing: .05em;
-      text-transform: uppercase; border-radius: 0 20px 20px 0;
-      color: #fff;
+      padding: 4px 14px 4px 10px; font-size: .7rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      border-radius: 0 20px 20px 0; color: #fff;
     }
     .status-banner.offline  { background: #6c757d; }
     .status-banner.verkocht { background: #c0392b; }
 
-    /* ── Favorite button ── */
+    /* ── Fav button ── */
     .fav-btn {
       position: absolute; top: 8px; right: 8px;
       background: rgba(255,255,255,.9); border: none; border-radius: 50%;
       width: 36px; height: 36px; font-size: 1.15rem; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: transform .15s;
-      line-height: 1;
+      box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: transform .15s; line-height: 1;
     }
     .fav-btn:hover { transform: scale(1.15); }
 
-    .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
+    .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .45rem; }
 
     .badge-source {
-      display: inline-block; font-size: .7rem; font-weight: 600; padding: .2rem .55rem;
-      border-radius: 20px; background: #e8f5e9; color: var(--green);
-      letter-spacing: .03em; text-transform: uppercase;
+      display: inline-block; font-size: .68rem; font-weight: 600; padding: .18rem .5rem;
+      border-radius: 20px; letter-spacing: .03em; text-transform: uppercase;
     }
     .badge-new {
-      display: inline-block; font-size: .7rem; font-weight: 700; padding: .2rem .55rem;
-      border-radius: 20px; background: var(--accent); color: #fff;
-      margin-left: .3rem;
+      display: inline-block; font-size: .68rem; font-weight: 700; padding: .18rem .5rem;
+      border-radius: 20px; background: var(--accent); color: #fff; margin-left: .3rem;
     }
 
     .card-title { font-size: 1rem; font-weight: 700; line-height: 1.3; color: var(--text); }
 
-    .card-price { font-size: 1.3rem; font-weight: 800; color: var(--green); }
+    .card-price { font-size: 1.25rem; font-weight: 800; color: var(--green); display: flex; align-items: baseline; gap: .4rem; }
     .card-price span { font-size: .8rem; font-weight: 400; color: var(--muted); }
+    .price-trend { font-size: .8rem; font-weight: 700; }
+    .price-trend.up   { color: #c0392b; }
+    .price-trend.down { color: #27ae60; }
 
-    .card-specs {
-      display: flex; gap: .75rem; font-size: .85rem; color: var(--muted); flex-wrap: wrap;
-    }
+    .card-specs { display: flex; gap: .75rem; font-size: .83rem; color: var(--muted); flex-wrap: wrap; }
     .spec { display: flex; align-items: center; gap: .25rem; }
-
-    .card-location { font-size: .82rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
+    .card-location { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
+    .first-seen { font-size: .72rem; color: #adb5bd; }
 
     .card-link {
       display: block; margin-top: auto; padding: .6rem 1rem; text-align: center;
@@ -130,19 +149,20 @@
     .card-link:hover { background: var(--green-l); }
 
     /* ── Empty state ── */
-    .empty {
-      grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--muted);
-    }
+    .empty { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--muted); }
     .empty .icon { font-size: 3rem; margin-bottom: 1rem; }
 
     /* ── Tab content ── */
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* ── Map ── */
+    #map { height: 600px; width: 100%; }
+    .map-wrap { padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
+    .map-info { padding: .5rem 1.5rem; font-size: .8rem; color: var(--muted); }
+
     /* ── Loading ── */
-    #loading {
-      text-align: center; padding: 4rem; font-size: 1.1rem; color: var(--muted);
-    }
+    #loading { text-align: center; padding: 4rem; font-size: 1.1rem; color: var(--muted); }
     .spinner {
       width: 40px; height: 40px; border: 4px solid var(--border);
       border-top-color: var(--green); border-radius: 50%;
@@ -150,11 +170,11 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── Responsive ── */
     @media (max-width: 480px) {
       .grid { padding: 1rem; gap: 1rem; }
       header { padding: 1.5rem 1rem 1rem; }
-      .tabs  { padding: 0 1rem; }
+      .tabs  { padding: 0 .5rem; }
+      .toolbar { padding: .6rem 1rem; }
     }
   </style>
 </head>
@@ -170,15 +190,27 @@
   <button class="tab-btn active" onclick="switchTab('nieuw',     this)">⭐ Nieuw</button>
   <button class="tab-btn"       onclick="switchTab('alle',       this)">🏘 Alle woningen</button>
   <button class="tab-btn"       onclick="switchTab('favorieten', this)" id="fav-tab-btn">❤️ Favorieten</button>
+  <button class="tab-btn"       onclick="switchTab('kaart',      this)">🗺️ Kaart</button>
 </nav>
 
-<div id="loading">
-  <div class="spinner"></div>
-  Woningen worden geladen…
-</div>
+<div id="loading"><div class="spinner"></div>Woningen worden geladen…</div>
 
 <div id="content" style="display:none">
   <div class="stats" id="stats-bar"></div>
+
+  <!-- Toolbar: zichtbaar op Nieuw + Alle + Favorieten -->
+  <div class="toolbar" id="toolbar">
+    <div class="sort-group">
+      <span style="font-size:.78rem;color:var(--muted);margin-right:.25rem;">Sorteren:</span>
+      <button class="sort-btn active" onclick="setSort('price_desc', this)">💰 Duurste</button>
+      <button class="sort-btn"       onclick="setSort('price_asc',  this)">🏷️ Goedkoopste</button>
+      <button class="sort-btn"       onclick="setSort('newest',     this)">🆕 Nieuwste</button>
+    </div>
+    <div class="search-wrap">
+      <input id="search-input" type="search" placeholder="🔍  Zoek op locatie, prijs of bron…"
+             oninput="onSearch()" />
+    </div>
+  </div>
 
   <div id="tab-nieuw" class="tab-content active">
     <div class="grid" id="grid-nieuw"></div>
@@ -191,18 +223,39 @@
   <div id="tab-favorieten" class="tab-content">
     <div class="grid" id="grid-favorieten"></div>
   </div>
+
+  <div id="tab-kaart" class="tab-content">
+    <div class="map-info" id="map-info"></div>
+    <div class="map-wrap">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
 
 <script>
+  // ════════════════════════════════════════════════════════
+  //  Constanten & globale staat
+  // ════════════════════════════════════════════════════════
+
   const SOURCE_COLORS = {
     "Recreatievastgoed.nl":  "#2d6a4f",
     "Landal Makelaardij":    "#1565c0",
     "Marktplaats":           "#d32f2f",
     "VakantiehuisTekoop.nl": "#6a1b9a",
+    "Jaap.nl":               "#e67e22",
+    "Huislijn.nl":           "#0097a7",
   };
 
-  // ── Favorieten (localStorage) ────────────────────────────────
   const FAV_KEY = "vacay_favs_v1";
+  let ALL_LISTINGS  = [];
+  let NEW_URLS      = new Set();
+  let currentSort   = "price_desc";
+  let currentSearch = "";
+  let leafletMap    = null;
+
+  // ════════════════════════════════════════════════════════
+  //  Favorieten (localStorage)
+  // ════════════════════════════════════════════════════════
 
   function getFavs() {
     try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); }
@@ -211,20 +264,52 @@
 
   function toggleFav(url) {
     const favs = getFavs();
-    if (favs.has(url)) { favs.delete(url); } else { favs.add(url); }
+    favs.has(url) ? favs.delete(url) : favs.add(url);
     localStorage.setItem(FAV_KEY, JSON.stringify([...favs]));
     return favs.has(url);
   }
 
-  // ── Helpers ──────────────────────────────────────────────────
+  // ════════════════════════════════════════════════════════
+  //  Helpers
+  // ════════════════════════════════════════════════════════
+
   function fmt_price(p) {
-    if (!p) return "Prijs onbekend";
-    return "€ " + p.toLocaleString("nl-NL");
+    return p ? "€ " + p.toLocaleString("nl-NL") : "Prijs onbekend";
   }
 
-  const by_price = arr => [...arr].sort((a, b) => (b.price || 0) - (a.price || 0));
+  function price_trend_html(hist) {
+    if (!hist || hist.length < 2) return "";
+    const prev = hist[hist.length - 2].price;
+    const curr = hist[hist.length - 1].price;
+    if (!prev || !curr || prev === curr) return "";
+    const diff = curr - prev;
+    const sign = diff > 0 ? "▲" : "▼";
+    const cls  = diff > 0 ? "up" : "down";
+    return `<span class="price-trend ${cls}">${sign} €${Math.abs(diff).toLocaleString("nl-NL")}</span>`;
+  }
 
-  // ── Card HTML ────────────────────────────────────────────────
+  function apply_sort(arr) {
+    const copy = [...arr];
+    if (currentSort === "price_desc") return copy.sort((a, b) => (b.price||0) - (a.price||0));
+    if (currentSort === "price_asc")  return copy.sort((a, b) => (a.price||0) - (b.price||0));
+    if (currentSort === "newest")     return copy.sort((a, b) =>
+      (b.first_seen || "").localeCompare(a.first_seen || ""));
+    return copy;
+  }
+
+  function apply_search(arr) {
+    if (!currentSearch) return arr;
+    const q = currentSearch.toLowerCase();
+    return arr.filter(l =>
+      [l.title, l.location, l.source, String(l.price || "")]
+        .join(" ").toLowerCase().includes(q)
+    );
+  }
+
+  // ════════════════════════════════════════════════════════
+  //  Card HTML
+  // ════════════════════════════════════════════════════════
+
   function card_html(l, is_new) {
     const favs  = getFavs();
     const isFav = favs.has(l.url);
@@ -234,11 +319,13 @@
     const pers  = l.persons  ? `${l.persons} pers`  : "? pers";
     const loc   = l.location || l.title || "Onbekend";
     const new_b = is_new ? `<span class="badge-new">NIEUW</span>` : "";
+    const trend = price_trend_html(l.price_history);
+    const first = l.first_seen
+      ? `<div class="first-seen">Eerste keer gezien: ${l.first_seen}</div>` : "";
 
-    // Status banner: offline of verkocht
     let statusBanner = "";
-    if (l.offline)      statusBanner = `<div class="status-banner offline">📴 Offline</div>`;
-    else if (l.sold)    statusBanner = `<div class="status-banner verkocht">🔴 Verkocht</div>`;
+    if (l.offline)   statusBanner = `<div class="status-banner offline">📴 Offline</div>`;
+    else if (l.sold) statusBanner = `<div class="status-banner verkocht">🔴 Verkocht</div>`;
 
     const safeUrl = (l.url || "#").replace(/"/g, "%22");
 
@@ -249,11 +336,10 @@
       : `<div class="card-img-placeholder">🏡</div>`;
 
     return `
-      <div class="card${l.offline || l.sold ? ' is-offline' : ''}" data-url="${safeUrl}">
+      <div class="card${l.offline || l.sold ? ' is-offline' : ''}">
         ${img}
         ${statusBanner}
-        <button class="fav-btn"
-                onclick="onFavClick(this, '${safeUrl}')"
+        <button class="fav-btn" onclick="onFavClick(this,'${safeUrl}')"
                 title="${isFav ? 'Verwijder uit favorieten' : 'Voeg toe aan favorieten'}">
           ${isFav ? "❤️" : "🤍"}
         </button>
@@ -263,71 +349,189 @@
             ${new_b}
           </div>
           <div class="card-title">${l.title}</div>
-          <div class="card-price">${price} <span>k.k.</span></div>
+          <div class="card-price">${price} <span>k.k.</span> ${trend}</div>
           <div class="card-specs">
             <span class="spec">🛏 ${slpk}</span>
             <span class="spec">👥 ${pers}</span>
           </div>
           <div class="card-location">📍 ${loc}</div>
+          ${first}
           <a class="card-link" href="${safeUrl}" target="_blank" rel="noopener">Bekijk woning →</a>
         </div>
       </div>`;
   }
 
-  // ── Hartje klikken ───────────────────────────────────────────
+  // ════════════════════════════════════════════════════════
+  //  Event handlers
+  // ════════════════════════════════════════════════════════
+
   function onFavClick(btn, encodedUrl) {
-    const url   = decodeURIComponent(encodedUrl);
+    const url    = decodeURIComponent(encodedUrl);
     const nowFav = toggleFav(url);
     btn.textContent = nowFav ? "❤️" : "🤍";
     btn.title = nowFav ? "Verwijder uit favorieten" : "Voeg toe aan favorieten";
     renderFavs();
   }
 
-  // ── Globale staat ────────────────────────────────────────────
-  let ALL_LISTINGS = [];
-  let NEW_URLS     = new Set();
+  function setSort(mode, btn) {
+    currentSort = mode;
+    document.querySelectorAll(".sort-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderCurrentTab();
+  }
 
-  // ── Favorieten tab renderen ───────────────────────────────────
-  function renderFavs() {
-    const favs  = getFavs();
-    const items = ALL_LISTINGS.filter(l => favs.has(l.url));
+  function onSearch() {
+    currentSearch = document.getElementById("search-input").value;
+    renderCurrentTab();
+  }
 
-    // Tabbladlabel bijwerken met aantal
-    const btn = document.getElementById("fav-tab-btn");
-    if (btn) btn.textContent = items.length ? `❤️ Favorieten (${items.length})` : "❤️ Favorieten";
+  let activeTabName = "nieuw";
+  function renderCurrentTab() {
+    if (activeTabName === "nieuw")       renderNieuw();
+    else if (activeTabName === "alle")  renderAlle();
+    else if (activeTabName === "favorieten") renderFavs();
+  }
 
-    const gf = document.getElementById("grid-favorieten");
-    if (!gf) return;
+  // ════════════════════════════════════════════════════════
+  //  Renderers
+  // ════════════════════════════════════════════════════════
 
-    if (items.length === 0) {
-      gf.innerHTML = `<div class="empty">
-        <div class="icon">🤍</div>
-        <strong>Nog geen favorieten</strong><br>
-        Klik op het hartje 🤍 op een woning om hem hier op te slaan.<br>
-        Favorieten worden bewaard in je browser en blijven staan na het sluiten.</div>`;
+  function render_grid(containerId, items, is_new_fn) {
+    const g = document.getElementById(containerId);
+    const processed = apply_sort(apply_search(items));
+    if (!processed.length) {
+      g.innerHTML = `<div class="empty"><div class="icon">🔍</div>
+        <strong>Geen woningen gevonden</strong><br>Pas de zoekopdracht aan.</div>`;
     } else {
-      gf.innerHTML = by_price(items).map(l => card_html(l, NEW_URLS.has(l.url))).join("");
+      g.innerHTML = processed.map(l => card_html(l, is_new_fn(l))).join("");
     }
   }
 
-  // ── Tab wisselen ─────────────────────────────────────────────
+  function renderNieuw() {
+    const nieuw = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
+    if (!nieuw.length && !currentSearch) {
+      document.getElementById("grid-nieuw").innerHTML =
+        `<div class="empty"><div class="icon">✅</div>
+         <strong>Geen nieuwe woningen</strong><br>Alle woningen zijn al bekend. Kom morgen terug!</div>`;
+      return;
+    }
+    render_grid("grid-nieuw", nieuw, () => true);
+  }
+
+  function renderAlle() {
+    render_grid("grid-alle", ALL_LISTINGS, l => NEW_URLS.has(l.url));
+  }
+
+  function renderFavs() {
+    const favs  = getFavs();
+    const items = ALL_LISTINGS.filter(l => favs.has(l.url));
+    const btn   = document.getElementById("fav-tab-btn");
+    if (btn) btn.textContent = items.length ? `❤️ Favorieten (${items.length})` : "❤️ Favorieten";
+
+    if (!items.length && !currentSearch) {
+      document.getElementById("grid-favorieten").innerHTML =
+        `<div class="empty"><div class="icon">🤍</div>
+         <strong>Nog geen favorieten</strong><br>
+         Klik op het hartje 🤍 op een woning om hem hier op te slaan.</div>`;
+      return;
+    }
+    render_grid("grid-favorieten", items, l => NEW_URLS.has(l.url));
+  }
+
+  function renderMap() {
+    const withCoords = ALL_LISTINGS.filter(l => l.lat && l.lng);
+    document.getElementById("map-info").textContent =
+      `${withCoords.length} van de ${ALL_LISTINGS.length} woningen hebben een locatie op de kaart.`;
+
+    if (!leafletMap) {
+      leafletMap = L.map("map").setView([52.3, 5.6], 7);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+      }).addTo(leafletMap);
+    }
+
+    // Verwijder bestaande markers
+    leafletMap.eachLayer(layer => {
+      if (layer instanceof L.Marker) leafletMap.removeLayer(layer);
+    });
+
+    withCoords.forEach(l => {
+      const color   = l.offline ? "#6c757d" : (NEW_URLS.has(l.url) ? "#f4a261" : "#2d6a4f");
+      const icon    = L.divIcon({
+        className: "",
+        html: `<div style="background:${color};color:#fff;border-radius:50%;
+                           width:32px;height:32px;display:flex;align-items:center;
+                           justify-content:center;font-size:14px;
+                           box-shadow:0 2px 6px rgba(0,0,0,.3);
+                           border:2px solid #fff;">🏡</div>`,
+        iconSize:   [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor:[0, -18],
+      });
+
+      const popupHtml = `
+        <div style="min-width:200px;font-family:sans-serif;">
+          <div style="font-size:11px;font-weight:700;color:#2d6a4f;text-transform:uppercase;margin-bottom:4px;">
+            ${l.source}${NEW_URLS.has(l.url) ? ' · <span style="color:#f4a261">NIEUW</span>' : ""}
+          </div>
+          <strong style="font-size:13px;">${l.title}</strong><br>
+          <span style="font-size:15px;font-weight:800;color:#2d6a4f;">${fmt_price(l.price)}</span><br>
+          <span style="font-size:12px;color:#555;">🛏 ${l.bedrooms || "?"} slpk &nbsp; 👥 ${l.persons || "?"} pers</span><br>
+          <a href="${l.url}" target="_blank" rel="noopener"
+             style="display:inline-block;margin-top:8px;background:#2d6a4f;color:#fff;
+                    text-decoration:none;padding:5px 12px;border-radius:6px;font-size:12px;">
+            Bekijk →
+          </a>
+        </div>`;
+
+      L.marker([l.lat, l.lng], { icon })
+        .addTo(leafletMap)
+        .bindPopup(popupHtml);
+    });
+
+    // Zoom naar markers als aanwezig
+    if (withCoords.length) {
+      const group = L.featureGroup(
+        withCoords.map(l => L.marker([l.lat, l.lng]))
+      );
+      leafletMap.fitBounds(group.getBounds().pad(0.15));
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  //  Tab wisselen
+  // ════════════════════════════════════════════════════════
+
   function switchTab(name, btn) {
+    activeTabName = name;
     document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
     document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
     document.getElementById("tab-" + name).classList.add("active");
     btn.classList.add("active");
-    if (name === "favorieten") renderFavs();
+
+    // Toolbar tonen/verbergen
+    document.getElementById("toolbar").style.display =
+      name === "kaart" ? "none" : "flex";
+
+    if (name === "nieuw")       renderNieuw();
+    else if (name === "alle")   renderAlle();
+    else if (name === "favorieten") renderFavs();
+    else if (name === "kaart")  renderMap();
   }
 
-  // ── Data laden ───────────────────────────────────────────────
+  // ════════════════════════════════════════════════════════
+  //  Data laden
+  // ════════════════════════════════════════════════════════
+
   async function load() {
     try {
       const resp = await fetch("data.json?_=" + Date.now());
       if (!resp.ok) throw new Error(resp.status);
       const data = await resp.json();
 
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("content").style.display = "block";
+      document.getElementById("loading").style.display  = "none";
+      document.getElementById("content").style.display  = "block";
 
       const ts = data.generated_at
         ? new Date(data.generated_at).toLocaleString("nl-NL")
@@ -338,37 +542,20 @@
       ALL_LISTINGS = data.all_listings || [];
       const nieuw  = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
 
+      const withCoords = ALL_LISTINGS.filter(l => l.lat && l.lng).length;
       document.getElementById("stats-bar").innerHTML =
-        `<span>⭐ <strong>${nieuw.length}</strong> nieuw deze run</span>` +
-        `<span>🏘 <strong>${ALL_LISTINGS.length}</strong> totaal gevonden</span>` +
-        `<span>🔄 Gegenereerd: ${ts}</span>`;
+        `<span>⭐ <strong>${nieuw.length}</strong> nieuw</span>` +
+        `<span>🏘 <strong>${ALL_LISTINGS.length}</strong> totaal</span>` +
+        `<span>🗺️ <strong>${withCoords}</strong> op kaart</span>` +
+        `<span>🔄 ${ts}</span>`;
 
-      // ── Tab: Nieuw ──
-      const gn = document.getElementById("grid-nieuw");
-      if (nieuw.length === 0) {
-        gn.innerHTML = `<div class="empty"><div class="icon">✅</div>
-          <strong>Geen nieuwe woningen</strong><br>
-          Alle woningen zijn al bekend. Kom morgen terug!</div>`;
-      } else {
-        gn.innerHTML = by_price(nieuw).map(l => card_html(l, true)).join("");
-      }
-
-      // ── Tab: Alle woningen (incl. offline/verkocht) ──
-      const ga = document.getElementById("grid-alle");
-      if (ALL_LISTINGS.length === 0) {
-        ga.innerHTML = `<div class="empty"><div class="icon">🔍</div>
-          <strong>Nog geen woningen</strong><br>
-          De scraper heeft nog niet gedraaid.</div>`;
-      } else {
-        ga.innerHTML = by_price(ALL_LISTINGS).map(l => card_html(l, NEW_URLS.has(l.url))).join("");
-      }
-
-      // ── Tab: Favorieten ──
+      renderNieuw();
+      renderAlle();
       renderFavs();
 
     } catch (e) {
       document.getElementById("loading").innerHTML =
-        `<div class="icon">⚠️</div>
+        `<div class="icon" style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
          <strong>Kon data.json niet laden.</strong><br>
          Controleer of de scraper al een keer gedraaid heeft.<br>
          <small style="color:#aaa">${e}</small>`;

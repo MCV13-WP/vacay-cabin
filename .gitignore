@@ -19,6 +19,10 @@ build/
 known_listings.json
 known_listings_local.json
 
+# ── Screenshots (worden door Actions via git add -f toegevoegd) ─
+# Lokaal niet tracken; Actions pusht ze expliciet.
+docs/screenshots/
+
 # ── Gevoelige configuratie ────────────────────────────────────
 # config.py bevat SMTP-wachtwoord als fallback — NOOIT inchecken!
 # GitHub Actions genereert config.py at-runtime vanuit Secrets
