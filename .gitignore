@@ -1,0 +1,35 @@
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Lokale omgevingen ─────────────────────────────────────────
+.env
+.env.*
+*.local
+
+# ── Scraper-toestand ──────────────────────────────────────────
+# known_listings.json: lokaal NIET inchecken (bevat scraper-staat)
+# GitHub Actions schrijft dit bestand via git add -f terug naar de repo
+known_listings.json
+known_listings_local.json
+
+# ── Gevoelige configuratie ────────────────────────────────────
+# config.py bevat SMTP-wachtwoord als fallback — NOOIT inchecken!
+# GitHub Actions genereert config.py at-runtime vanuit Secrets
+config.py
+
+# ── IDE / OS ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+logs/

@@ -1,0 +1,109 @@
+name: Dagelijkse Vakantiewoning Scraper
+
+on:
+  schedule:
+    # 07:00 Nederlandse zomertijd (CEST = UTC+2) → 05:00 UTC
+    # In wintertijd (CET = UTC+1) draait dit om 06:00 NL-tijd — acceptabel
+    - cron: "0 5 * * *"
+
+  # Handmatig starten vanuit de GitHub Actions-tab
+  workflow_dispatch:
+
+permissions:
+  contents: write   # nodig om known_listings.json en data.json terug te committen
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Code ophalen ──────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # volledige geschiedenis voor git push
+
+      # ── 2. Python instellen ──────────────────────────────────
+      - name: Python 3.12 instellen
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # ── 3. Afhankelijkheden installeren ──────────────────────
+      - name: Installeer packages
+        run: pip install -r requirements.txt
+
+      # ── 4. config.py genereren vanuit GitHub Secrets ─────────
+      # config.py staat in .gitignore en wordt NOOIT gecommit.
+      # Hier maken we het bestand aan op basis van de Secrets.
+      - name: Genereer config.py vanuit Secrets
+        env:
+          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
+          SMTP_USER:     ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
+        run: |
+          cat > config.py << 'PYEOF'
+          import os
+
+          SMTP_HOST     = os.environ.get("SMTP_HOST",     "smtp-mail.outlook.com")
+          SMTP_PORT     = int(os.environ.get("SMTP_PORT", "587"))
+          SMTP_USER     = os.environ.get("SMTP_USER",     "")
+          SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD", "")
+          EMAIL_FROM    = os.environ.get("EMAIL_FROM",    "")
+          _env_to = os.environ.get("EMAIL_TO", "")
+          EMAIL_TO: list[str] = (
+              [addr.strip() for addr in _env_to.split(",") if addr.strip()]
+              if _env_to
+              else []
+          )
+          KNOWN_LISTINGS_FILE = "known_listings.json"
+          DATA_JSON_FILE      = "docs/data.json"
+          MAX_PRICE    = 350_000
+          MIN_BEDROOMS = 4
+          MIN_PERSONS  = 8
+          REGION_KEYWORDS = ["veluwe","gelderland","overijssel","drenthe","friesland",
+                             "flevoland","utrecht","noord-brabant","limburg","zeeland",
+                             "nunspeet","harderwijk","apeldoorn","arnhem","nijmegen",
+                             "zwolle","enschede","deventer","breda","eindhoven",
+                             "haarle","anjum","roggel","gulpen","epe"]
+          SOLD_KEYWORDS = ["verkocht","sold","in onderhandeling","onder bod",
+                           "optie","gereserveerd","reserved"]
+          PYEOF
+          # Verwijder de leading spaces die heredoc toevoegt
+          python - << 'EOF'
+          import re
+          with open("config.py") as f:
+              content = f.read()
+          # Strip leading spaces (heredoc voegt ze toe)
+          content = re.sub(r'^ {10}', '', content, flags=re.MULTILINE)
+          with open("config.py", "w") as f:
+              f.write(content)
+          EOF
+
+      # ── 5. Scraper uitvoeren ─────────────────────────────────
+      - name: Voer scraper uit
+        env:
+          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
+          SMTP_USER:     ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
+        run: python scraper.py
+
+      # ── 6. Resultaten terugschrijven naar repo ────────────────
+      # known_listings.json en docs/data.json staan in .gitignore
+      # maar worden hier met -f (force) toch gecommit zodat de
+      # scraper-staat bewaard blijft tussen runs.
+      - name: Commit known_listings.json en data.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f known_listings.json docs/data.json
+          # Alleen committen als er iets gewijzigd is
+          git diff --cached --quiet || git commit -m "🤖 scraper update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
