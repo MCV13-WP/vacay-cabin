@@ -106,4 +106,5 @@ jobs:
           git add -f known_listings.json docs/data.json
           # Alleen committen als er iets gewijzigd is
           git diff --cached --quiet || git commit -m "🤖 scraper update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin main
           git push
