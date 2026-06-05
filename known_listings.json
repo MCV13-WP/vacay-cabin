@@ -130,5 +130,17 @@
     "image": "//admarkt-cdn.marktplaats.com/api/v1/icas-mp-pro-admarkt/images/ee/ee75c7c1-c696-4fe3-a8a4-745abc40c8c1?rule=eps_82.JPG",
     "sold": false,
     "raw": "Recreatiewoningen te koop in Lage Vuursche (Utrecht) Bilthoven Een recreatiewoning kopen in lage vuursche? Bekijk dan de mogelijkheden op résidence lage vuursche. Op dit nieuwe vakantiepark is de laatste verkoopfase gestart. Het vakantiepark is gelegen op een top"
+  },
+  "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum": {
+    "source": "Recreatievastgoed.nl",
+    "title": "Anjum – Friesland | Nederland",
+    "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
+    "price": 229000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Anjum, Friesland | Nederland",
+    "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
+    "sold": false,
+    "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
   }
 }
