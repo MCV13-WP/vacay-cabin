@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T08:31:53.126934+00:00",
+  "generated_at": "2026-06-05T09:28:42.018933+00:00",
   "new_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -12,6 +12,30 @@
       "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/06/92762-171121.jpg",
       "sold": false,
       "raw": "Haarle Overijssel | Nederland € 210.000,- 8 95 m²"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Anjum – Friesland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum/",
+      "price": 229000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Anjum, Friesland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65440-129942.jpg",
+      "sold": false,
+      "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Anjum – Friesland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-315-anjum/",
+      "price": 229500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Anjum, Friesland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/10/83929-156859.jpg",
+      "sold": false,
+      "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²"
     },
     {
       "source": "Recreatievastgoed.nl",
@@ -52,18 +76,6 @@
     {
       "source": "Recreatievastgoed.nl",
       "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
-      "price": 229000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
       "url": "https://recreatievastgoed.nl/woning/skanserwei-28-114-anjum/",
       "price": 199000,
       "bedrooms": 4,
@@ -72,18 +84,6 @@
       "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/12/86391-160574-scaled.jpg",
       "sold": false,
       "raw": "Anjum Friesland | Nederland € 199.000,- 8 115 m²"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-315-anjum/",
-      "price": 229500,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/10/83929-156859.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²"
     },
     {
       "source": "Recreatievastgoed.nl",
@@ -149,6 +149,30 @@
     },
     {
       "source": "Recreatievastgoed.nl",
+      "title": "Anjum – Friesland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum/",
+      "price": 229000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Anjum, Friesland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65440-129942.jpg",
+      "sold": false,
+      "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Anjum – Friesland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-315-anjum/",
+      "price": 229500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Anjum, Friesland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/10/83929-156859.jpg",
+      "sold": false,
+      "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
       "title": "Roggel – Limburg | Nederland",
       "url": "https://recreatievastgoed.nl/woning/heldensedijk-5-151-roggel/",
       "price": 325000,
@@ -186,18 +210,6 @@
     {
       "source": "Recreatievastgoed.nl",
       "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
-      "price": 229000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
       "url": "https://recreatievastgoed.nl/woning/skanserwei-28-114-anjum/",
       "price": 199000,
       "bedrooms": 4,
@@ -222,38 +234,26 @@
     {
       "source": "Recreatievastgoed.nl",
       "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum/",
       "price": 229000,
       "bedrooms": 4,
       "persons": 8,
       "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65440-129942.jpg",
       "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
+      "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²"
     },
     {
       "source": "Recreatievastgoed.nl",
       "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
+      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum/",
       "price": 229000,
       "bedrooms": 4,
       "persons": 8,
       "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65440-129942.jpg",
       "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
-      "price": 229000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
+      "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²"
     },
     {
       "source": "Recreatievastgoed.nl",
