@@ -490,98 +490,121 @@ def _parse_lm_detail(url: str, province: str) -> dict | None:
 #  E-mail via SMTP
 # ════════════════════════════════════════════════════════════
 
+WEBSITE_URL = "https://mcv13-wp.github.io/vacay-cabin"
+
+
 def _fmt_price(price: int | None) -> str:
     return f"€ {price:,.0f}".replace(",", ".") if price else "Prijs onbekend"
 
 
 def build_email_html(new_listings: list[dict]) -> str:
-    """Bouw een nette HTML-e-mail met alle nieuwe woningen, duur → goedkoop."""
+    """Bouw een HTML-e-mail: grote knop bovenaan, woningen in grid van 2 per rij."""
     sorted_listings = sorted(new_listings, key=lambda l: l.get("price") or 0, reverse=True)
-    count = len(sorted_listings)
+    count  = len(sorted_listings)
     plural = "en" if count > 1 else ""
+    ts     = datetime.now().strftime("%d %B %Y om %H:%M")
 
-    cards_html = ""
-    for i, l in enumerate(sorted_listings, 1):
-        price     = _fmt_price(l.get("price"))
-        bedrooms  = l.get("bedrooms") or "?"
-        persons   = l.get("persons") or "?"
-        location  = l.get("location") or "Onbekend"
-        url       = l.get("url", "#")
-        title     = l.get("title", "Onbekend")
-        source    = l.get("source", "")
-        img       = l.get("image", "")
+    # Kaartjes in rijen van 2
+    rows_html = ""
+    for i in range(0, len(sorted_listings), 2):
+        pair = sorted_listings[i:i + 2]
+        cells = ""
+        for l in pair:
+            price    = _fmt_price(l.get("price"))
+            bedrooms = l.get("bedrooms") or "?"
+            persons  = l.get("persons")  or "?"
+            location = l.get("location") or "Onbekend"
+            title    = (l.get("title") or "Onbekend")[:55]
+            source   = l.get("source", "")
+            img      = l.get("image", "")
 
-        img_html = (
-            f'<img src="{img}" alt="" style="width:100%;height:180px;object-fit:cover;'
-            f'border-radius:8px 8px 0 0;display:block;">'
-            if img else
-            '<div style="width:100%;height:100px;background:#e9ecef;border-radius:8px 8px 0 0;'
-            'display:flex;align-items:center;justify-content:center;font-size:2rem;">🏡</div>'
-        )
+            img_html = (
+                f'<img src="{img}" alt="" width="100%" '
+                f'style="display:block;width:100%;height:140px;object-fit:cover;'
+                f'border-radius:8px 8px 0 0;">'
+                if img else
+                '<div style="width:100%;height:80px;background:#e9ecef;'
+                'border-radius:8px 8px 0 0;text-align:center;font-size:2rem;'
+                'line-height:80px;">🏡</div>'
+            )
 
-        cards_html += f"""
-        <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.1);
-                    margin-bottom:1.5rem;overflow:hidden;">
-          {img_html}
-          <div style="padding:1.25rem;">
-            <div style="font-size:.75rem;font-weight:700;color:#2d6a4f;text-transform:uppercase;
-                        letter-spacing:.04em;margin-bottom:.4rem;">#{i} · {source}</div>
-            <h2 style="margin:0 0 .5rem;font-size:1.1rem;color:#212529;">{title}</h2>
-            <div style="font-size:1.4rem;font-weight:800;color:#2d6a4f;margin-bottom:.6rem;">
-              {price} <span style="font-size:.85rem;font-weight:400;color:#6c757d;">k.k.</span>
-            </div>
-            <table style="border-collapse:collapse;width:100%;margin-bottom:1rem;">
-              <tr>
-                <td style="padding:.2rem .6rem .2rem 0;font-size:.875rem;color:#495057;">📍 Locatie</td>
-                <td style="padding:.2rem 0;font-size:.875rem;font-weight:600;">{location}</td>
-              </tr>
-              <tr>
-                <td style="padding:.2rem .6rem .2rem 0;font-size:.875rem;color:#495057;">🛏 Slaapkamers</td>
-                <td style="padding:.2rem 0;font-size:.875rem;font-weight:600;">{bedrooms}</td>
-              </tr>
-              <tr>
-                <td style="padding:.2rem .6rem .2rem 0;font-size:.875rem;color:#495057;">👥 Personen</td>
-                <td style="padding:.2rem 0;font-size:.875rem;font-weight:600;">{persons}</td>
-              </tr>
-            </table>
-            <a href="{url}" style="display:inline-block;background:#2d6a4f;color:#fff;
-               text-decoration:none;padding:.6rem 1.2rem;border-radius:8px;
-               font-size:.875rem;font-weight:600;">Bekijk woning →</a>
-          </div>
-        </div>"""
+            cells += f"""
+              <td width="50%" valign="top" style="padding:6px;">
+                <div style="background:#ffffff;border-radius:10px;
+                            box-shadow:0 2px 8px rgba(0,0,0,.12);overflow:hidden;">
+                  {img_html}
+                  <div style="padding:12px;">
+                    <div style="font-size:10px;font-weight:700;color:#2d6a4f;
+                                text-transform:uppercase;letter-spacing:.04em;
+                                margin-bottom:4px;">{source}</div>
+                    <div style="font-size:13px;font-weight:700;color:#212529;
+                                margin-bottom:6px;line-height:1.35;">{title}</div>
+                    <div style="font-size:17px;font-weight:800;color:#2d6a4f;
+                                margin-bottom:8px;">{price}</div>
+                    <div style="font-size:12px;color:#343a40;margin-bottom:2px;">
+                      📍 {location}</div>
+                    <div style="font-size:12px;color:#343a40;margin-bottom:2px;">
+                      🛏 {bedrooms} slaapkamers</div>
+                    <div style="font-size:12px;color:#343a40;margin-bottom:10px;">
+                      👥 {persons} personen</div>
+                    <a href="{WEBSITE_URL}"
+                       style="display:block;background:#2d6a4f;color:#ffffff;
+                              text-decoration:none;padding:8px 4px;border-radius:6px;
+                              font-size:12px;font-weight:600;text-align:center;">
+                      Bekijk op website →</a>
+                  </div>
+                </div>
+              </td>"""
 
-    ts = datetime.now().strftime("%d %B %Y om %H:%M")
+        if len(pair) == 1:
+            cells += '<td width="50%">&nbsp;</td>'
+
+        rows_html += f"<tr>{cells}</tr>"
+
     return f"""<!DOCTYPE html>
 <html lang="nl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f8f9fa;font-family:-apple-system,BlinkMacSystemFont,
-             'Segoe UI',Roboto,sans-serif;">
-  <div style="max-width:680px;margin:2rem auto;padding:0 1rem;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body style="margin:0;padding:0;background:#f8f9fa;
+             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <div style="max-width:640px;margin:2rem auto;padding:0 1rem;">
 
-    <!-- Header -->
-    <div style="background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;
-                border-radius:12px 12px 0 0;padding:2rem 1.5rem 1.5rem;">
-      <h1 style="margin:0 0 .4rem;font-size:1.5rem;">
+    <!-- Header + grote knop -->
+    <div style="background:linear-gradient(135deg,#2d6a4f,#40916c);
+                border-radius:12px 12px 0 0;padding:2rem 1.5rem 2rem;text-align:center;">
+      <h1 style="margin:0 0 .5rem;font-size:1.45rem;color:#ffffff;">
         🏡 {count} Nieuwe vakantiewoning{plural} te koop
       </h1>
-      <p style="margin:0;opacity:.85;font-size:.9rem;">
-        Gevonden op {ts} · Max €{config.MAX_PRICE:,} · Min {config.MIN_BEDROOMS} slaapkamers
-        · Min {config.MIN_PERSONS} personen
+      <p style="margin:0 0 1.5rem;font-size:.875rem;color:#d8f3dc;">
+        Gevonden op {ts}
       </p>
+      <a href="{WEBSITE_URL}"
+         style="display:inline-block;background:#f4a261;color:#ffffff;
+                text-decoration:none;padding:14px 32px;border-radius:50px;
+                font-size:1.05rem;font-weight:700;letter-spacing:.02em;">
+        Bekijk {count} nieuwe woningen →
+      </a>
     </div>
 
-    <!-- Body -->
-    <div style="background:#f8f9fa;padding:1.5rem 0;">
-      {cards_html}
+    <!-- 2-koloms kaartjes grid -->
+    <div style="background:#f8f9fa;padding:16px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0"
+             style="border-collapse:collapse;">
+        {rows_html}
+      </table>
     </div>
 
     <!-- Footer -->
-    <div style="background:#e9ecef;border-radius:0 0 12px 12px;padding:1rem 1.5rem;
-                font-size:.78rem;color:#6c757d;text-align:center;">
-      Vakantiewoning Scraper · recreatievastgoed.nl · Marktplaats · Landal Makelaardij
-      · VakantiehuisTekoop.nl<br>
-      Je ontvangt dit bericht omdat je als ontvanger bent ingesteld in config.py.
+    <div style="background:#e9ecef;border-radius:0 0 12px 12px;
+                padding:1rem 1.5rem;font-size:.75rem;color:#495057;text-align:center;">
+      Project Vacay Cabin · max €{config.MAX_PRICE:,} ·
+      min {config.MIN_BEDROOMS} slaapkamers · min {config.MIN_PERSONS} personen<br>
+      <a href="{WEBSITE_URL}" style="color:#2d6a4f;text-decoration:none;">
+        {WEBSITE_URL}</a>
     </div>
+
   </div>
 </body>
 </html>"""
@@ -595,9 +618,12 @@ def send_email(new_listings: list[dict]) -> None:
         log.warning("E-mail: SMTP_PASSWORD niet ingesteld – sla e-mail over")
         return
 
-    count   = len(new_listings)
-    plural  = "en" if count > 1 else ""
-    subject = f"🏡 {count} nieuwe vakantiewoning{plural} te koop gevonden"
+    count    = len(new_listings)
+    plural   = "en" if count > 1 else ""
+    date_str = datetime.now().strftime("%d %B %Y")
+    subject  = (
+        f"Project Vacay Cabin - {count} nieuwe woning{plural} gevonden - {date_str}"
+    )
 
     html_body = build_email_html(new_listings)
     # Plat-text fallback
@@ -658,6 +684,17 @@ def run() -> None:
 
     log.info("Totaal gescraped (ongefilterd): %d", len(all_raw))
 
+    # ── Bijhouden welke bronnen actief waren en welke URLs gezien ──
+    # Dit gebruiken we straks om offline-status te bepalen.
+    scraped_url_keys: set[str] = set()
+    active_sources:   set[str] = set()
+    for l in all_raw:
+        k = url_key(l.get("url", ""))
+        if k:
+            scraped_url_keys.add(k)
+        if l.get("source"):
+            active_sources.add(l["source"])
+
     # ── Stap 2: grove filters (regio + prijs + personen) ─────
     def in_region(l: dict) -> bool:
         return is_in_region(" ".join([
@@ -692,11 +729,10 @@ def run() -> None:
     for l in filtered:
         key = url_key(l.get("url", ""))
         if not key:
-            # Geen URL → gebruik source + title als fallback
             key = f"{l['source']}::{l['title']}"
+        l_stored = {**l, "offline": False}   # vers gevonden → zeker online
         if key not in updated_known:
             new_listings.append(l)
-            updated_known[key] = l
             log.info(
                 "NIEUW ★  %-22s | %-40s | %s slpk | %s pers | %s",
                 l["source"], l["title"][:40],
@@ -704,15 +740,34 @@ def run() -> None:
                 l.get("persons") or "?",
                 _fmt_price(l.get("price")),
             )
+        updated_known[key] = l_stored        # altijd bijwerken met verse data
 
     log.info("Nieuwe woningen deze run: %d", len(new_listings))
+
+    # ── Stap 5b: offline-status bijwerken ────────────────────
+    # Woningen van een actieve bron die NIET meer in de scrape zitten
+    # → gemarkeerd als offline. Ze blijven wel in de database.
+    offline_count = 0
+    for key, listing in updated_known.items():
+        src = listing.get("source", "")
+        if src in active_sources:
+            was_seen = key in scraped_url_keys
+            if not was_seen and not listing.get("offline"):
+                log.info("OFFLINE  %-22s | %s", src, listing.get("title", "")[:50])
+                offline_count += 1
+            listing["offline"] = not was_seen
+    if offline_count:
+        log.info("%d woningen gemarkeerd als offline", offline_count)
 
     # ── Stap 6: opslaan ──────────────────────────────────────
     save_known(updated_known)
 
     # ── Stap 7: data.json voor website bijwerken ─────────────
+    # all_listings = ALLE ooit gevonden woningen (ook offline/verkocht)
+    # zodat ze nooit van de website verdwijnen.
+    all_for_website = list(updated_known.values())
     write_data_json(
-        all_listings=filtered,
+        all_listings=all_for_website,
         new_listings=new_listings,
     )
 
