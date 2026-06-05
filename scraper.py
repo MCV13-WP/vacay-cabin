@@ -161,20 +161,33 @@ def is_complete(l: dict) -> bool:
 
 
 def geocode(location: str) -> tuple[float, float] | None:
-    try:
-        params = {
-            "q": f"{location}, Nederland",
-            "format": "json",
-            "limit": 1,
-            "countrycodes": "nl",
-        }
-        hdrs = {"User-Agent": "vacay-cabin-scraper/1.0 (mcversteeg@outlook.com)"}
-        resp = requests.get(NOMINATIM_URL, params=params, headers=hdrs, timeout=10)
-        data = resp.json()
-        if data:
-            return float(data[0]["lat"]), float(data[0]["lon"])
-    except Exception as exc:
-        log.debug("Geocoding mislukt voor '%s': %s", location, exc)
+    """
+    Converteert een locatiestring naar (lat, lng) via Nominatim.
+    Probeer eerst de volledige string, dan alleen het eerste deel (stadsnaam).
+    Strips '| Nederland' en soortgelijke suffixen automatisch.
+    """
+    hdrs = {"User-Agent": "vacay-cabin-scraper/1.0 (mcversteeg@outlook.com)"}
+    # Opschonen: verwijder '| Nederland', 'Nederland', dubbele komma's
+    clean = re.sub(r"\|\s*nederland", "", location, flags=re.IGNORECASE)
+    clean = clean.strip().rstrip(",").strip()
+
+    for query in [clean, clean.split(",")[0].strip()]:
+        if not query:
+            continue
+        try:
+            params = {
+                "q": f"{query}, Nederland",
+                "format": "json",
+                "limit": 1,
+                "countrycodes": "nl",
+            }
+            resp = requests.get(NOMINATIM_URL, params=params, headers=hdrs, timeout=10)
+            data = resp.json()
+            if data:
+                return float(data[0]["lat"]), float(data[0]["lon"])
+        except Exception as exc:
+            log.debug("Geocoding mislukt voor '%s': %s", query, exc)
+        time.sleep(1.1)
     return None
 
 
@@ -287,36 +300,41 @@ def _parse_rv_card(card, base: str) -> dict | None:
 
 
 def enrich_with_details(listings: list[dict]) -> list[dict]:
-    """Haal slaapkamers, personen, foto en geocoördinaten op van detailpagina."""
+    """
+    Haal slaapkamers, personen en foto op van de detailpagina voor listings
+    waarbij deze info ontbreekt.  Geocoding wordt NIET hier gedaan (dat
+    loopt apart via stap 3c in run() om altijd uitgevoerd te worden).
+    """
     for listing in listings:
-        needs_beds = listing.get("bedrooms") is None
-        needs_geo  = listing.get("lat") is None and bool(listing.get("location"))
+        if listing.get("bedrooms") is not None:
+            continue  # al volledig, sla over
+        url = listing.get("url", "")
+        if not url.startswith("http"):
+            continue
 
-        if needs_beds and listing.get("url"):
-            soup = get_page(listing["url"])
-            if soup:
-                text = soup.get_text(" ")
-                m = re.search(r"Aantal\s+slaapkamers\s+(\d+)", text, re.IGNORECASE)
-                if not m:
-                    m = re.search(r"(\d+)\s+slaapkamer", text, re.IGNORECASE)
-                if m:
-                    listing["bedrooms"] = int(m.group(1))
-                if listing.get("persons") is None:
-                    mp = (re.search(r"Aantal\s+personen\s+(\d+)", text, re.IGNORECASE)
-                          or re.search(r"(\d+)[- ]persoons", text, re.IGNORECASE))
-                    if mp:
-                        listing["persons"] = int(mp.group(1))
-                if not listing.get("image"):
-                    og = soup.find("meta", property="og:image")
-                    if og:
-                        listing["image"] = og.get("content", "")
-            time.sleep(0.5)
+        soup = get_page(url)
+        if not soup:
+            continue
+        text = soup.get_text(" ")
 
-        if needs_geo:
-            coords = geocode(listing["location"])
-            if coords:
-                listing["lat"], listing["lng"] = coords
-            time.sleep(1.1)
+        m = re.search(r"Aantal\s+slaapkamers\s+(\d+)", text, re.IGNORECASE)
+        if not m:
+            m = re.search(r"(\d+)\s+slaapkamer", text, re.IGNORECASE)
+        if m:
+            listing["bedrooms"] = int(m.group(1))
+
+        if listing.get("persons") is None:
+            mp = (re.search(r"Aantal\s+personen\s+(\d+)", text, re.IGNORECASE)
+                  or re.search(r"(\d+)[- ]persoons", text, re.IGNORECASE))
+            if mp:
+                listing["persons"] = int(mp.group(1))
+
+        if not listing.get("image"):
+            og = soup.find("meta", property="og:image")
+            if og:
+                listing["image"] = og.get("content", "")
+
+        time.sleep(0.5)
 
     return listings
 
@@ -1343,72 +1361,157 @@ def build_email_html(new_listings: list[dict]) -> str:
                 f'style="display:block;width:100%;height:140px;object-fit:cover;'
                 f'border-radius:8px 8px 0 0;">'
                 if img else
-                '<div style="width:100%;height:80px;background:#e9ecef;'
+                # Placeholder: donkere tekst op lichtgrijze achtergrond
+                '<div style="width:100%;height:80px;background:#dee2e6;color:#6c757d;'
                 'border-radius:8px 8px 0 0;text-align:center;font-size:2rem;'
-                'line-height:80px;">🏡</div>'
+                'line-height:80px;">&#127968;</div>'
             )
+            # Kaart: witte achtergrond, ALLE tekst expliciet donker gekleurd
             cells += f"""
-              <td width="50%" valign="top" style="padding:6px;">
-                <div style="background:#ffffff;border-radius:10px;
-                            box-shadow:0 2px 8px rgba(0,0,0,.12);overflow:hidden;">
-                  {img_html}
-                  <div style="padding:12px;">
-                    <div style="font-size:10px;font-weight:700;color:#2d6a4f;
-                                text-transform:uppercase;letter-spacing:.04em;
-                                margin-bottom:4px;">{source}</div>
-                    <div style="font-size:13px;font-weight:700;color:#212529;
-                                margin-bottom:6px;line-height:1.35;">{title}</div>
-                    <div style="font-size:17px;font-weight:800;color:#2d6a4f;
-                                margin-bottom:8px;">{price}</div>
-                    <div style="font-size:12px;color:#343a40;margin-bottom:2px;">
-                      📍 {location}</div>
-                    <div style="font-size:12px;color:#343a40;margin-bottom:2px;">
-                      🛏 {bedrooms} slaapkamers</div>
-                    <div style="font-size:12px;color:#343a40;margin-bottom:10px;">
-                      👥 {persons} personen</div>
-                    <a href="{WEBSITE_URL}"
-                       style="display:block;background:#2d6a4f;color:#ffffff;
-                              text-decoration:none;padding:8px 4px;border-radius:6px;
-                              font-size:12px;font-weight:600;text-align:center;">
-                      Bekijk op website →</a>
-                  </div>
-                </div>
+              <td width="50%" valign="top" style="padding:6px;vertical-align:top;">
+                <table width="100%" cellpadding="0" cellspacing="0"
+                       style="border-collapse:collapse;background:#ffffff;
+                              border-radius:10px;
+                              box-shadow:0 2px 8px rgba(0,0,0,.15);
+                              overflow:hidden;">
+                  <tr><td style="padding:0;font-size:0;">{img_html}</td></tr>
+                  <tr><td style="padding:14px;background:#ffffff;">
+                    <!-- Bron-label: donkergroen op wit -->
+                    <p style="margin:0 0 4px;font-size:10px;font-weight:700;
+                               color:#1b4332;text-transform:uppercase;
+                               letter-spacing:.05em;font-family:Arial,sans-serif;">
+                      {source}</p>
+                    <!-- Titel: bijna-zwart op wit -->
+                    <p style="margin:0 0 8px;font-size:14px;font-weight:700;
+                               color:#1a1a1a;line-height:1.4;
+                               font-family:Arial,sans-serif;">
+                      {title}</p>
+                    <!-- Prijs: donkergroen op wit -->
+                    <p style="margin:0 0 10px;font-size:18px;font-weight:800;
+                               color:#1b4332;font-family:Arial,sans-serif;">
+                      {price}</p>
+                    <!-- Details: donkergrijs op wit -->
+                    <p style="margin:0 0 3px;font-size:12px;color:#333333;
+                               font-family:Arial,sans-serif;">
+                      {location}</p>
+                    <p style="margin:0 0 3px;font-size:12px;color:#333333;
+                               font-family:Arial,sans-serif;">
+                      {bedrooms} slaapkamers</p>
+                    <p style="margin:0 0 12px;font-size:12px;color:#333333;
+                               font-family:Arial,sans-serif;">
+                      {persons} personen</p>
+                    <!-- Knop: witte tekst op donkergroen -->
+                    <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+                      <tr><td align="center"
+                               style="background:#2d6a4f;border-radius:6px;padding:9px 6px;">
+                        <a href="{WEBSITE_URL}"
+                           style="color:#ffffff;text-decoration:none;font-size:12px;
+                                  font-weight:700;font-family:Arial,sans-serif;
+                                  display:block;">Bekijk op website &rarr;</a>
+                      </td></tr>
+                    </table>
+                  </td></tr>
+                </table>
               </td>"""
         if len(pair) == 1:
             cells += '<td width="50%">&nbsp;</td>'
         rows_html += f"<tr>{cells}</tr>"
 
+    max_price_fmt = f"{config.MAX_PRICE:,}".replace(",", ".")
+
     return f"""<!DOCTYPE html>
 <html lang="nl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f8f9fa;
-             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <div style="max-width:640px;margin:2rem auto;padding:0 1rem;">
-    <div style="background:linear-gradient(135deg,#2d6a4f,#40916c);
-                border-radius:12px 12px 0 0;padding:2rem 1.5rem 2rem;text-align:center;">
-      <h1 style="margin:0 0 .5rem;font-size:1.45rem;color:#ffffff;">
-        🏡 {count} Nieuwe vakantiewoning{plural} te koop
-      </h1>
-      <p style="margin:0 0 1.5rem;font-size:.875rem;color:#d8f3dc;">Gevonden op {ts}</p>
-      <a href="{WEBSITE_URL}"
-         style="display:inline-block;background:#f4a261;color:#ffffff;
-                text-decoration:none;padding:14px 32px;border-radius:50px;
-                font-size:1.05rem;font-weight:700;letter-spacing:.02em;">
-        Bekijk {count} nieuwe woningen →
-      </a>
-    </div>
-    <div style="background:#f8f9fa;padding:16px 0;">
-      <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
-        {rows_html}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Forceer light-mode in ondersteunde clients (Apple Mail, Outlook 365) -->
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+  <style>
+    /* Forceer light-mode: voorkom dark-mode omzetting door e-mailclient */
+    :root {{ color-scheme: light only; }}
+    body  {{ background-color:#f8f9fa !important; color:#212529 !important; }}
+  </style>
+</head>
+<!--[if mso]>
+<body bgcolor="#f8f9fa" style="background-color:#f8f9fa;color:#212529;
+      font-family:Arial,sans-serif;margin:0;padding:0;">
+<![endif]-->
+<body style="margin:0;padding:0;background-color:#f8f9fa;color:#212529;
+             font-family:Arial,Helvetica,sans-serif;"
+      bgcolor="#f8f9fa">
+
+  <!-- Buitenste tabel voor maximale e-mail-clientcompatibiliteit -->
+  <table width="100%" cellpadding="0" cellspacing="0"
+         style="border-collapse:collapse;background-color:#f8f9fa;"
+         bgcolor="#f8f9fa">
+    <tr><td align="center" style="padding:24px 12px;">
+
+      <!-- Wrapper: max 640px -->
+      <table width="640" cellpadding="0" cellspacing="0"
+             style="border-collapse:collapse;max-width:640px;width:100%;">
+
+        <!-- ── Header: groene gradient ── -->
+        <tr>
+          <td align="center"
+              style="background-color:#2d6a4f;border-radius:12px 12px 0 0;
+                     padding:28px 24px;text-align:center;"
+              bgcolor="#2d6a4f">
+            <h1 style="margin:0 0 6px;font-size:22px;font-weight:700;
+                        color:#ffffff;font-family:Arial,sans-serif;line-height:1.3;">
+              Vakantiewoningen Te Koop
+            </h1>
+            <p style="margin:0 0 20px;font-size:14px;color:#d8f3dc;
+                       font-family:Arial,sans-serif;">
+              {count} nieuwe woning{plural} gevonden op {ts}
+            </p>
+            <!-- CTA button: oranje, witte tekst -->
+            <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 auto;">
+              <tr><td align="center"
+                       style="background-color:#f4a261;border-radius:50px;
+                              padding:14px 36px;"
+                       bgcolor="#f4a261">
+                <a href="{WEBSITE_URL}"
+                   style="color:#ffffff;text-decoration:none;font-size:16px;
+                          font-weight:700;font-family:Arial,sans-serif;
+                          white-space:nowrap;">
+                  Bekijk {count} nieuwe woningen &rarr;
+                </a>
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- ── Woningkaarten: lichtgrijze achtergrond ── -->
+        <tr>
+          <td style="background-color:#f8f9fa;padding:12px 0;"
+              bgcolor="#f8f9fa">
+            <table width="100%" cellpadding="0" cellspacing="0"
+                   style="border-collapse:collapse;">
+              {rows_html}
+            </table>
+          </td>
+        </tr>
+
+        <!-- ── Footer ── -->
+        <tr>
+          <td align="center"
+              style="background-color:#e9ecef;border-radius:0 0 12px 12px;
+                     padding:14px 20px;font-size:12px;color:#495057;
+                     font-family:Arial,sans-serif;"
+              bgcolor="#e9ecef">
+            Project Vacay Cabin &middot; max &euro;{max_price_fmt} &middot;
+            min {config.MIN_BEDROOMS} slaapkamers &middot; min {config.MIN_PERSONS} personen<br>
+            <a href="{WEBSITE_URL}"
+               style="color:#2d6a4f;text-decoration:none;font-family:Arial,sans-serif;">
+              {WEBSITE_URL}
+            </a>
+          </td>
+        </tr>
+
       </table>
-    </div>
-    <div style="background:#e9ecef;border-radius:0 0 12px 12px;
-                padding:1rem 1.5rem;font-size:.75rem;color:#495057;text-align:center;">
-      Project Vacay Cabin · max €{config.MAX_PRICE:,} ·
-      min {config.MIN_BEDROOMS} slaapkamers · min {config.MIN_PERSONS} personen<br>
-      <a href="{WEBSITE_URL}" style="color:#2d6a4f;text-decoration:none;">{WEBSITE_URL}</a>
-    </div>
-  </div>
+    </td></tr>
+  </table>
 </body>
 </html>"""
 
@@ -1548,11 +1651,35 @@ def run() -> None:
     ]
     log.info("Na regio + prijs + personen filter: %d", len(pre))
 
-    # ── Stap 3: slaapkamers + geocoding ophalen ───────────────
+    # ── Stap 3a: coördinaten van bekende listings kopiëren ────
+    # Doe dit VOOR geocoding zodat reeds bekende coords niet opnieuw
+    # worden opgehaald (bespaart Nominatim-aanvragen).
+    for l in pre:
+        key = url_key(l.get("url", "")) or f"{l['source']}::{l['title']}"
+        ex  = known.get(key, {})
+        if ex.get("lat") and not l.get("lat"):
+            l["lat"] = ex["lat"]
+            l["lng"] = ex.get("lng")
+
+    # ── Stap 3b: slaapkamers ophalen van detailpagina's ───────
     without_beds = [l for l in pre if l.get("bedrooms") is None]
     if without_beds:
-        log.info("Slaapkamers + geocoding voor %d woningen…", len(without_beds))
+        log.info("Detailpagina's ophalen voor %d woningen (slaapkamers)…",
+                 len(without_beds))
         pre = enrich_with_details(pre)
+
+    # ── Stap 3c: geocoding voor listings zonder coördinaten ───
+    # BUG-FIX: geocoding was alleen onderdeel van enrich_with_details(),
+    # die alleen werd aangeroepen als beds ontbraken. Nu altijd apart.
+    needs_geo = [l for l in pre if l.get("lat") is None and l.get("location")]
+    if needs_geo:
+        log.info("Geocoding voor %d woningen zonder coördinaten…", len(needs_geo))
+        for l in needs_geo:
+            coords = geocode(l["location"])
+            if coords:
+                l["lat"], l["lng"] = coords
+                log.debug("Geocoded: %s → (%.4f, %.4f)", l["location"], *coords)
+            time.sleep(1.1)
 
     # ── Stap 4: slaapkamer filter + volledigheidscheck ────────
     filtered = [l for l in pre if passes_filters(l)]
