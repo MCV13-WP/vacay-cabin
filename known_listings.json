@@ -9,7 +9,8 @@
     "location": "Haarle, Overijssel | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/06/92762-171121.jpg",
     "sold": false,
-    "raw": "Haarle Overijssel | Nederland € 210.000,- 8 95 m²"
+    "raw": "Haarle Overijssel | Nederland € 210.000,- 8 95 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -21,7 +22,8 @@
     "location": "Anjum, Friesland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65440-129942.jpg",
     "sold": false,
-    "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²"
+    "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-315-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -33,7 +35,8 @@
     "location": "Anjum, Friesland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/10/83929-156859.jpg",
     "sold": false,
-    "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²"
+    "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/heldensedijk-5-151-roggel": {
     "source": "Recreatievastgoed.nl",
@@ -45,7 +48,8 @@
     "location": "Roggel, Limburg | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/03/89483-165579.jpg",
     "sold": false,
-    "raw": "Roggel Limburg | Nederland € 325.000,- 9 122 m²"
+    "raw": "Roggel Limburg | Nederland € 325.000,- 9 122 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-408-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -57,7 +61,8 @@
     "location": "Anjum, Friesland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/02/88730-163913.jpg",
     "sold": false,
-    "raw": "Anjum Friesland | Nederland € 299.500,- 10 158 m²"
+    "raw": "Anjum Friesland | Nederland € 299.500,- 10 158 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/euverem-52-38-gulpen": {
     "source": "Recreatievastgoed.nl",
@@ -69,7 +74,8 @@
     "location": "Gulpen, Limburg | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/01/87675-162623.jpg",
     "sold": false,
-    "raw": "Gulpen Limburg | Nederland € 293.000,- 8 92 m²"
+    "raw": "Gulpen Limburg | Nederland € 293.000,- 8 92 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-114-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -81,7 +87,8 @@
     "location": "Anjum, Friesland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/12/86391-160574-scaled.jpg",
     "sold": false,
-    "raw": "Anjum Friesland | Nederland € 199.000,- 8 115 m²"
+    "raw": "Anjum Friesland | Nederland € 199.000,- 8 115 m²",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/notariswoning-aan-het-notarislaantje": {
     "source": "Recreatievastgoed.nl",
@@ -93,7 +100,8 @@
     "location": "Nunspeet, Gelderland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2024/09/1S5A9972.jpg",
     "sold": false,
-    "raw": "Nunspeet Gelderland | Nederland € 339.000,- k.k. 8 65 m²"
+    "raw": "Nunspeet Gelderland | Nederland € 339.000,- k.k. 8 65 m²",
+    "offline": false
   },
   "https://www.marktplaats.nl/v/huizen-en-kamers/recreatiewoningen-te-koop/m2407287702-recreatiewoning-te-koop-in-epe": {
     "source": "Marktplaats",
@@ -105,7 +113,8 @@
     "location": "Epe",
     "image": "//images.marktplaats.com/api/v1/hz-mp-pro-listing/images/ca85aa21-010c-4d85-8e25-9c6a7f06192d?rule=ecg_mp_eps$_82.jpg",
     "sold": false,
-    "raw": "Recreatiewoning te koop in Epe Epe Te koop: gerenoveerd en gemoderniseerd chalet op rustig groen park in epe op een heerlijk rustige plek op de veluwe, met zowel de bossen als het centrum van epe op steenworp afstand, staat dit chalet "
+    "raw": "Recreatiewoning te koop in Epe Epe Te koop: gerenoveerd en gemoderniseerd chalet op rustig groen park in epe op een heerlijk rustige plek op de veluwe, met zowel de bossen als het centrum van epe op steenworp afstand, staat dit chalet ",
+    "offline": false
   },
   "https://www.marktplaats.nl/v/huizen-en-kamers/recreatiewoningen-te-koop/a1501660975-start-nieuwe-verkoop-fase-vakantiewoningen-in-noord-brabant": {
     "source": "Marktplaats",
@@ -117,7 +126,8 @@
     "location": "Lage Mierde",
     "image": "//admarkt-cdn.marktplaats.com/api/v1/icas-mp-pro-admarkt/images/58/5857dd26-9894-41ad-9e35-c0c2c6e18628?rule=eps_82.JPG",
     "sold": false,
-    "raw": "Start nieuwe verkoop fase vakantiewoningen in Noord-Brabant Lage Mierde Nieuwe investeringskansen in noord-brabant bent u zich al een tijdje aan het oriënteren of een eigen vakantiewoning iets voor u is of bent u op zoek naar een renderende investering? Bekijk dan de moge"
+    "raw": "Start nieuwe verkoop fase vakantiewoningen in Noord-Brabant Lage Mierde Nieuwe investeringskansen in noord-brabant bent u zich al een tijdje aan het oriënteren of een eigen vakantiewoning iets voor u is of bent u op zoek naar een renderende investering? Bekijk dan de moge",
+    "offline": false
   },
   "https://www.marktplaats.nl/v/huizen-en-kamers/recreatiewoningen-te-koop/a1487418256-recreatiewoningen-te-koop-in-lage-vuursche-utrecht": {
     "source": "Marktplaats",
@@ -129,7 +139,8 @@
     "location": "Bilthoven",
     "image": "//admarkt-cdn.marktplaats.com/api/v1/icas-mp-pro-admarkt/images/ee/ee75c7c1-c696-4fe3-a8a4-745abc40c8c1?rule=eps_82.JPG",
     "sold": false,
-    "raw": "Recreatiewoningen te koop in Lage Vuursche (Utrecht) Bilthoven Een recreatiewoning kopen in lage vuursche? Bekijk dan de mogelijkheden op résidence lage vuursche. Op dit nieuwe vakantiepark is de laatste verkoopfase gestart. Het vakantiepark is gelegen op een top"
+    "raw": "Recreatiewoningen te koop in Lage Vuursche (Utrecht) Bilthoven Een recreatiewoning kopen in lage vuursche? Bekijk dan de mogelijkheden op résidence lage vuursche. Op dit nieuwe vakantiepark is de laatste verkoopfase gestart. Het vakantiepark is gelegen op een top",
+    "offline": false
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -141,6 +152,20 @@
     "location": "Anjum, Friesland | Nederland",
     "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
     "sold": false,
-    "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²"
+    "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
+    "offline": false
+  },
+  "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet": {
+    "source": "Recreatievastgoed.nl",
+    "title": "Nunspeet – Gelderland | Nederland",
+    "url": "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet/",
+    "price": 339000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Nunspeet, Gelderland | Nederland",
+    "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85668-158333.jpg",
+    "sold": false,
+    "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
+    "offline": false
   }
 }
