@@ -620,7 +620,8 @@ def send_email(new_listings: list[dict]) -> None:
 
     count    = len(new_listings)
     plural   = "en" if count > 1 else ""
-    date_str = datetime.now().strftime("%d %B %Y")
+    now      = datetime.now()
+    date_str = f"{now.day}-{now.month}-{str(now.year)[2:]}"
     subject  = (
         f"Project Vacay Cabin - {count} nieuwe woning{plural} gevonden - {date_str}"
     )
