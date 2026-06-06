@@ -1,91 +1,6 @@
 {
-  "generated_at": "2026-06-05T13:19:11.397546+00:00",
-  "new_listings": [
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Uitdam – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/zeedijk-2-315-uitdam/",
-      "price": 299000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Uitdam, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/70089-128917.jpg",
-      "sold": false,
-      "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
-      "lat": 52.4195869,
-      "lng": 5.0707855
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Den Oever – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/akkerweg-41-den-oever/",
-      "price": 47775,
-      "bedrooms": null,
-      "persons": null,
-      "location": "Den Oever, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85341-158716.jpeg",
-      "sold": false,
-      "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
-      "lat": 52.9335602,
-      "lng": 5.0308692
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Den Oever – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/akkerweg-41-51-den-oever/",
-      "price": 269500,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Den Oever, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85448-158759.jpg",
-      "sold": false,
-      "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
-      "lat": 52.9335602,
-      "lng": 5.0308692
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Uitdam – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/zeedijk-2-365-uitdam/",
-      "price": 350000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Uitdam, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/70008-131565-scaled.jpg",
-      "sold": false,
-      "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
-      "lat": 52.4195869,
-      "lng": 5.0707855
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Reeuwijk – Zuid-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/verlengde-breevaart-3-86-reeuwijk/",
-      "price": 309500,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Reeuwijk, Zuid-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65579-129850.jpg",
-      "sold": false,
-      "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
-      "lat": 52.0449873,
-      "lng": 4.7224789
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Uitdam – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/zeedijk-2-317-uitdam/",
-      "price": 299000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Uitdam, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/70121-128948.jpg",
-      "sold": false,
-      "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
-      "lat": 52.4195869,
-      "lng": 5.0707855
-    }
-  ],
+  "generated_at": "2026-06-06T11:25:35.559403+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -387,7 +302,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -475,7 +390,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
