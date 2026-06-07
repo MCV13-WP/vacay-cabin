@@ -1,6 +1,249 @@
 {
-  "generated_at": "2026-06-06T11:25:35.559403+00:00",
-  "new_listings": [],
+  "generated_at": "2026-06-07T11:54:54.522219+00:00",
+  "new_listings": [
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Onbekend",
+      "url": "https://www.vakantiehuistekoop.nl#",
+      "price": 79000,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Onbekend",
+      "image": "screenshots/https___www_vakantiehuistekoop_nl.png",
+      "sold": false,
+      "raw": "Nederland € 79.000 v.o.n. Particuliere verkoop Favorieten Deel deze woning Al 374 keer bekeken",
+      "lat": 51.8282162,
+      "lng": 5.9264018
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel R 523",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-523/",
+      "price": 300000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel R 523",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/298359-279089502-536x353.jpg",
+      "sold": false,
+      "raw": "Nieuw aanbod Daelenbroeck kavel R 523 EuroParcs Limburg Susteren, Limburg - 460m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 300.000                           "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion kavel R 690",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-kavel-r-690/",
+      "price": 197500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion kavel R 690",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/03/235687-265871404-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion kavel R 690 EuroParcs Limburg Susteren, Limburg - 337m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 197.500                                            k"
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H717",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h717/",
+      "price": 255000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H717",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/214668-264442232-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H717 EuroParcs De Achterhoek Lochem, Gelderland - 493m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2020 Koopkavel Btw vrij 8 personen € 255.000                                        "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H752",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h752/",
+      "price": 255000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H752",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/214664-264452620-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H752 EuroParcs De Achterhoek Lochem, Gelderland - 488m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2020 Koopkavel Btw vrij 8 personen € 255.000                                        "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Boekhorst l’etage  kavel X 212",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/boekhorst-letage-kavel-x-212/",
+      "price": 311000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Boekhorst l’etage  kavel X 212",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/204782-263233266-536x353.jpg",
+      "sold": false,
+      "raw": "Boekhorst l’etage  kavel X 212 EuroParcs Brunssummerheide Brunssum, Limburg - 319m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 311.000                         "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel R 816",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-816/",
+      "price": 284750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel R 816",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/11/81310-253056168-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel R 816 EuroParcs Limburg Susteren, Limburg - 328m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 284.750                                        "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Avantage kavel A 48",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-a-48/",
+      "price": 299750,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Avantage kavel A 48",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/41911-246744814-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Avantage kavel A 48 EuroParcs Hooge Veluwe Arnhem, Gelderland - 468m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 299.750                                  "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck  kavel 823",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-823/",
+      "price": 299000,
+      "bedrooms": 5,
+      "persons": 10,
+      "location": "Daelenbroeck  kavel 823",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34487-240835804-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck  kavel 823 EuroParcs Limburg Susteren, Limburg - 422m² perceeloppervlakte - 5 slaapkamers - Bouwjaar 2018 Koopkavel Exclusief BTW 10 personen € 299.000                                    "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel 819",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-819/",
+      "price": 299000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel 819",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34483-240832870-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel 819 EuroParcs Limburg Susteren, Limburg - 565m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2011 Koopkavel Btw vrij 12 personen € 299.000                                          "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delices kavel 695",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-695/",
+      "price": 259000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delices kavel 695",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34471-240813998-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delices kavel 695 EuroParcs Limburg Susteren, Limburg - 630m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 259.000                                       "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delices kavel 674",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-674/",
+      "price": 259000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delices kavel 674",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34467-240807622-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delices kavel 674 EuroParcs Limburg Susteren, Limburg - 630m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 259.000                                       "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Dalenbroek kavel 801",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-801/",
+      "price": 289000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Dalenbroek kavel 801",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34439-241186310-536x353.jpg",
+      "sold": false,
+      "raw": "Dalenbroek kavel 801 EuroParcs Limburg Susteren, Limburg - 550m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2012 Koopkavel Btw vrij 12 personen € 289.000                                            "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Kranenborg villa kavel 655",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/kranenborg-villa-kavel-655/",
+      "price": 209500,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Kranenborg villa kavel 655",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34383-240674100-536x353.jpg",
+      "sold": false,
+      "raw": "Kranenborg villa kavel 655 EuroParcs Limburg Susteren, Limburg - 657m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Exclusief BTW 12 personen € 209.500                                 "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delice kavel 670",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delice-kavel-670/",
+      "price": 199500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delice kavel 670",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34379-240670904-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delice kavel 670 EuroParcs Limburg Susteren, Limburg - 291m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2016 Koopkavel Exclusief BTW 8 personen € 199.500                                   "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Avantage kavel PB40",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-pb40/",
+      "price": 330000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Avantage kavel PB40",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/01/33487-239988304-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Avantage kavel PB40 EuroParcs De Zanding Otterlo, Gelderland - 324m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2019 Koopkavel Exclusief BTW 8 personen € 330.000                              "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Advantage kavel A 45",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-advantage-kavel-a-45/",
+      "price": 285000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Advantage kavel A 45",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/33919-240428060-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Advantage kavel A 45 EuroParcs Hooge Veluwe Arnhem, Gelderland - 336m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Exclusief BTW 8 personen € 285.000                            "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H749",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h749/",
+      "price": 249900,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H749",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/32975-238626760-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H749 EuroParcs De Achterhoek Lochem, Gelderland - 351m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2018 Koopkavel Exclusief BTW 8 personen € 249.900                                   "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Dalenbroek kavel 808",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-808/",
+      "price": 299750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Dalenbroek kavel 808",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34443-241186598-536x353.jpg",
+      "sold": false,
+      "raw": "Dalenbroek kavel 808 EuroParcs Limburg Susteren, Limburg - 550m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2012 Koopkavel Btw vrij 12 personen € 299.750                                            "
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel 842",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842/",
+      "price": 274750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel 842",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          "
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -37,7 +280,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -302,7 +545,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -390,12 +633,430 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
           "date": "2026-06-05",
           "price": 299000
+        }
+      ]
+    },
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Onbekend",
+      "url": "https://www.vakantiehuistekoop.nl",
+      "price": 249000,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Onbekend",
+      "image": "screenshots/https___www_vakantiehuistekoop_nl.png",
+      "sold": false,
+      "raw": "Nederland € 249.000 k.k.",
+      "lat": 51.8282162,
+      "lng": 5.9264018,
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 79000
+        },
+        {
+          "date": "2026-06-07",
+          "price": 25000
+        },
+        {
+          "date": "2026-06-07",
+          "price": 57375
+        },
+        {
+          "date": "2026-06-07",
+          "price": 157500
+        },
+        {
+          "date": "2026-06-07",
+          "price": 249000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel R 523",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-523/",
+      "price": 300000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel R 523",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/298359-279089502-536x353.jpg",
+      "sold": false,
+      "raw": "Nieuw aanbod Daelenbroeck kavel R 523 EuroParcs Limburg Susteren, Limburg - 460m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 300.000                           ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 300000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion kavel R 690",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-kavel-r-690/",
+      "price": 197500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion kavel R 690",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/03/235687-265871404-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion kavel R 690 EuroParcs Limburg Susteren, Limburg - 337m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 197.500                                            k",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 197500
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H717",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h717/",
+      "price": 255000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H717",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/214668-264442232-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H717 EuroParcs De Achterhoek Lochem, Gelderland - 493m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2020 Koopkavel Btw vrij 8 personen € 255.000                                        ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 255000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H752",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h752/",
+      "price": 255000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H752",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/214664-264452620-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H752 EuroParcs De Achterhoek Lochem, Gelderland - 488m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2020 Koopkavel Btw vrij 8 personen € 255.000                                        ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 255000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Boekhorst l’etage  kavel X 212",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/boekhorst-letage-kavel-x-212/",
+      "price": 311000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Boekhorst l’etage  kavel X 212",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/02/204782-263233266-536x353.jpg",
+      "sold": false,
+      "raw": "Boekhorst l’etage  kavel X 212 EuroParcs Brunssummerheide Brunssum, Limburg - 319m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 311.000                         ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 311000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel R 816",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-816/",
+      "price": 284750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel R 816",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/11/81310-253056168-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel R 816 EuroParcs Limburg Susteren, Limburg - 328m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 284.750                                        ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 284750
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Avantage kavel A 48",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-a-48/",
+      "price": 299750,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Avantage kavel A 48",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/41911-246744814-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Avantage kavel A 48 EuroParcs Hooge Veluwe Arnhem, Gelderland - 468m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 299.750                                  ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 299750
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck  kavel 823",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-823/",
+      "price": 299000,
+      "bedrooms": 5,
+      "persons": 10,
+      "location": "Daelenbroeck  kavel 823",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34487-240835804-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck  kavel 823 EuroParcs Limburg Susteren, Limburg - 422m² perceeloppervlakte - 5 slaapkamers - Bouwjaar 2018 Koopkavel Exclusief BTW 10 personen € 299.000                                    ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 299000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel 819",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-819/",
+      "price": 299000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel 819",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34483-240832870-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel 819 EuroParcs Limburg Susteren, Limburg - 565m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2011 Koopkavel Btw vrij 12 personen € 299.000                                          ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 299000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delices kavel 695",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-695/",
+      "price": 259000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delices kavel 695",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34471-240813998-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delices kavel 695 EuroParcs Limburg Susteren, Limburg - 630m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 259.000                                       ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 259000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delices kavel 674",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-674/",
+      "price": 259000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delices kavel 674",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34467-240807622-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delices kavel 674 EuroParcs Limburg Susteren, Limburg - 630m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Btw vrij 8 personen € 259.000                                       ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 259000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Dalenbroek kavel 801",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-801/",
+      "price": 289000,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Dalenbroek kavel 801",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34439-241186310-536x353.jpg",
+      "sold": false,
+      "raw": "Dalenbroek kavel 801 EuroParcs Limburg Susteren, Limburg - 550m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2012 Koopkavel Btw vrij 12 personen € 289.000                                            ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 289000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Kranenborg villa kavel 655",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/kranenborg-villa-kavel-655/",
+      "price": 209500,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Kranenborg villa kavel 655",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34383-240674100-536x353.jpg",
+      "sold": false,
+      "raw": "Kranenborg villa kavel 655 EuroParcs Limburg Susteren, Limburg - 657m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Exclusief BTW 12 personen € 209.500                                 ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 209500
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Pavilion Delice kavel 670",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delice-kavel-670/",
+      "price": 199500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Pavilion Delice kavel 670",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34379-240670904-536x353.jpg",
+      "sold": false,
+      "raw": "Pavilion Delice kavel 670 EuroParcs Limburg Susteren, Limburg - 291m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2016 Koopkavel Exclusief BTW 8 personen € 199.500                                   ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 199500
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Avantage kavel PB40",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-pb40/",
+      "price": 330000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Avantage kavel PB40",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/01/33487-239988304-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Avantage kavel PB40 EuroParcs De Zanding Otterlo, Gelderland - 324m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2019 Koopkavel Exclusief BTW 8 personen € 330.000                              ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 330000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Villa Advantage kavel A 45",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-advantage-kavel-a-45/",
+      "price": 285000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Villa Advantage kavel A 45",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/33919-240428060-536x353.jpg",
+      "sold": false,
+      "raw": "Villa Advantage kavel A 45 EuroParcs Hooge Veluwe Arnhem, Gelderland - 336m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2017 Koopkavel Exclusief BTW 8 personen € 285.000                            ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 285000
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse kavel H749",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h749/",
+      "price": 249900,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse kavel H749",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/32975-238626760-536x353.jpg",
+      "sold": false,
+      "raw": "Wiersse kavel H749 EuroParcs De Achterhoek Lochem, Gelderland - 351m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2018 Koopkavel Exclusief BTW 8 personen € 249.900                                   ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 249900
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Dalenbroek kavel 808",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-808/",
+      "price": 299750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Dalenbroek kavel 808",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34443-241186598-536x353.jpg",
+      "sold": false,
+      "raw": "Dalenbroek kavel 808 EuroParcs Limburg Susteren, Limburg - 550m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2012 Koopkavel Btw vrij 12 personen € 299.750                                            ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 299750
+        }
+      ]
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Daelenbroeck kavel 842",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842/",
+      "price": 274750,
+      "bedrooms": 6,
+      "persons": 12,
+      "location": "Daelenbroeck kavel 842",
+      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
+      "sold": false,
+      "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          ",
+      "offline": false,
+      "first_seen": "2026-06-07",
+      "price_history": [
+        {
+          "date": "2026-06-07",
+          "price": 274750
         }
       ]
     }
