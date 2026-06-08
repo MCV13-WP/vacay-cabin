@@ -221,7 +221,33 @@ def passes_filters(l: dict) -> bool:
     if l.get("persons") is not None and l["persons"] < config.MIN_PERSONS:
         return False
     return True
-
+def _dedup_cross_source(listings: list[dict]) -> list[dict]:
+    """Verwijder near-duplicaten op basis van prijs + locatie (cross-source)."""
+    import difflib
+    kept = []
+    for l in listings:
+        is_dup = False
+        for k in kept:
+            if k.get("source") == l.get("source"):
+                continue
+            price_match = (
+                k.get("price") and l.get("price") and
+                abs(k["price"] - l["price"]) < 2000
+            )
+            loc_sim = difflib.SequenceMatcher(
+                None,
+                (k.get("location") or "").lower(),
+                (l.get("location") or "").lower()
+            ).ratio()
+            if price_match and loc_sim > 0.7:
+                is_dup = True
+                log.debug("Cross-source dup: %s (%s) ≈ %s (%s)",
+                          l.get("title","")[:30], l.get("source",""),
+                          k.get("title","")[:30], k.get("source",""))
+                break
+        if not is_dup:
+            kept.append(l)
+    return kept
 
 def _safe_int(val: str) -> int | None:
     m = re.search(r"(\d+)", str(val).strip())
@@ -1940,8 +1966,8 @@ def run() -> None:
     skipped  = len(filtered) - len(complete)
     if skipped:
         log.info("Onvolledige woningen overgeslagen: %d", skipped)
-    filtered = complete
-    log.info("Na volledige filter: %d woningen", len(filtered))
+filtered = _dedup_cross_source(complete)
+log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
 
     # ── Stap 4b: geblokkeerde listings verwijderen ───────────
     # Listings waarvan de url_key in blocked_urls staat worden behandeld
