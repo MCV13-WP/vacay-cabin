@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inloggen – Vakantiewoningen</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <style>
+    :root {
+      --green:   #2d6a4f;
+      --green-l: #40916c;
+      --accent:  #f4a261;
+      --bg:      #f0f4f1;
+      --text:    #212529;
+      --muted:   #6c757d;
+      --border:  #dee2e6;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(0,0,0,.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      margin-bottom: .5rem;
+    }
+    .brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: .25rem;
+    }
+    .brand-sub {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.25rem 2.25rem;
+      width: 100%;
+      max-width: 380px;
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .35rem;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: .6rem .85rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: .95rem;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border-color .18s;
+      margin-bottom: 1.1rem;
+    }
+    input:focus { border-color: var(--green); }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: .7rem 1rem;
+      background: linear-gradient(135deg, var(--green), var(--green-l));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity .18s;
+      margin-top: .25rem;
+    }
+    button[type="submit"]:hover   { opacity: .88; }
+    button[type="submit"]:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .spinner-wrap {
+      display: none;
+      justify-content: center;
+      margin-top: .5rem;
+    }
+    .spinner {
+      width: 22px; height: 22px;
+      border: 3px solid var(--border);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #error-msg {
+      display: none;
+      background: #fdf2f2;
+      border: 1px solid #f5c2c7;
+      border-radius: 8px;
+      color: #842029;
+      font-size: .85rem;
+      padding: .65rem .9rem;
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
+
+    .footer-note {
+      margin-top: 1.75rem;
+      font-size: .75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo">🏡</div>
+  <div class="brand">Vakantiewoningen Te Koop</div>
+  <div class="brand-sub">Privé overzicht · Alleen voor geautoriseerde gebruikers</div>
+
+  <div class="card">
+    <h2>🔐 Inloggen</h2>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <label for="email">E-mailadres</label>
+      <input type="email" id="email" placeholder="naam@voorbeeld.nl"
+             autocomplete="email" required />
+
+      <label for="password">Wachtwoord</label>
+      <input type="password" id="password" placeholder="••••••••"
+             autocomplete="current-password" required />
+
+      <button type="submit" id="submit-btn">Inloggen</button>
+      <div class="spinner-wrap" id="spinner-wrap">
+        <div class="spinner"></div>
+      </div>
+    </form>
+
+    <div id="error-msg"></div>
+  </div>
+
+  <div class="footer-note">Geen account? Neem contact op met de beheerder.</div>
+
+<script>
+  // ── Supabase configuratie ──────────────────────────────────────────
+  // Vervang onderstaande waarden met jouw Supabase project-URL en publishable key.
+  const SUPABASE_URL      = "https://JOUW_PROJECT.supabase.co";
+  const SUPABASE_ANON_KEY = "JOUW_PUBLISHABLE_KEY";
+
+  const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ── Al ingelogd? Direct doorsturen ────────────────────────────────
+  (async () => {
+    const { data: { session } } = await _sb.auth.getSession();
+    if (session) window.location.replace("index.html");
+  })();
+
+  // ── Login afhandelen ──────────────────────────────────────────────
+  async function handleLogin(e) {
+    e.preventDefault();
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const btn      = document.getElementById("submit-btn");
+    const spinner  = document.getElementById("spinner-wrap");
+    const errBox   = document.getElementById("error-msg");
+
+    errBox.style.display = "none";
+    btn.disabled         = true;
+    spinner.style.display = "flex";
+
+    try {
+      const { error } = await _sb.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      window.location.replace("index.html");
+    } catch (err) {
+      const msg = mapError(err.message || "");
+      errBox.textContent    = msg;
+      errBox.style.display  = "block";
+      btn.disabled          = false;
+      spinner.style.display = "none";
+    }
+  }
+
+  function mapError(msg) {
+    if (/invalid login|invalid email|wrong password|email not confirmed/i.test(msg))
+      return "Ongeldig e-mailadres of wachtwoord.";
+    if (/email.*not.*found/i.test(msg))
+      return "Dit e-mailadres is niet bekend.";
+    if (/too many requests/i.test(msg))
+      return "Te veel inlogpogingen. Probeer het over enkele minuten opnieuw.";
+    return "Er is een fout opgetreden. Probeer het opnieuw.";
+  }
+</script>
+</body>
+</html>

@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vakantiewoningen Te Koop</title>
+  <!-- Supabase JS client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <!-- Leaflet voor de kaart -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -170,20 +172,43 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── User bar (rechtsboven in header) ── */
+    .header-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; }
+    #user-bar { font-size: .82rem; color: rgba(255,255,255,.9); text-align: right; white-space: nowrap; padding-top: .15rem; }
+    #user-bar span { opacity: .85; }
+    #admin-link { margin-left: .75rem; color: var(--accent); font-weight: 600; text-decoration: none; }
+    #admin-link:hover { text-decoration: underline; }
+    #logout-btn {
+      margin-left: .75rem; background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3); color: #fff;
+      padding: .22rem .7rem; border-radius: 20px; cursor: pointer; font-size: .8rem;
+    }
+    #logout-btn:hover { background: rgba(255,255,255,.25); }
+
     @media (max-width: 480px) {
       .grid { padding: 1rem; gap: 1rem; }
       header { padding: 1.5rem 1rem 1rem; }
       .tabs  { padding: 0 .5rem; }
       .toolbar { padding: .6rem 1rem; }
+      #user-bar { font-size: .75rem; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>🏡 Vakantiewoningen Te Koop</h1>
-  <p>Recreatiewoningen op vakantieparken · max €350.000 · min 4 slaapkamers · min 8 personen</p>
-  <div id="last-updated">Wordt geladen…</div>
+  <div class="header-inner">
+    <div>
+      <h1>🏡 Vakantiewoningen Te Koop</h1>
+      <p>Recreatiewoningen op vakantieparken · max €350.000 · min 4 slaapkamers · min 8 personen</p>
+      <div id="last-updated">Wordt geladen…</div>
+    </div>
+    <div id="user-bar" style="display:none">
+      <span id="user-email"></span>
+      <a id="admin-link" href="admin.html" style="display:none">⚙️ Beheer</a>
+      <button id="logout-btn" onclick="signOut()">Uitloggen</button>
+    </div>
+  </div>
 </header>
 
 <nav class="tabs">
@@ -233,6 +258,47 @@
 </div>
 
 <script>
+  // ════════════════════════════════════════════════════════
+  //  Supabase configuratie
+  // ════════════════════════════════════════════════════════
+
+  // Vervang onderstaande waarden met jouw Supabase project-URL en publishable key.
+  const SUPABASE_URL      = "https://JOUW_PROJECT.supabase.co";
+  const SUPABASE_ANON_KEY = "JOUW_PUBLISHABLE_KEY";
+
+  const _sb = (SUPABASE_URL.includes("supabase.co") && !SUPABASE_URL.includes("JOUW"))
+    ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+
+  // ════════════════════════════════════════════════════════
+  //  Auth helpers
+  // ════════════════════════════════════════════════════════
+
+  async function checkAuth() {
+    if (!_sb) return;   // geen Supabase → geen auth-check
+    const { data: { session } } = await _sb.auth.getSession();
+    if (!session) {
+      window.location.replace("login.html");
+      return;
+    }
+    const user  = session.user;
+    const email = user.email || "";
+    const role  = user.user_metadata?.role || "";
+
+    const bar = document.getElementById("user-bar");
+    bar.style.display = "block";
+    document.getElementById("user-email").textContent = email;
+
+    if (role === "admin") {
+      document.getElementById("admin-link").style.display = "inline";
+    }
+  }
+
+  async function signOut() {
+    if (_sb) await _sb.auth.signOut();
+    window.location.replace("login.html");
+  }
+
   // ════════════════════════════════════════════════════════
   //  Constanten & globale staat
   // ════════════════════════════════════════════════════════
@@ -532,30 +598,69 @@
   //  Data laden
   // ════════════════════════════════════════════════════════
 
+  // ── Supabase data laden ───────────────────────────────────
+  async function loadFromSupabase() {
+    if (!_sb) return false;
+    try {
+      const { data, error } = await _sb
+        .from("listings")
+        .select("*")
+        .eq("deleted", false);
+      if (error) throw error;
+
+      ALL_LISTINGS = (data || []);
+      // price_history is opgeslagen als JSON-string in Supabase
+      ALL_LISTINGS.forEach(l => {
+        if (typeof l.price_history === "string") {
+          try { l.price_history = JSON.parse(l.price_history); }
+          catch { l.price_history = []; }
+        }
+      });
+      NEW_URLS = new Set(ALL_LISTINGS.filter(l => l.is_new).map(l => l.url));
+      return true;
+    } catch (e) {
+      console.warn("Supabase laden mislukt, fallback naar data.json:", e);
+      return false;
+    }
+  }
+
+  // ── data.json fallback laden ──────────────────────────────
+  async function loadFromDataJson() {
+    const resp = await fetch("data.json?_=" + Date.now());
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const data = await resp.json();
+    NEW_URLS     = new Set((data.new_listings || []).map(l => l.url));
+    ALL_LISTINGS = data.all_listings || [];
+    return data.generated_at || null;
+  }
+
+  // ── Hoofd laad-functie ────────────────────────────────────
   async function load() {
     try {
-      const resp = await fetch("data.json?_=" + Date.now());
-      if (!resp.ok) throw new Error(resp.status);
-      const data = await resp.json();
+      let ts       = null;
+      let fromSupa = await loadFromSupabase();
 
-      document.getElementById("loading").style.display  = "none";
-      document.getElementById("content").style.display  = "block";
+      if (!fromSupa) {
+        // Fallback: data.json
+        ts = await loadFromDataJson();
+      }
 
-      const ts = data.generated_at
-        ? new Date(data.generated_at).toLocaleString("nl-NL")
-        : "onbekend";
-      document.getElementById("last-updated").textContent = `Laatste update: ${ts}`;
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("content").style.display = "block";
 
-      NEW_URLS     = new Set((data.new_listings || []).map(l => l.url));
-      ALL_LISTINGS = data.all_listings || [];
-      const nieuw  = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
+      const tsLabel = fromSupa
+        ? new Date().toLocaleString("nl-NL")
+        : (ts ? new Date(ts).toLocaleString("nl-NL") : "onbekend");
+      document.getElementById("last-updated").textContent =
+        (fromSupa ? "Live data · " : "Lokale cache · ") + "Bijgewerkt: " + tsLabel;
 
+      const nieuw      = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
       const withCoords = ALL_LISTINGS.filter(l => l.lat && l.lng).length;
       document.getElementById("stats-bar").innerHTML =
         `<span>⭐ <strong>${nieuw.length}</strong> nieuw</span>` +
         `<span>🏘 <strong>${ALL_LISTINGS.length}</strong> totaal</span>` +
         `<span>🗺️ <strong>${withCoords}</strong> op kaart</span>` +
-        `<span>🔄 ${ts}</span>`;
+        `<span>🔄 ${tsLabel}</span>`;
 
       renderNieuw();
       renderAlle();
@@ -564,13 +669,18 @@
     } catch (e) {
       document.getElementById("loading").innerHTML =
         `<div class="icon" style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
-         <strong>Kon data.json niet laden.</strong><br>
+         <strong>Kon woningdata niet laden.</strong><br>
          Controleer of de scraper al een keer gedraaid heeft.<br>
          <small style="color:#aaa">${e}</small>`;
     }
   }
 
-  load();
+  async function init() {
+    await checkAuth();
+    await load();
+  }
+
+  init();
 </script>
 </body>
 </html>

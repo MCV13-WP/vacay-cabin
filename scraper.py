@@ -38,6 +38,13 @@ from tenacity import (
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
+# Supabase (optioneel — alleen actief als SUPABASE_URL + SUPABASE_KEY geconfigureerd zijn)
+try:
+    from supabase import create_client as _supabase_create_client
+    _SUPABASE_AVAILABLE = True
+except ImportError:
+    _SUPABASE_AVAILABLE = False
+
 import config
 
 # ── Logging ──────────────────────────────────────────────────
@@ -277,6 +284,97 @@ def _normalize_location(location: str) -> str:
     """Normaliseer locatiestring voor gebruik als cache-sleutel."""
     s = re.sub(r"\|\s*nederland", "", location, flags=re.IGNORECASE)
     return s.strip().rstrip(",").strip().lower()
+
+
+# ════════════════════════════════════════════════════════════
+#  Supabase integratie
+# ════════════════════════════════════════════════════════════
+
+def _get_supabase_client():
+    """Geeft een Supabase-client (secret key) terug, of None als niet geconfigureerd."""
+    if not _SUPABASE_AVAILABLE:
+        return None
+    url = getattr(config, "SUPABASE_URL", "") or os.environ.get("SUPABASE_URL", "")
+    key = getattr(config, "SUPABASE_KEY", "") or os.environ.get("SUPABASE_KEY", "")
+    if not (url and key):
+        return None
+    try:
+        return _supabase_create_client(url, key)
+    except Exception as exc:
+        log.warning("Supabase client aanmaken mislukt: %s", exc)
+        return None
+
+
+def _load_blocked_urls() -> set[str]:
+    """
+    Laad geblokkeerde url_keys uit Supabase tabel 'blocked_urls'.
+    Geeft lege set terug bij elke fout zodat de scraper altijd doorgaat.
+    """
+    client = _get_supabase_client()
+    if not client:
+        log.debug("Supabase niet geconfigureerd — blocked_urls overgeslagen")
+        return set()
+    try:
+        resp   = client.table("blocked_urls").select("url_key").execute()
+        result = {row["url_key"] for row in (resp.data or [])}
+        log.info("Supabase: %d geblokkeerde URL-keys geladen", len(result))
+        return result
+    except Exception as exc:
+        log.warning("Supabase blocked_urls laden mislukt (scraper gaat door): %s", exc)
+        return set()
+
+
+def _upsert_to_supabase(
+    listings: dict[str, dict],
+    new_url_keys: set[str],
+    blocked_url_keys: set[str],
+) -> None:
+    """
+    Upsert alle woningen naar Supabase tabel 'listings'.
+    Velden: url_key, source, title, url, price, bedrooms, persons, location,
+            image, sold, offline, deleted, is_new, first_seen,
+            price_history (JSON string), lat, lng, updated_at.
+    Bij elke fout wordt alleen een waarschuwing gelogd — data.json blijft fallback.
+    """
+    client = _get_supabase_client()
+    if not client:
+        log.debug("Supabase niet geconfigureerd — upsert overgeslagen")
+        return
+    try:
+        now  = datetime.now(timezone.utc).isoformat()
+        rows = [
+            {
+                "url_key":       uk,
+                "source":        l.get("source"),
+                "title":         l.get("title"),
+                "url":           l.get("url"),
+                "price":         l.get("price"),
+                "bedrooms":      l.get("bedrooms"),
+                "persons":       l.get("persons"),
+                "location":      l.get("location"),
+                "image":         l.get("image"),
+                "sold":          bool(l.get("sold")),
+                "offline":       bool(l.get("offline")),
+                # Geblokkeerde listings worden als deleted gemarkeerd
+                "deleted":       uk in blocked_url_keys or bool(l.get("deleted")),
+                "is_new":        uk in new_url_keys,
+                "first_seen":    l.get("first_seen"),
+                "price_history": json.dumps(
+                    l.get("price_history", []), ensure_ascii=False
+                ),
+                "lat":           l.get("lat"),
+                "lng":           l.get("lng"),
+                "updated_at":    now,
+            }
+            for uk, l in listings.items()
+        ]
+        # Upsert in batches van 100 (Supabase row limit per request)
+        batch = 100
+        for i in range(0, len(rows), batch):
+            client.table("listings").upsert(rows[i : i + batch]).execute()
+        log.info("Supabase: %d woningen ge-upsert", len(rows))
+    except Exception as exc:
+        log.warning("Supabase upsert mislukt (data.json blijft fallback): %s", exc)
 
 
 def geocode(location: str) -> tuple[float, float] | None:
@@ -1733,6 +1831,9 @@ def run() -> None:
     # ── Geocoding-cache laden ─────────────────────────────────
     _load_geocode_cache()
 
+    # ── Geblokkeerde URLs laden uit Supabase ─────────────────
+    blocked_url_keys = _load_blocked_urls()
+
     known, meta = load_known()
     log.info("Bekende woningen: %d", len(known))
 
@@ -1841,6 +1942,19 @@ def run() -> None:
         log.info("Onvolledige woningen overgeslagen: %d", skipped)
     filtered = complete
     log.info("Na volledige filter: %d woningen", len(filtered))
+
+    # ── Stap 4b: geblokkeerde listings verwijderen ───────────
+    # Listings waarvan de url_key in blocked_urls staat worden behandeld
+    # alsof ze al bekend en verwijderd zijn — ze verschijnen nooit als nieuw.
+    if blocked_url_keys:
+        before_blocked = len(filtered)
+        filtered = [
+            l for l in filtered
+            if url_key(l.get("url", "")) not in blocked_url_keys
+        ]
+        skipped_blocked = before_blocked - len(filtered)
+        if skipped_blocked:
+            log.info("Geblokkeerde woningen overgeslagen: %d", skipped_blocked)
 
     # ── Stap 5: deduplicatie + prijshistorie + first_seen ─────
     today         = datetime.now().strftime("%Y-%m-%d")
@@ -1970,6 +2084,10 @@ def run() -> None:
 
     # ── Stap 9: opslaan ──────────────────────────────────────
     save_known(updated_known, meta)
+
+    # ── Stap 9b: upsert naar Supabase ────────────────────────
+    new_url_keys_set = {url_key(l.get("url", "")) for l in new_listings}
+    _upsert_to_supabase(updated_known, new_url_keys_set, blocked_url_keys)
 
     # ── Stap 10: data.json (alle woningen + stats) ───────────
     write_data_json(

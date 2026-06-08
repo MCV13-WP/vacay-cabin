@@ -43,12 +43,15 @@ jobs:
       # Hier maken we het bestand aan op basis van de Secrets.
       - name: Genereer config.py vanuit Secrets
         env:
-          SMTP_HOST:     ${{ secrets.SMTP_HOST }}
-          SMTP_PORT:     ${{ secrets.SMTP_PORT }}
-          SMTP_USER:     ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          EMAIL_FROM:    ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO:      ${{ secrets.EMAIL_TO }}
+          SMTP_HOST:        ${{ secrets.SMTP_HOST }}
+          SMTP_PORT:        ${{ secrets.SMTP_PORT }}
+          SMTP_USER:        ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:    ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM:       ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO:         ${{ secrets.EMAIL_TO }}
+          SUPABASE_URL:     ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY:     ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           cat > config.py << 'PYEOF'
           import os
@@ -64,6 +67,9 @@ jobs:
               if _env_to
               else []
           )
+          SUPABASE_URL      = os.environ.get("SUPABASE_URL",      "")
+          SUPABASE_KEY      = os.environ.get("SUPABASE_KEY",      "")
+          SUPABASE_ANON_KEY = os.environ.get("SUPABASE_ANON_KEY", "")
           KNOWN_LISTINGS_FILE = "known_listings.json"
           DATA_JSON_FILE      = "docs/data.json"
           MAX_PRICE    = 350_000
@@ -116,6 +122,9 @@ jobs:
           SMTP_PASSWORD:    ${{ secrets.SMTP_PASSWORD }}
           EMAIL_FROM:       ${{ secrets.EMAIL_FROM }}
           EMAIL_TO:         ${{ secrets.EMAIL_TO }}
+          SUPABASE_URL:     ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY:     ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           # Zet op "1" om Playwright-screenshots over te slaan (snellere runs)
           SKIP_SCREENSHOTS: "0"
         run: python scraper.py

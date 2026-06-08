@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beheer – Vakantiewoningen</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <style>
+    :root {
+      --green:   #2d6a4f;
+      --green-l: #40916c;
+      --accent:  #f4a261;
+      --red:     #c0392b;
+      --red-l:   #e74c3c;
+      --bg:      #f8f9fa;
+      --card-bg: #ffffff;
+      --text:    #212529;
+      --muted:   #6c757d;
+      --border:  #dee2e6;
+      --radius:  10px;
+      --shadow:  0 2px 12px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--text);
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--green), var(--green-l));
+      color: #fff; padding: 1.5rem 1.5rem 1.25rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .75rem;
+    }
+    header .title-wrap h1 { font-size: 1.3rem; font-weight: 700; }
+    header .title-wrap p  { font-size: .82rem; opacity: .8; margin-top: .2rem; }
+
+    .header-right { display: flex; align-items: center; gap: .75rem; font-size: .82rem; }
+    .header-right span { opacity: .85; }
+    #back-btn, #logout-btn-admin {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      color: #fff; padding: .25rem .75rem; border-radius: 20px;
+      cursor: pointer; font-size: .8rem; text-decoration: none; display: inline-block;
+    }
+    #back-btn:hover, #logout-btn-admin:hover { background: rgba(255,255,255,.25); }
+
+    /* ── Access denied ── */
+    #access-denied {
+      display: none; text-align: center; padding: 5rem 2rem; color: var(--muted);
+    }
+    #access-denied .icon { font-size: 3rem; margin-bottom: 1rem; }
+    #access-denied h2 { color: var(--red); margin-bottom: .5rem; }
+
+    /* ── Main ── */
+    main {
+      max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem;
+    }
+
+    /* ── Sectie ── */
+    .section {
+      background: var(--card-bg); border-radius: var(--radius);
+      box-shadow: var(--shadow); margin-bottom: 2rem; overflow: hidden;
+    }
+    .section-header {
+      padding: 1rem 1.5rem; background: #f1f3f5;
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .5rem;
+    }
+    .section-header h2 { font-size: 1rem; font-weight: 700; color: var(--green); }
+    .section-header p  { font-size: .8rem; color: var(--muted); }
+
+    /* ── Tabel ── */
+    .tbl-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    thead th {
+      background: #f8f9fa; padding: .65rem 1rem; text-align: left;
+      font-size: .75rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .04em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f8fffe; }
+    tbody td { padding: .6rem 1rem; vertical-align: middle; }
+
+    .source-badge {
+      display: inline-block; font-size: .68rem; font-weight: 600;
+      padding: .15rem .5rem; border-radius: 20px; white-space: nowrap;
+    }
+    .td-title { max-width: 260px; }
+    .td-title a { color: var(--green); text-decoration: none; font-weight: 600; }
+    .td-title a:hover { text-decoration: underline; }
+    .td-title .sub { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+
+    .price { font-weight: 700; color: var(--green); white-space: nowrap; }
+
+    .status-pill {
+      display: inline-block; font-size: .7rem; font-weight: 700;
+      padding: .15rem .55rem; border-radius: 20px; white-space: nowrap;
+    }
+    .pill-active   { background: #d4edda; color: #155724; }
+    .pill-offline  { background: #e9ecef; color: #495057; }
+    .pill-sold     { background: #f8d7da; color: #721c24; }
+
+    .del-btn {
+      background: var(--red); color: #fff; border: none;
+      padding: .3rem .75rem; border-radius: 6px; cursor: pointer;
+      font-size: .78rem; font-weight: 600; transition: background .15s;
+      white-space: nowrap;
+    }
+    .del-btn:hover    { background: var(--red-l); }
+    .del-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* ── Gebruikersbeheer ── */
+    .invite-form {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+      padding: 1rem 1.5rem; border-top: 1px solid var(--border);
+    }
+    .invite-form input[type="email"] {
+      flex: 1; min-width: 200px; padding: .5rem .85rem;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .9rem; color: var(--text); outline: none;
+    }
+    .invite-form input:focus { border-color: var(--green); }
+    .invite-btn {
+      background: var(--green); color: #fff; border: none;
+      padding: .5rem 1.25rem; border-radius: 8px; cursor: pointer;
+      font-size: .9rem; font-weight: 600; transition: background .15s;
+    }
+    .invite-btn:hover    { background: var(--green-l); }
+    .invite-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    #invite-msg { padding: .5rem 1.5rem 1rem; font-size: .83rem; }
+    #invite-msg.ok  { color: #155724; }
+    #invite-msg.err { color: var(--red); }
+
+    .user-note {
+      padding: 1rem 1.5rem; font-size: .82rem; color: var(--muted);
+      border-top: 1px solid var(--border); line-height: 1.6;
+    }
+    .user-note code {
+      background: #f1f3f5; padding: .1rem .4rem; border-radius: 4px;
+      font-size: .78rem; color: var(--text);
+    }
+
+    /* ── Loading / leeg ── */
+    .loading-row td, .empty-row td {
+      text-align: center; padding: 2.5rem 1rem; color: var(--muted); font-size: .9rem;
+    }
+    .spinner {
+      width: 24px; height: 24px; border: 3px solid var(--border);
+      border-top-color: var(--green); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 0 auto .5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      main { padding: 1rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="title-wrap">
+    <h1>⚙️ Beheer – Vakantiewoningen</h1>
+    <p>Woningbeheer en gebruikersbeheer</p>
+  </div>
+  <div class="header-right">
+    <span id="admin-email-hdr"></span>
+    <a href="index.html" id="back-btn">← Terug</a>
+    <button id="logout-btn-admin" onclick="signOut()">Uitloggen</button>
+  </div>
+</header>
+
+<!-- Toegang geweigerd (niet-admins) -->
+<div id="access-denied">
+  <div class="icon">🔒</div>
+  <h2>Toegang geweigerd</h2>
+  <p>Deze pagina is alleen beschikbaar voor beheerders.</p>
+  <p style="margin-top:.5rem"><a href="index.html" style="color:var(--green)">← Terug naar overzicht</a></p>
+</div>
+
+<!-- Hoofdinhoud (alleen zichtbaar voor admins) -->
+<main id="admin-main" style="display:none">
+
+  <!-- ── Woningbeheer ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <h2>🏘 Woningbeheer</h2>
+        <p>Verwijder woningen permanent — ze worden geblokkeerd voor toekomstige runs</p>
+      </div>
+      <div id="listing-count" style="font-size:.82rem;color:var(--muted)"></div>
+    </div>
+    <div class="tbl-wrap">
+      <table id="listings-table">
+        <thead>
+          <tr>
+            <th>Bron</th>
+            <th>Woning</th>
+            <th>Prijs</th>
+            <th>Locatie</th>
+            <th>Eerste gezien</th>
+            <th>Status</th>
+            <th>Actie</th>
+          </tr>
+        </thead>
+        <tbody id="listings-body">
+          <tr class="loading-row"><td colspan="7">
+            <div class="spinner"></div>Woningen worden geladen…
+          </td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Gebruikersbeheer ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <h2>👥 Gebruikersbeheer</h2>
+        <p>Nodig nieuwe gebruikers uit via e-mail (magic link)</p>
+      </div>
+    </div>
+
+    <div class="invite-form">
+      <input type="email" id="invite-email" placeholder="nieuw@voorbeeld.nl" />
+      <button class="invite-btn" onclick="inviteUser()">📧 Uitnodiging versturen</button>
+    </div>
+    <div id="invite-msg"></div>
+
+    <div class="user-note">
+      <strong>Let op:</strong> Uitnodigingen worden verstuurd via de Supabase <code>manage-users</code>
+      Edge Function. Zorg dat deze is gedeployed (zie handmatige stappen).
+      Gebruikersbeheer (rollen toewijzen, accounts verwijderen) doe je via het
+      <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="color:var(--green)">
+        Supabase Dashboard → Authentication → Users</a>.
+      Stel de <code>role</code> in via <em>User Metadata</em>:
+      <code>{ "role": "admin" }</code>.
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ════════════════════════════════════════════════════════
+  //  Supabase configuratie
+  // ════════════════════════════════════════════════════════
+
+  // Vervang onderstaande waarden met jouw Supabase project-URL en publishable key.
+  const SUPABASE_URL      = "https://JOUW_PROJECT.supabase.co";
+  const SUPABASE_ANON_KEY = "JOUW_PUBLISHABLE_KEY";
+
+  const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // Edge Function URL voor user invite (vereist service_role server-side)
+  const INVITE_FN_URL = `${SUPABASE_URL}/functions/v1/manage-users`;
+
+  // ════════════════════════════════════════════════════════
+  //  Initialisatie & auth-check
+  // ════════════════════════════════════════════════════════
+
+  const SOURCE_COLORS = {
+    "Recreatievastgoed.nl":      "#2d6a4f",
+    "Landal Makelaardij":        "#1565c0",
+    "Marktplaats":               "#d32f2f",
+    "VakantiehuisTekoop.nl":     "#6a1b9a",
+    "Jaap.nl":                   "#e67e22",
+    "Huislijn.nl":               "#0097a7",
+    "RecreatiewoningenTekoop.nl":"#00796b",
+    "EuroParcs Makelaardij":     "#e53935",
+    "Veluwechalets.nl":          "#558b2f",
+    "UwTweedeHuisMakelaar.nl":  "#f57c00",
+    "UwBuitenleven.nl":          "#0288d1",
+    "TopParkenVerkoop.nl":       "#7b1fa2",
+    "Vakantiemakelaar.nl":       "#c0392b",
+    "CenterParcs Vastgoed":      "#1a237e",
+  };
+
+  let _accessToken = null;
+
+  async function init() {
+    const { data: { session } } = await _sb.auth.getSession();
+
+    if (!session) {
+      window.location.replace("login.html");
+      return;
+    }
+
+    const user = session.user;
+    const role = user.user_metadata?.role || "";
+    _accessToken = session.access_token;
+
+    document.getElementById("admin-email-hdr").textContent = user.email || "";
+
+    if (role !== "admin") {
+      document.getElementById("access-denied").style.display = "block";
+      return;
+    }
+
+    document.getElementById("admin-main").style.display = "block";
+    loadListings();
+  }
+
+  async function signOut() {
+    await _sb.auth.signOut();
+    window.location.replace("login.html");
+  }
+
+  // ════════════════════════════════════════════════════════
+  //  Woningbeheer
+  // ════════════════════════════════════════════════════════
+
+  async function loadListings() {
+    try {
+      const { data, error } = await _sb
+        .from("listings")
+        .select("url_key, source, title, url, price, location, first_seen, offline, sold, deleted")
+        .eq("deleted", false)
+        .order("first_seen", { ascending: false });
+
+      if (error) throw error;
+
+      const tbody = document.getElementById("listings-body");
+      document.getElementById("listing-count").textContent =
+        `${(data || []).length} woningen`;
+
+      if (!data || !data.length) {
+        tbody.innerHTML = `<tr class="empty-row"><td colspan="7">Geen woningen gevonden.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(l => buildListingRow(l)).join("");
+    } catch (e) {
+      document.getElementById("listings-body").innerHTML =
+        `<tr class="empty-row"><td colspan="7">⚠️ Fout bij laden: ${e.message}</td></tr>`;
+    }
+  }
+
+  function buildListingRow(l) {
+    const color = SOURCE_COLORS[l.source] || "#555";
+    const price = l.price ? "€ " + l.price.toLocaleString("nl-NL") : "Onbekend";
+    let statusHtml = "";
+    if (l.sold)         statusHtml = `<span class="status-pill pill-sold">Verkocht</span>`;
+    else if (l.offline) statusHtml = `<span class="status-pill pill-offline">Offline</span>`;
+    else                statusHtml = `<span class="status-pill pill-active">Actief</span>`;
+
+    const safeTitle = (l.title || "–").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+    const safeKey   = encodeURIComponent(l.url_key);
+
+    return `<tr id="row-${safeKey}">
+      <td><span class="source-badge" style="background:${color}22;color:${color}">${l.source || "–"}</span></td>
+      <td class="td-title">
+        <a href="${(l.url || "#").replace(/"/g, "%22")}" target="_blank" rel="noopener">${safeTitle}</a>
+        <div class="sub">${l.url_key || ""}</div>
+      </td>
+      <td class="price">${price}</td>
+      <td>${l.location || "–"}</td>
+      <td>${l.first_seen || "–"}</td>
+      <td>${statusHtml}</td>
+      <td>
+        <button class="del-btn" id="delbtn-${safeKey}"
+          onclick="deleteListing('${safeKey}', '${safeTitle.replace(/'/g, "\\'")}')">
+          🗑 Verwijder
+        </button>
+      </td>
+    </tr>`;
+  }
+
+  async function deleteListing(encodedKey, title) {
+    const urlKey = decodeURIComponent(encodedKey);
+    if (!confirm(`Weet je zeker dat je "${title}" wilt verwijderen?\n\nDe woning wordt geblokkeerd en verschijnt niet meer in toekomstige runs.`)) return;
+
+    const btn = document.getElementById(`delbtn-${encodedKey}`);
+    if (btn) { btn.disabled = true; btn.textContent = "…"; }
+
+    try {
+      // (a) url_key toevoegen aan blocked_urls
+      const { error: blockErr } = await _sb
+        .from("blocked_urls")
+        .upsert({ url_key: urlKey, blocked_at: new Date().toISOString() });
+      if (blockErr) throw blockErr;
+
+      // (b) deleted = true zetten in listings
+      const { error: delErr } = await _sb
+        .from("listings")
+        .update({ deleted: true, updated_at: new Date().toISOString() })
+        .eq("url_key", urlKey);
+      if (delErr) throw delErr;
+
+      // Rij direct verwijderen zonder page reload
+      const row = document.getElementById(`row-${encodedKey}`);
+      if (row) {
+        row.style.transition = "opacity .3s";
+        row.style.opacity    = "0";
+        setTimeout(() => row.remove(), 320);
+      }
+
+      // Teller bijwerken
+      const cnt = document.getElementById("listing-count");
+      const n   = parseInt(cnt.textContent) - 1;
+      cnt.textContent = `${n} woningen`;
+
+    } catch (e) {
+      alert("Verwijderen mislukt: " + e.message);
+      if (btn) { btn.disabled = false; btn.textContent = "🗑 Verwijder"; }
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  //  Gebruikersbeheer (via Edge Function)
+  // ════════════════════════════════════════════════════════
+
+  async function inviteUser() {
+    const emailInput = document.getElementById("invite-email");
+    const msgEl      = document.getElementById("invite-msg");
+    const email      = emailInput.value.trim();
+    msgEl.textContent = "";
+    msgEl.className   = "";
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msgEl.textContent = "Voer een geldig e-mailadres in.";
+      msgEl.className   = "err";
+      return;
+    }
+
+    const btn = document.querySelector(".invite-btn");
+    btn.disabled = true;
+    btn.textContent = "Verzenden…";
+
+    try {
+      // Roep de Edge Function aan die server-side inviteUserByEmail uitvoert
+      const resp = await fetch(INVITE_FN_URL, {
+        method:  "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${_accessToken}`,
+        },
+        body: JSON.stringify({ action: "invite", email }),
+      });
+
+      const result = await resp.json();
+      if (!resp.ok) throw new Error(result.error || resp.statusText);
+
+      msgEl.textContent = `✅ Uitnodiging verzonden naar ${email}.`;
+      msgEl.className   = "ok";
+      emailInput.value  = "";
+    } catch (e) {
+      msgEl.textContent = `❌ Verzenden mislukt: ${e.message}`;
+      msgEl.className   = "err";
+    } finally {
+      btn.disabled    = false;
+      btn.textContent = "📧 Uitnodiging versturen";
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
