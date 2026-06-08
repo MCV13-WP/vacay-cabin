@@ -1977,8 +1977,8 @@ def run() -> None:
     skipped  = len(filtered) - len(complete)
     if skipped:
         log.info("Onvolledige woningen overgeslagen: %d", skipped)
-filtered = _dedup_cross_source(complete)
-log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
+    filtered = _dedup_cross_source(complete)
+    log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
 
     # ── Stap 4b: geblokkeerde listings verwijderen ───────────
     # Listings waarvan de url_key in blocked_urls staat worden behandeld
@@ -2049,7 +2049,7 @@ log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
 
     # ── Stap 5c: screenshots voor nieuwe woningen zonder foto ─
     # Overslaan als SKIP_SCREENSHOTS=1 is gezet in de omgeving
-   is_monday = datetime.now().weekday() == 0
+    is_monday = datetime.now().weekday() == 0
     if os.environ.get("SKIP_SCREENSHOTS") == "1" or not is_monday:
         log.info("Screenshots overgeslagen (niet maandag of SKIP_SCREENSHOTS=1)")
     else:
