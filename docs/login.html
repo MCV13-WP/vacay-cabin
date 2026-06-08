@@ -165,6 +165,11 @@
   </div>
 
   <div class="footer-note">Geen account? Neem contact op met de beheerder.</div>
+  <div class="footer-note" style="margin-top:.5rem;">
+    <a href="#" id="forgot-link" style="color:#2d6a4f;text-decoration:none;">
+      Wachtwoord vergeten?
+    </a>
+  </div>
 
 <script>
   // ── Supabase configuratie ──────────────────────────────────────────
@@ -206,6 +211,22 @@
     }
   }
 
+  document.getElementById("forgot-link").onclick = async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      alert("Vul eerst je e-mailadres in.");
+      return;
+    }
+    const { error } = await _sb.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://mcv13-wp.github.io/vacay-cabin/reset.html"
+    });
+    if (error) {
+      alert("Fout: " + error.message);
+    } else {
+      alert("✅ Reset-link verstuurd naar " + email + ". Controleer je inbox.");
+    }
+  };
   function mapError(msg) {
     if (/invalid login|invalid email|wrong password|email not confirmed/i.test(msg))
       return "Ongeldig e-mailadres of wachtwoord.";
