@@ -112,6 +112,18 @@
   </div>
 
   <script>
+    // ── Beveiliging: pincode ──────────────────────────────
+    const PINCODE = "3210";  // bijv. "vacay2024"
+    const ingevoerd = sessionStorage.getItem("vacay_auth");
+    if (ingevoerd !== PINCODE) {
+      const poging = prompt("🔒 Voer de toegangscode in:");
+      if (poging !== PINCODE) {
+        document.body.innerHTML = "<p style='text-align:center;margin-top:40px;font-family:sans-serif;color:#c0392b;'>❌ Geen toegang.</p>";
+        throw new Error("Geen toegang");
+      }
+      sessionStorage.setItem("vacay_auth", PINCODE);
+    }
+    // ─────────────────────────────────────────────────────
     const SUPABASE_URL = "https://nkhwuaiklfpsrrosyyqk.supabase.co";
     const SUPABASE_KEY = "sb_publishable_x4Sfl5T_3iv9At7JazC2jw_LeDzRq6E";
 
