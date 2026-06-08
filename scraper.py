@@ -2008,6 +2008,8 @@ def run() -> None:
                 scraper_errors[name] = str(exc)
 
     log.info("Totaal gescraped (ongefilterd): %d", len(all_raw))
+    # Handmatige woningen toevoegen — omzeilen regio-filter
+    all_raw.extend(manual_listings)
 
     # ── Bijhouden actieve bronnen en geziene URLs ─────────────
     scraped_url_keys: set[str] = set()
