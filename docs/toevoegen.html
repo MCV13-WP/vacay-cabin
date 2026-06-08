@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacay Cabin — Woning toevoegen</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f9fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2d6a4f;
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    p.sub {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    input[type="url"], input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    input:focus {
+      border-color: #2d6a4f;
+    }
+    .favorite-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+    }
+    .favorite-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: #c0392b;
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:active { background: #1b4332; }
+    button:disabled { background: #adb5bd; }
+    #status {
+      margin-top: 16px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+      line-height: 1.5;
+    }
+    .ok  { color: #2d6a4f; }
+    .err { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🏡 Vacay Cabin</h1>
+    <p class="sub">Voeg een woning toe aan je lijst</p>
+
+    <label for="url-input">URL van de woning</label>
+    <input type="url" id="url-input" placeholder="https://www.recreatievastgoed.nl/..." />
+
+    <label for="title-input">Naam (optioneel)</label>
+    <input type="text" id="title-input" placeholder="bijv. Chalet Veluwe 4 slaapkamers" />
+
+    <label class="favorite-row">
+      <input type="checkbox" id="favorite">
+      ❤️ Direct toevoegen aan favorieten
+    </label>
+
+    <button id="btn">➕ Voeg toe aan mijn lijst</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://nkhwuaiklfpsrrosyyqk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_x4Sfl5T_3iv9At7JazC2jw_LeDzRq6E";
+
+    function urlKey(url) {
+      return url.trim().split("#")[0].split("?")[0].replace(/\/$/, "").toLowerCase();
+    }
+
+    document.getElementById("btn").onclick = async () => {
+      const urlVal   = document.getElementById("url-input").value.trim();
+      const titleVal = document.getElementById("title-input").value.trim();
+      const isFav    = document.getElementById("favorite").checked;
+      const btn      = document.getElementById("btn");
+      const status   = document.getElementById("status");
+
+      if (!urlVal.startsWith("http")) {
+        status.textContent = "❌ Vul een geldige URL in die begint met https://";
+        status.className   = "err";
+        return;
+      }
+
+      btn.disabled = true;
+      status.textContent = "Bezig met toevoegen...";
+      status.className   = "";
+
+      const today = new Date().toISOString().split("T")[0];
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/listings`, {
+          method: "POST",
+          headers: {
+            "Content-Type":  "application/json",
+            "apikey":        SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Prefer":        "return=minimal"
+          },
+          body: JSON.stringify({
+            url_key:     urlKey(urlVal),
+            url:         urlVal,
+            source:      "Handmatig toegevoegd",
+            title:       titleVal || urlVal,
+            is_manual:   true,
+            is_new:      true,
+            is_favorite: isFav,
+            sold:        false,
+            deleted:     false,
+            first_seen:  today,
+            updated_at:  new Date().toISOString()
+          })
+        });
+
+        if (res.ok || res.status === 409) {
+          const favTekst = isFav ? " en toegevoegd aan favorieten ❤️" : "";
+          status.textContent = `✅ Toegevoegd${favTekst}! Scraper verrijkt details morgenochtend om 07:00.`;
+          status.className   = "ok";
+          document.getElementById("url-input").value   = "";
+          document.getElementById("title-input").value = "";
+          document.getElementById("favorite").checked  = false;
+          btn.disabled = false;
+        } else {
+          const err = await res.text();
+          status.textContent = `❌ Fout ${res.status}: ${err.slice(0, 100)}`;
+          status.className   = "err";
+          btn.disabled = false;
+        }
+      } catch (e) {
+        status.textContent = `❌ Netwerkfout: ${e.message}`;
+        status.className   = "err";
+        btn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>
