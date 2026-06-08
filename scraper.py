@@ -1885,6 +1885,7 @@ def run() -> None:
     all_raw: list[dict] = []
     # Telt ruw gevonden woningen per bron (voor run_stats)
     scraper_counts: dict[str, int] = {}
+    scraper_errors: dict[str, str] = {}
 
     with ThreadPoolExecutor(max_workers=5) as executor:
         future_to_name = {
@@ -1902,6 +1903,7 @@ def run() -> None:
                 log.info("%-35s %d woningen", name, len(results))
             except Exception as exc:
                 log.error("Scraper %s crashte: %s", name, exc)
+                scraper_errors[name] = str(exc)
 
     log.info("Totaal gescraped (ongefilterd): %d", len(all_raw))
 
@@ -2101,6 +2103,7 @@ log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
                 "found":      scraper_counts.get(src, 0),
                 "in_results": sum(1 for l in filtered      if l.get("source") == src),
                 "new":        sum(1 for l in new_listings  if l.get("source") == src),
+                "error": scraper_errors.get(src),
             }
             for src in sorted(scraper_counts.keys())
         },
