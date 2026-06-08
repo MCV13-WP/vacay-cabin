@@ -1939,6 +1939,28 @@ def run() -> None:
 
     # ── Geblokkeerde URLs laden uit Supabase ─────────────────
     blocked_url_keys = _load_blocked_urls()
+    # ── Handmatig toegevoegde woningen laden + verrijken ──────
+    manual_rows = _load_manual_listings()
+    manual_listings: list[dict] = []
+    for row in manual_rows:
+        enriched = _enrich_manual_listing(row["url"])
+        if not enriched:
+            continue
+        manual_listings.append({
+            "source":    "Handmatig toegevoegd",
+            "title":     enriched.get("title") or row.get("title") or row["url"],
+            "url":       row["url"],
+            "price":     enriched.get("price"),
+            "bedrooms":  enriched.get("bedrooms"),
+            "persons":   enriched.get("persons"),
+            "location":  enriched.get("location", ""),
+            "image":     enriched.get("image", ""),
+            "sold":      enriched.get("sold", False),
+            "raw":       "",
+            "is_manual": True,
+        })
+        time.sleep(0.5)
+    log.info("Handmatige woningen verrijkt: %d", len(manual_listings))
 
     known, meta = load_known()
     log.info("Bekende woningen: %d", len(known))
