@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T17:16:38.465802+00:00",
+  "generated_at": "2026-06-08T17:57:22.423239+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -262,14 +262,15 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
           "date": "2026-06-05",
           "price": 339000
         }
-      ]
+      ],
+      "price_trend": "unknown"
     },
     {
       "source": "Recreatievastgoed.nl",
@@ -350,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -372,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -842,10 +843,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-08T17:16:38.464361+00:00",
-    "runtime_sec": 909.8,
-    "total_scraped": 1669,
-    "total_filtered": 23,
+    "timestamp": "2026-06-08T17:57:22.421958+00:00",
+    "runtime_sec": 897.9,
+    "total_scraped": 1631,
+    "total_filtered": 24,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -862,7 +863,13 @@
       },
       "Recreatievastgoed.nl": {
         "found": 507,
-        "in_results": 4,
+        "in_results": 5,
+        "new": 0,
+        "error": null
+      },
+      "RecreatiewoningenTekoop.nl": {
+        "found": 24,
+        "in_results": 0,
         "new": 0,
         "error": null
       },
@@ -873,7 +880,7 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 618,
+        "found": 556,
         "in_results": 19,
         "new": 0,
         "error": null

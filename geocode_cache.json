@@ -63,5 +63,29 @@
   "villa advantage kavel a 45": null,
   "wiersse kavel h749": null,
   "dalenbroek kavel 808": null,
-  "daelenbroeck kavel 842": null
+  "daelenbroeck kavel 842": null,
+  "recreatiepark eperwoud, epe (gld) epe": [
+    52.3525669,
+    5.9621521
+  ],
+  "lunteren, gelderland": [
+    52.0864617,
+    5.6190737
+  ],
+  "ede, gelderland": [
+    52.0716826,
+    5.7455106
+  ],
+  "wageningen, gelderland": [
+    51.9685817,
+    5.6682981
+  ],
+  "lichtenvoorde, gelderland": [
+    51.9890577,
+    6.5716944
+  ],
+  "beekbergen, gelderland": [
+    52.1592697,
+    5.9637625
+  ]
 }

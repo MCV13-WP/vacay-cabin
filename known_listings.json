@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -259,14 +259,15 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
         "date": "2026-06-05",
         "price": 339000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://recreatievastgoed.nl/woning/zeedijk-2-315-uitdam": {
     "source": "Recreatievastgoed.nl",
@@ -347,7 +348,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -369,7 +370,7 @@
     "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
     "lat": 52.0449873,
     "lng": 4.7224789,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -847,7 +848,8 @@
       "CenterParcs Vastgoed": 0,
       "Recreatievastgoed.nl": 0,
       "UwTweedeHuisMakelaar.nl": 0,
-      "Landal Makelaardij": 0
+      "Landal Makelaardij": 0,
+      "RecreatiewoningenTekoop.nl": 0
     }
   }
 }
