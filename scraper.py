@@ -348,7 +348,78 @@ def _load_blocked_urls() -> set[str]:
     except Exception as exc:
         log.warning("Supabase blocked_urls laden mislukt (scraper gaat door): %s", exc)
         return set()
+def _load_manual_listings() -> list[dict]:
+    """
+    Haal handmatig toegevoegde woningen op uit Supabase (is_manual = TRUE).
+    Geeft lege lijst terug bij elke fout zodat de scraper altijd doorgaat.
+    """
+    client = _get_supabase_client()
+    if not client:
+        return []
+    try:
+        resp = (
+            client.table("listings")
+            .select("url_key, url, title, source")
+            .eq("is_manual", True)
+            .execute()
+        )
+        rows = resp.data or []
+        log.info("Supabase: %d handmatig toegevoegde woningen geladen", len(rows))
+        return rows
+    except Exception as exc:
+        log.warning("Handmatige woningen laden mislukt: %s", exc)
+        return []
 
+
+def _enrich_manual_listing(url: str) -> dict:
+    """
+    Bezoek een handmatig toegevoegde woning-URL en haal basisinfo op.
+    """
+    soup = get_page(url)
+    if not soup:
+        return {}
+
+    text = soup.get_text(" ", strip=True)
+    price = extract_price(text)
+
+    bed_m = (
+        re.search(r"Aantal\s+slaapkamers\s+(\d+)", text, re.IGNORECASE) or
+        re.search(r"(\d+)\s+slaapkamer", text, re.IGNORECASE)
+    )
+    bedrooms = int(bed_m.group(1)) if bed_m else None
+
+    pers_m = (
+        re.search(r"Aantal\s+personen\s+(\d+)", text, re.IGNORECASE) or
+        re.search(r"(\d+)[- ]persoons", text, re.IGNORECASE)
+    )
+    persons = int(pers_m.group(1)) if pers_m else None
+
+    og_img = soup.find("meta", property="og:image")
+    image = og_img.get("content", "") if og_img else ""
+    if not image:
+        img_el = soup.find("img")
+        image = img_el.get("src", "") if img_el else ""
+
+    h1 = soup.find("h1")
+    og_title = soup.find("meta", property="og:title")
+    title = (
+        h1.get_text(strip=True) if h1
+        else og_title.get("content", "") if og_title
+        else ""
+    )
+
+    og_desc = soup.find("meta", property="og:description")
+    location = og_desc.get("content", "")[:80] if og_desc else ""
+
+    return {
+        "price":    price,
+        "bedrooms": bedrooms,
+        "persons":  persons,
+        "image":    image,
+        "title":    title,
+        "location": location,
+        "sold":     is_sold(text),
+    }
 
 def _upsert_to_supabase(
     listings: dict[str, dict],
