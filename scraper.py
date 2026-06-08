@@ -2069,6 +2069,22 @@ log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
                     updated_known[ukey]["image"] = l["image"]
                 screenshots_taken += 1
 
+    # ── Bron-zero-streak bijwerken ────────────────────────────
+    meta.setdefault("source_zero_streak", {})
+    streak = meta["source_zero_streak"]
+    warned_sources = []
+    for src, cnt in scraper_counts.items():
+        if cnt == 0:
+            streak[src] = streak.get(src, 0) + 1
+            if streak[src] == 5:
+                warned_sources.append(src)
+        else:
+            streak[src] = 0
+    if warned_sources:
+        log.warning(
+            "Bronnen met 5 runs op rij zonder resultaat: %s",
+            ", ".join(warned_sources)
+        )
     # ── Stap 6: 14-daagse alert ───────────────────────────────
     last_new_str = meta.get("last_new_found", "")
     if new_listings:
