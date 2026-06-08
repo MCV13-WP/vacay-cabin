@@ -532,24 +532,46 @@
       if (layer instanceof L.Marker) leafletMap.removeLayer(layer);
     });
 
+   const favs = getFavs();
+
     withCoords.forEach(l => {
-      const color   = l.offline ? "#6c757d" : (NEW_URLS.has(l.url) ? "#f4a261" : "#2d6a4f");
-      const icon    = L.divIcon({
+      const isNew = NEW_URLS.has(l.url);
+      const isFav = favs.has(l.url);
+
+      // Kleur en emoji op basis van status
+      let bgColor, emoji;
+      if (l.offline) {
+        bgColor = "#6c757d"; emoji = "📴";
+      } else if (l.sold) {
+        bgColor = "#c0392b"; emoji = "🔴";
+      } else if (isFav && isNew) {
+        bgColor = "#c0392b"; emoji = "❤️⭐";
+      } else if (isFav) {
+        bgColor = "#c0392b"; emoji = "❤️";
+      } else if (isNew) {
+        bgColor = "#f4a261"; emoji = "⭐";
+      } else {
+        bgColor = "#2d6a4f"; emoji = "🏡";
+      }
+
+      const icon = L.divIcon({
         className: "",
-        html: `<div style="background:${color};color:#fff;border-radius:50%;
-                           width:32px;height:32px;display:flex;align-items:center;
+        html: `<div style="background:${bgColor};color:#fff;border-radius:50%;
+                           width:36px;height:36px;display:flex;align-items:center;
                            justify-content:center;font-size:14px;
                            box-shadow:0 2px 6px rgba(0,0,0,.3);
-                           border:2px solid #fff;">🏡</div>`,
-        iconSize:   [32, 32],
-        iconAnchor: [16, 16],
-        popupAnchor:[0, -18],
+                           border:2px solid #fff;">${emoji}</div>`,
+        iconSize:   [36, 36],
+        iconAnchor: [18, 18],
+        popupAnchor:[0, -20],
       });
 
       const popupHtml = `
         <div style="min-width:200px;font-family:sans-serif;">
           <div style="font-size:11px;font-weight:700;color:#2d6a4f;text-transform:uppercase;margin-bottom:4px;">
-            ${l.source}${NEW_URLS.has(l.url) ? ' · <span style="color:#f4a261">NIEUW</span>' : ""}
+            ${l.source}
+            ${isNew ? ' · <span style="color:#f4a261">⭐ NIEUW</span>' : ""}
+            ${isFav ? ' · <span style="color:#c0392b">❤️ FAVORIET</span>' : ""}
           </div>
           <strong style="font-size:13px;">${l.title}</strong><br>
           <span style="font-size:15px;font-weight:800;color:#2d6a4f;">${fmt_price(l.price)}</span><br>
