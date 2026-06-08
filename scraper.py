@@ -1587,7 +1587,16 @@ def _send_raw(subject: str, html_body: str, text_body: str) -> None:
     except Exception as exc:
         log.error("E-mail versturen mislukt: %s", exc)
 
-
+def _calc_price_trend(history: list[dict]) -> str:
+    """Geeft 'down', 'up', 'stable' of 'unknown' terug op basis van prijshistorie."""
+    prices = [h["price"] for h in history if h.get("price")]
+    if len(prices) < 2:
+        return "unknown"
+    if prices[-1] < prices[-2]:
+        return "down"
+    if prices[-1] > prices[-2]:
+        return "up"
+    return "stable"
 def _fmt_price(price: int | None) -> str:
     return f"€ {price:,.0f}".replace(",", ".") if price else "Prijs onbekend"
 
@@ -2009,6 +2018,7 @@ log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
             "offline":       False,
             "first_seen":    existing.get("first_seen", today),
             "price_history": price_hist,
+            "price_trend":   _calc_price_trend(price_hist),
         }
 
         if key not in updated_known:
