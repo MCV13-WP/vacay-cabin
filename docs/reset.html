@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nieuw wachtwoord instellen</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, sans-serif;
+      background: #f8f9fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 { color: #2d6a4f; font-size: 20px; margin-bottom: 8px; }
+    p  { color: #666; font-size: 13px; margin-bottom: 24px; }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    input:focus { border-color: #2d6a4f; }
+    button {
+      width: 100%;
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button:disabled { background: #adb5bd; }
+    #status {
+      margin-top: 14px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .ok  { color: #2d6a4f; }
+    .err { color: #c0392b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔑 Nieuw wachtwoord</h1>
+    <p>Kies een nieuw wachtwoord voor je Vacay Cabin account.</p>
+    <label for="pw">Nieuw wachtwoord</label>
+    <input type="password" id="pw" placeholder="Minimaal 8 tekens" />
+    <label for="pw2">Herhaal wachtwoord</label>
+    <input type="password" id="pw2" placeholder="Zelfde wachtwoord nogmaals" />
+    <button id="btn">Wachtwoord opslaan</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://nkhwuaiklfpsrrosyyqk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_x4Sfl5T_3iv9At7JazC2jw_LeDzRq6E";
+    const _sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    document.getElementById("btn").onclick = async () => {
+      const pw   = document.getElementById("pw").value;
+      const pw2  = document.getElementById("pw2").value;
+      const btn  = document.getElementById("btn");
+      const stat = document.getElementById("status");
+
+      if (pw.length < 8) {
+        stat.textContent = "❌ Wachtwoord moet minimaal 8 tekens zijn.";
+        stat.className   = "err";
+        return;
+      }
+      if (pw !== pw2) {
+        stat.textContent = "❌ Wachtwoorden komen niet overeen.";
+        stat.className   = "err";
+        return;
+      }
+
+      btn.disabled = true;
+      stat.textContent = "Bezig...";
+      stat.className   = "";
+
+      const { error } = await _sb.auth.updateUser({ password: pw });
+      if (error) {
+        stat.textContent = "❌ " + error.message;
+        stat.className   = "err";
+        btn.disabled = false;
+      } else {
+        stat.textContent = "✅ Wachtwoord opgeslagen! Je wordt doorgestuurd...";
+        stat.className   = "ok";
+        setTimeout(() => window.location.replace("index.html"), 2000);
+      }
+    };
+  </script>
+</body>
+</html>
