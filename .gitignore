@@ -14,10 +14,11 @@ build/
 *.local
 
 # ── Scraper-toestand ──────────────────────────────────────────
-# known_listings.json: lokaal NIET inchecken (bevat scraper-staat)
-# GitHub Actions schrijft dit bestand via git add -f terug naar de repo
+# known_listings.json en geocode_cache.json: lokaal NIET inchecken
+# GitHub Actions schrijft deze bestanden via git add -f terug naar de repo
 known_listings.json
 known_listings_local.json
+geocode_cache.json
 
 # ── Screenshots (worden door Actions via git add -f toegevoegd) ─
 # Lokaal niet tracken; Actions pusht ze expliciet.

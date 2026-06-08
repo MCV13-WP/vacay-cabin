@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Vakantiewoning Scraper - v5
+Vakantiewoning Scraper - v6
 ============================
 Bronnen  : recreatievastgoed.nl · Marktplaats (per provincie) ·
            vakantiehuistekoop.nl · Landal Makelaardij ·
@@ -15,17 +15,26 @@ Website  : docs/data.json → GitHub Pages (docs/index.html)
 
 import json
 import logging
+import os
 import re
 import smtplib
+import threading
 import time
 import warnings
-from datetime import datetime, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timedelta, timezone
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
@@ -49,13 +58,26 @@ HEADERS = {
     "Accept-Language": "nl-NL,nl;q=0.9,en;q=0.8",
 }
 
+# ── Thread-local sessie (thread-safe voor parallelle scrapers) ─
+_thread_local = threading.local()
+
+def _get_session() -> requests.Session:
+    if not hasattr(_thread_local, "session"):
+        s = requests.Session()
+        s.headers.update(HEADERS)
+        _thread_local.session = s
+    return _thread_local.session
+
+# Behoud globale SESSION voor backward compat (huislijn scraper gebruikt hem direct)
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
-WEBSITE_URL     = "https://mcv13-wp.github.io/vacay-cabin"
-NOMINATIM_URL   = "https://nominatim.openstreetmap.org/search"
-SCREENSHOTS_DIR = Path("docs/screenshots")
-ALERT_DAYS      = 14
+WEBSITE_URL        = "https://mcv13-wp.github.io/vacay-cabin"
+NOMINATIM_URL      = "https://nominatim.openstreetmap.org/search"
+SCREENSHOTS_DIR    = Path("docs/screenshots")
+GEOCODE_CACHE_FILE = Path("geocode_cache.json")
+ALERT_DAYS         = 14
+OFFLINE_DAYS       = 90   # listings ouder dan N dagen offline worden verwijderd
 
 
 # ════════════════════════════════════════════════════════════
@@ -85,7 +107,11 @@ def url_key(url: str) -> str:
     return url.lower()
 
 
-def write_data_json(all_listings: list[dict], new_listings: list[dict]) -> None:
+def write_data_json(
+    all_listings: list[dict],
+    new_listings: list[dict],
+    run_stats: dict | None = None,
+) -> None:
     docs_dir = Path(config.DATA_JSON_FILE).parent
     docs_dir.mkdir(parents=True, exist_ok=True)
     payload = {
@@ -93,6 +119,8 @@ def write_data_json(all_listings: list[dict], new_listings: list[dict]) -> None:
         "new_listings": new_listings,
         "all_listings": all_listings,
     }
+    if run_stats:
+        payload["run_stats"] = run_stats
     with open(config.DATA_JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     log.info("docs/data.json bijgewerkt (%d nieuw, %d totaal)",
@@ -104,19 +132,54 @@ def write_data_json(all_listings: list[dict], new_listings: list[dict]) -> None:
 # ════════════════════════════════════════════════════════════
 
 def extract_price(text: str) -> int | None:
-    m = re.search(r"[€]\s*([\d\.]+)", text)
+    """
+    Parst Nederlandse prijsnotaties:
+      "€ 285.000"   → 285000   (punten als duizendscheidingsteken)
+      "€ 285.000,-" → 285000   (met afsluit-streep)
+      "€ 285k"      → 285000   (k als afkorting voor kilo/duizend)
+      "285K"        → 285000   (ook zonder €-teken, hoofdletter)
+      "€ 285,5k"    → 285500   (met decimaal)
+    """
+    # Patroon 1: k/K-suffix — "€ 285k", "285K", "€ 285,5k"
+    # \b zorgt dat "10km" of "5kg" niet matcht
+    m = re.search(r"[€]?\s*(\d+(?:[.,]\d+)?)\s*[kK](?=\b|\s|$|\.)", text)
     if m:
-        return int(re.sub(r"\.", "", m.group(1)))
+        val = m.group(1).replace(",", ".")
+        try:
+            return round(float(val) * 1000)
+        except ValueError:
+            pass
+
+    # Patroon 2: standaard notatie "€ 285.000" of "€ 285.000,-"
+    m = re.search(r"[€]\s*([\d\.]+)(?:,-)?", text)
+    if m:
+        return int(re.sub(r"\D", "", m.group(1)))
+
     return None
 
 
+# ── Retry helper voor get_page (tenacity: 3 pogingen, 2-10s backoff) ──
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=2, max=10),
+    retry=retry_if_exception_type(requests.RequestException),
+    reraise=True,   # gooit na 3 mislukte pogingen alsnog de fout
+)
+def _fetch_url(url: str, timeout: int) -> requests.Response:
+    """Interne fetch met automatische retry. Gebruik get_page() in scraper-code."""
+    resp = _get_session().get(url, timeout=timeout)
+    resp.raise_for_status()
+    return resp
+
+
 def get_page(url: str, timeout: int = 15) -> BeautifulSoup | None:
+    """Haalt een pagina op met exponential-backoff retry (max 3 pogingen)."""
     try:
-        resp = SESSION.get(url, timeout=timeout)
-        resp.raise_for_status()
+        resp = _fetch_url(url, timeout)
         return BeautifulSoup(resp.text, "html.parser")
-    except requests.RequestException as exc:
-        log.warning("Fout bij ophalen %s: %s", url, exc)
+    except Exception as exc:
+        log.warning("Fout bij ophalen %s (na 3 pogingen): %s", url, exc)
         return None
 
 
@@ -125,7 +188,20 @@ def is_sold(text: str) -> bool:
 
 
 def is_in_region(text: str) -> bool:
-    return any(kw in text.lower() for kw in config.REGION_KEYWORDS)
+    r"""
+    Controleert of tekst een regio-trefwoord bevat.
+    Gebruikt \b word-boundaries zodat bijv. 'ede' niet matcht in 'leiden'.
+    Voor keywords die beginnen/eindigen met niet-woordtekens (apostrof, koppelteken)
+    wordt een (?<!\w)/(?!\w) lookaround gebruikt.
+    """
+    text_lower = text.lower()
+    for kw in config.REGION_KEYWORDS:
+        # Kies de juiste boundary op basis van het eerste/laatste teken
+        prefix = r"\b" if kw[0].isalnum()  else r"(?<!\w)"
+        suffix = r"\b" if kw[-1].isalnum() else r"(?!\w)"
+        if re.search(prefix + re.escape(kw) + suffix, text_lower):
+            return True
+    return False
 
 
 def passes_filters(l: dict) -> bool:
@@ -160,17 +236,67 @@ def is_complete(l: dict) -> bool:
     return True
 
 
+# ════════════════════════════════════════════════════════════
+#  Geocoding cache  (geocode_cache.json)
+# ════════════════════════════════════════════════════════════
+
+# Module-level cache dict: genormaliseerde locatie → (lat, lng) of None
+_geocode_cache: dict[str, tuple[float, float] | None] = {}
+
+
+def _load_geocode_cache() -> None:
+    """Laad persistente geocoding-cache van schijf (als het bestand bestaat)."""
+    global _geocode_cache
+    if GEOCODE_CACHE_FILE.exists():
+        try:
+            with open(GEOCODE_CACHE_FILE, encoding="utf-8") as f:
+                raw = json.load(f)
+            _geocode_cache = {
+                k: (tuple(v) if v else None)   # type: ignore[misc]
+                for k, v in raw.items()
+            }
+            log.info("Geocoding-cache geladen: %d locaties", len(_geocode_cache))
+        except Exception as exc:
+            log.warning("Geocoding-cache laden mislukt: %s", exc)
+            _geocode_cache = {}
+
+
+def _save_geocode_cache() -> None:
+    """Schrijf de geocoding-cache terug naar schijf."""
+    try:
+        with open(GEOCODE_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(
+                {k: list(v) if v else None for k, v in _geocode_cache.items()},
+                f, ensure_ascii=False, indent=2,
+            )
+    except Exception as exc:
+        log.warning("Geocoding-cache opslaan mislukt: %s", exc)
+
+
+def _normalize_location(location: str) -> str:
+    """Normaliseer locatiestring voor gebruik als cache-sleutel."""
+    s = re.sub(r"\|\s*nederland", "", location, flags=re.IGNORECASE)
+    return s.strip().rstrip(",").strip().lower()
+
+
 def geocode(location: str) -> tuple[float, float] | None:
     """
     Converteert een locatiestring naar (lat, lng) via Nominatim.
-    Probeer eerst de volledige string, dan alleen het eerste deel (stadsnaam).
-    Strips '| Nederland' en soortgelijke suffixen automatisch.
+    Resultaten worden gecached in geocode_cache.json — bestaande locaties
+    worden nooit opnieuw bij Nominatim opgehaald.
+    Strips '| Nederland' automatisch; fallback naar alleen stadsnaam.
     """
-    hdrs = {"User-Agent": "vacay-cabin-scraper/1.0 (mcversteeg@outlook.com)"}
-    # Opschonen: verwijder '| Nederland', 'Nederland', dubbele komma's
+    cache_key = _normalize_location(location)
+
+    # Cache-hit: direct retourneren (ook None-resultaten worden gecached)
+    if cache_key in _geocode_cache:
+        return _geocode_cache[cache_key]   # type: ignore[return-value]
+
+    hdrs  = {"User-Agent": "vacay-cabin-scraper/1.0 (mcversteeg@outlook.com)"}
     clean = re.sub(r"\|\s*nederland", "", location, flags=re.IGNORECASE)
     clean = clean.strip().rstrip(",").strip()
 
+    result: tuple[float, float] | None = None
     for query in [clean, clean.split(",")[0].strip()]:
         if not query:
             continue
@@ -184,11 +310,16 @@ def geocode(location: str) -> tuple[float, float] | None:
             resp = requests.get(NOMINATIM_URL, params=params, headers=hdrs, timeout=10)
             data = resp.json()
             if data:
-                return float(data[0]["lat"]), float(data[0]["lon"])
+                result = (float(data[0]["lat"]), float(data[0]["lon"]))
+                break
         except Exception as exc:
             log.debug("Geocoding mislukt voor '%s': %s", query, exc)
         time.sleep(1.1)
-    return None
+
+    # Sla op in cache (ook None, zodat mislukte lookups niet herhaald worden)
+    _geocode_cache[cache_key] = result
+    _save_geocode_cache()
+    return result
 
 
 def take_screenshot(url: str, save_path: Path) -> bool:
@@ -1591,18 +1722,22 @@ def send_alert_email(days_since: int, last_new_date: str) -> None:
 # ════════════════════════════════════════════════════════════
 
 def run() -> None:
+    start_time = time.monotonic()
+
     log.info("=" * 60)
-    log.info("Vakantiewoning scraper gestart")
+    log.info("Vakantiewoning scraper gestart  (v6)")
     log.info("Filters: max €%s · min %d slaapkamers · min %d personen",
              f"{config.MAX_PRICE:,}", config.MIN_BEDROOMS, config.MIN_PERSONS)
     log.info("=" * 60)
 
+    # ── Geocoding-cache laden ─────────────────────────────────
+    _load_geocode_cache()
+
     known, meta = load_known()
     log.info("Bekende woningen: %d", len(known))
 
-    # ── Stap 1: alle scrapers ─────────────────────────────────
-    all_raw: list[dict] = []
-    for scraper in [
+    # ── Stap 1: scrapers PARALLEL uitvoeren ──────────────────
+    scrapers = [
         scrape_recreatievastgoed,
         scrape_marktplaats,
         scrape_vakantiehuistekoop,
@@ -1618,11 +1753,28 @@ def run() -> None:
         scrape_jaap,
         scrape_huislijn,
         scrape_roompot,
-    ]:
-        try:
-            all_raw.extend(scraper())
-        except Exception as exc:
-            log.error("Scraper %s crashte: %s", scraper.__name__, exc)
+    ]
+
+    all_raw: list[dict] = []
+    # Telt ruw gevonden woningen per bron (voor run_stats)
+    scraper_counts: dict[str, int] = {}
+
+    with ThreadPoolExecutor(max_workers=5) as executor:
+        future_to_name = {
+            executor.submit(fn): fn.__name__ for fn in scrapers
+        }
+        for future in as_completed(future_to_name):
+            name = future_to_name[future]
+            try:
+                results = future.result()
+                all_raw.extend(results)
+                # Groepeer per bron-naam voor stats
+                for l in results:
+                    src = l.get("source", name)
+                    scraper_counts[src] = scraper_counts.get(src, 0) + 1
+                log.info("%-35s %d woningen", name, len(results))
+            except Exception as exc:
+                log.error("Scraper %s crashte: %s", name, exc)
 
     log.info("Totaal gescraped (ongefilterd): %d", len(all_raw))
 
@@ -1669,17 +1821,17 @@ def run() -> None:
         pre = enrich_with_details(pre)
 
     # ── Stap 3c: geocoding voor listings zonder coördinaten ───
-    # BUG-FIX: geocoding was alleen onderdeel van enrich_with_details(),
-    # die alleen werd aangeroepen als beds ontbraken. Nu altijd apart.
+    # Loopt altijd — onafhankelijk van of beds ontbraken.
     needs_geo = [l for l in pre if l.get("lat") is None and l.get("location")]
     if needs_geo:
         log.info("Geocoding voor %d woningen zonder coördinaten…", len(needs_geo))
         for l in needs_geo:
-            coords = geocode(l["location"])
+            coords = geocode(l["location"])   # cache-aware
             if coords:
                 l["lat"], l["lng"] = coords
                 log.debug("Geocoded: %s → (%.4f, %.4f)", l["location"], *coords)
-            time.sleep(1.1)
+            # sleep alleen als we écht een Nominatim-aanvraag deden
+            # (geocode() sleept zelf al bij cache-miss)
 
     # ── Stap 4: slaapkamer filter + volledigheidscheck ────────
     filtered = [l for l in pre if passes_filters(l)]
@@ -1744,22 +1896,26 @@ def run() -> None:
         log.info("%d woningen gemarkeerd als offline", offline_count)
 
     # ── Stap 5c: screenshots voor nieuwe woningen zonder foto ─
-    screenshots_taken = 0
-    SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-    for l in new_listings:
-        if screenshots_taken >= 5 or l.get("image"):
-            continue
-        wurl = l.get("url", "")
-        if not wurl.startswith("http"):
-            continue
-        safe_name = re.sub(r"[^a-z0-9]", "_", url_key(wurl))[:60] + ".png"
-        save_path = SCREENSHOTS_DIR / safe_name
-        if not save_path.exists() and take_screenshot(wurl, save_path):
-            l["image"] = f"screenshots/{safe_name}"
-            ukey = url_key(wurl)
-            if ukey in updated_known:
-                updated_known[ukey]["image"] = l["image"]
-            screenshots_taken += 1
+    # Overslaan als SKIP_SCREENSHOTS=1 is gezet in de omgeving
+    if os.environ.get("SKIP_SCREENSHOTS") == "1":
+        log.info("SKIP_SCREENSHOTS=1 — screenshots overgeslagen")
+    else:
+        screenshots_taken = 0
+        SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
+        for l in new_listings:
+            if screenshots_taken >= 5 or l.get("image"):
+                continue
+            wurl = l.get("url", "")
+            if not wurl.startswith("http"):
+                continue
+            safe_name = re.sub(r"[^a-z0-9]", "_", url_key(wurl))[:60] + ".png"
+            save_path = SCREENSHOTS_DIR / safe_name
+            if not save_path.exists() and take_screenshot(wurl, save_path):
+                l["image"] = f"screenshots/{safe_name}"
+                ukey = url_key(wurl)
+                if ukey in updated_known:
+                    updated_known[ukey]["image"] = l["image"]
+                screenshots_taken += 1
 
     # ── Stap 6: 14-daagse alert ───────────────────────────────
     last_new_str = meta.get("last_new_found", "")
@@ -1775,22 +1931,60 @@ def run() -> None:
         except ValueError:
             pass
 
-    # ── Stap 7: opslaan ──────────────────────────────────────
+    # ── Stap 7: opruimen — verwijder listings >90 dagen offline ─
+    cutoff       = datetime.now() - timedelta(days=OFFLINE_DAYS)
+    before_count = len(updated_known)
+    updated_known = {
+        key: listing
+        for key, listing in updated_known.items()
+        if not (
+            listing.get("offline")
+            and listing.get("first_seen")
+            and datetime.strptime(listing["first_seen"], "%Y-%m-%d") < cutoff
+        )
+    }
+    removed = before_count - len(updated_known)
+    if removed:
+        log.info("Opruimen: %d woningen verwijderd (>%d dagen offline)",
+                 removed, OFFLINE_DAYS)
+
+    # ── Stap 8: run-statistieken samenstellen ────────────────
+    runtime = round(time.monotonic() - start_time, 1)
+    run_stats = {
+        "timestamp":       datetime.now(timezone.utc).isoformat(),
+        "runtime_sec":     runtime,
+        "total_scraped":   len(all_raw),
+        "total_filtered":  len(filtered),
+        "total_new":       len(new_listings),
+        "per_source": {
+            src: {
+                "found":      scraper_counts.get(src, 0),
+                "in_results": sum(1 for l in filtered      if l.get("source") == src),
+                "new":        sum(1 for l in new_listings  if l.get("source") == src),
+            }
+            for src in sorted(scraper_counts.keys())
+        },
+    }
+    log.info("Runtime: %.1f s | per_source-stats: %d bronnen",
+             runtime, len(run_stats["per_source"]))
+
+    # ── Stap 9: opslaan ──────────────────────────────────────
     save_known(updated_known, meta)
 
-    # ── Stap 8: data.json (alle woningen, ook offline) ───────
+    # ── Stap 10: data.json (alle woningen + stats) ───────────
     write_data_json(
         all_listings=list(updated_known.values()),
         new_listings=new_listings,
+        run_stats=run_stats,
     )
 
-    # ── Stap 9: e-mail sturen ────────────────────────────────
+    # ── Stap 11: e-mail sturen ───────────────────────────────
     if new_listings:
         send_email(new_listings)
     else:
         log.info("Geen nieuwe woningen – geen e-mail verstuurd.")
 
-    log.info("Klaar.")
+    log.info("Klaar in %.1f seconden.", runtime)
 
 
 if __name__ == "__main__":
