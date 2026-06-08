@@ -2049,8 +2049,9 @@ log.info("Na cross-source deduplicatie: %d woningen", len(filtered))
 
     # ── Stap 5c: screenshots voor nieuwe woningen zonder foto ─
     # Overslaan als SKIP_SCREENSHOTS=1 is gezet in de omgeving
-    if os.environ.get("SKIP_SCREENSHOTS") == "1":
-        log.info("SKIP_SCREENSHOTS=1 — screenshots overgeslagen")
+   is_monday = datetime.now().weekday() == 0
+    if os.environ.get("SKIP_SCREENSHOTS") == "1" or not is_monday:
+        log.info("Screenshots overgeslagen (niet maandag of SKIP_SCREENSHOTS=1)")
     else:
         screenshots_taken = 0
         SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
