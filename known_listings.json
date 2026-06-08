@@ -19,7 +19,8 @@
         "date": "2026-06-05",
         "price": 210000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-331-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -85,7 +86,8 @@
         "date": "2026-06-05",
         "price": 325000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-408-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -129,7 +131,8 @@
         "date": "2026-06-05",
         "price": 293000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://recreatievastgoed.nl/woning/skanserwei-28-114-anjum": {
     "source": "Recreatievastgoed.nl",
@@ -173,7 +176,8 @@
         "date": "2026-06-05",
         "price": 339000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://www.marktplaats.nl/v/huizen-en-kamers/recreatiewoningen-te-koop/m2407287702-recreatiewoning-te-koop-in-epe": {
     "source": "Marktplaats",
@@ -255,7 +259,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -452,7 +456,8 @@
         "date": "2026-06-07",
         "price": 300000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/pavilion-kavel-r-690": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -472,7 +477,8 @@
         "date": "2026-06-07",
         "price": 197500
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h717": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -492,7 +498,8 @@
         "date": "2026-06-07",
         "price": 255000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h752": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -512,7 +519,8 @@
         "date": "2026-06-07",
         "price": 255000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/boekhorst-letage-kavel-x-212": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -532,7 +540,8 @@
         "date": "2026-06-07",
         "price": 311000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-816": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -552,7 +561,8 @@
         "date": "2026-06-07",
         "price": 284750
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-a-48": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -572,7 +582,8 @@
         "date": "2026-06-07",
         "price": 299750
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-823": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -592,7 +603,8 @@
         "date": "2026-06-07",
         "price": 299000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-819": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -612,7 +624,8 @@
         "date": "2026-06-07",
         "price": 299000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-695": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -632,7 +645,8 @@
         "date": "2026-06-07",
         "price": 259000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delices-kavel-674": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -652,7 +666,8 @@
         "date": "2026-06-07",
         "price": 259000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-801": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -672,7 +687,8 @@
         "date": "2026-06-07",
         "price": 289000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/kranenborg-villa-kavel-655": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -692,7 +708,8 @@
         "date": "2026-06-07",
         "price": 209500
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/pavilion-delice-kavel-670": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -712,7 +729,8 @@
         "date": "2026-06-07",
         "price": 199500
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-pb40": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -732,7 +750,8 @@
         "date": "2026-06-07",
         "price": 330000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/villa-advantage-kavel-a-45": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -752,7 +771,8 @@
         "date": "2026-06-07",
         "price": 285000
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h749": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -772,7 +792,8 @@
         "date": "2026-06-07",
         "price": 249900
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/dalenbroek-kavel-808": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -792,7 +813,8 @@
         "date": "2026-06-07",
         "price": 299750
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842": {
     "source": "UwTweedeHuisMakelaar.nl",
@@ -812,9 +834,20 @@
         "date": "2026-06-07",
         "price": 274750
       }
-    ]
+    ],
+    "price_trend": "unknown"
   },
   "_meta": {
-    "last_new_found": "2026-06-07"
+    "last_new_found": "2026-06-07",
+    "source_zero_streak": {
+      "VakantiehuisTekoop.nl": 0,
+      "Veluwechalets.nl": 0,
+      "UwBuitenleven.nl": 0,
+      "Vakantiemakelaar.nl": 0,
+      "CenterParcs Vastgoed": 0,
+      "Recreatievastgoed.nl": 0,
+      "UwTweedeHuisMakelaar.nl": 0,
+      "Landal Makelaardij": 0
+    }
   }
 }
