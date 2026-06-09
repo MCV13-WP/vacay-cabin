@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T12:18:38.650384+00:00",
+  "generated_at": "2026-06-09T14:19:38.659253+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -329,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -895,10 +895,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-09T12:18:37.769158+00:00",
-    "runtime_sec": 771.8,
-    "total_scraped": 1671,
-    "total_filtered": 26,
+    "timestamp": "2026-06-09T14:19:37.765207+00:00",
+    "runtime_sec": 877.1,
+    "total_scraped": 1609,
+    "total_filtered": 29,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -908,7 +908,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 303,
+        "found": 304,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -921,13 +921,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 507,
-        "in_results": 5,
-        "new": 0,
-        "error": null
-      },
-      "RecreatiewoningenTekoop.nl": {
-        "found": 63,
-        "in_results": 0,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
