@@ -2028,12 +2028,12 @@ def run() -> None:
         ]))
 
     pre = [
-        l for l in all_raw
-        if not l.get("sold")
-        and (l.get("price") is None or l["price"] <= config.MAX_PRICE)
-        and (l.get("persons") is None or l["persons"] >= config.MIN_PERSONS)
-        and in_region(l)
-    ]
+    l for l in all_raw
+    if not l.get("sold")
+    and (l.get("price") is None or l["price"] <= config.MAX_PRICE)
+    and (l.get("persons") is None or l["persons"] >= config.MIN_PERSONS)
+    and (l.get("is_manual") or in_region(l))   # handmatige woningen omzeilen regio-filter
+]
     log.info("Na regio + prijs + personen filter: %d", len(pre))
 
     # ── Stap 3a: coördinaten van bekende listings kopiëren ────
@@ -2068,7 +2068,7 @@ def run() -> None:
 
     # ── Stap 4: slaapkamer filter + volledigheidscheck ────────
     filtered = [l for l in pre if passes_filters(l)]
-    complete = [l for l in filtered if is_complete(l)]
+    complete = [l for l in filtered if l.get("is_manual") or is_complete(l)]
     skipped  = len(filtered) - len(complete)
     if skipped:
         log.info("Onvolledige woningen overgeslagen: %d", skipped)
