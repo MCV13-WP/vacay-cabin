@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-08T19:54:12.563869+00:00",
+  "generated_at": "2026-06-09T06:58:22.570047+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -843,10 +843,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-08T19:54:12.562591+00:00",
-    "runtime_sec": 802.0,
-    "total_scraped": 1669,
-    "total_filtered": 26,
+    "timestamp": "2026-06-09T06:58:22.568733+00:00",
+    "runtime_sec": 705.3,
+    "total_scraped": 884,
+    "total_filtered": 5,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -856,19 +856,25 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 304,
+        "found": 303,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Marktplaats": {
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 507,
-        "in_results": 7,
+        "in_results": 5,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 62,
+        "found": 24,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -879,26 +885,8 @@
         "new": 0,
         "error": null
       },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 556,
-        "in_results": 19,
-        "new": 0,
-        "error": null
-      },
-      "VakantiehuisTekoop.nl": {
-        "found": 36,
-        "in_results": 0,
-        "new": 0,
-        "error": null
-      },
       "Vakantiemakelaar.nl": {
         "found": 3,
-        "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "Veluwechalets.nl": {
-        "found": 155,
         "in_results": 0,
         "new": 0,
         "error": null
