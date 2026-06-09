@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T06:58:22.570047+00:00",
+  "generated_at": "2026-06-09T07:37:37.130649+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -843,10 +843,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-09T06:58:22.568733+00:00",
-    "runtime_sec": 705.3,
-    "total_scraped": 884,
-    "total_filtered": 5,
+    "timestamp": "2026-06-09T07:37:37.129402+00:00",
+    "runtime_sec": 780.6,
+    "total_scraped": 1670,
+    "total_filtered": 24,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -874,7 +874,7 @@
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 24,
+        "found": 63,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -885,8 +885,26 @@
         "new": 0,
         "error": null
       },
+      "UwTweedeHuisMakelaar.nl": {
+        "found": 556,
+        "in_results": 19,
+        "new": 0,
+        "error": null
+      },
+      "VakantiehuisTekoop.nl": {
+        "found": 36,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
       "Vakantiemakelaar.nl": {
         "found": 3,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Veluwechalets.nl": {
+        "found": 155,
         "in_results": 0,
         "new": 0,
         "error": null
