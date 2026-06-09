@@ -583,7 +583,13 @@
           </a>
         </div>`;
 
-      L.marker([l.lat, l.lng], { icon })
+     // Kleine offset voor markers op exact dezelfde locatie
+      const sameSpot = withCoords.filter(x => x.lat === l.lat && x.lng === l.lng);
+      const idx = sameSpot.indexOf(l);
+      const offsetLat = idx > 0 ? (idx * 0.002) * (idx % 2 === 0 ? 1 : -1) : 0;
+      const offsetLng = idx > 0 ? (idx * 0.002) * (idx % 2 === 0 ? -1 : 1) : 0;
+
+      L.marker([l.lat + offsetLat, l.lng + offsetLng], { icon })
         .addTo(leafletMap)
         .bindPopup(popupHtml);
     });
