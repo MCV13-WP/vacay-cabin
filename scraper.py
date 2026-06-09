@@ -376,6 +376,7 @@ def _load_manual_listings() -> list[dict]:
 def _enrich_manual_listing(url: str) -> dict:
     """
     Bezoek een handmatig toegevoegde woning-URL en haal basisinfo op.
+    Gebruikt Playwright als fallback voor afbeeldingen die lazy-loaded zijn.
     """
     soup = get_page(url)
     if not soup:
@@ -396,11 +397,49 @@ def _enrich_manual_listing(url: str) -> dict:
     )
     persons = int(pers_m.group(1)) if pers_m else None
 
+    # ── Afbeelding: probeer og:image eerst, dan grootste <img>, dan Playwright ──
+    image = ""
     og_img = soup.find("meta", property="og:image")
-    image = og_img.get("content", "") if og_img else ""
+    if og_img and og_img.get("content", "").startswith("http"):
+        image = og_img["content"]
+
     if not image:
-        img_el = soup.find("img")
-        image = img_el.get("src", "") if img_el else ""
+        for img in soup.find_all("img", src=True):
+            src = img.get("src", "")
+            if src.startswith("http") and not any(
+                skip in src.lower()
+                for skip in ["logo", "icon", "placeholder", "blank", "pixel"]
+            ):
+                image = src
+                break
+
+    if not image:
+        try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    args=["--no-sandbox", "--disable-dev-shm-usage"]
+                )
+                page = browser.new_page()
+                page.goto(url, timeout=20_000, wait_until="domcontentloaded")
+                page.wait_for_timeout(2000)
+                content = page.content()
+                browser.close()
+            pw_soup = BeautifulSoup(content, "html.parser")
+            og = pw_soup.find("meta", property="og:image")
+            if og and og.get("content", "").startswith("http"):
+                image = og["content"]
+            if not image:
+                for img in pw_soup.find_all("img", src=True):
+                    src = img.get("src", "")
+                    if src.startswith("http") and not any(
+                        skip in src.lower()
+                        for skip in ["logo", "icon", "placeholder", "blank", "pixel"]
+                    ):
+                        image = src
+                        break
+        except Exception as exc:
+            log.debug("Playwright fallback mislukt voor %s: %s", url, exc)
 
     h1 = soup.find("h1")
     og_title = soup.find("meta", property="og:title")
