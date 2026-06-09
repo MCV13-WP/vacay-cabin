@@ -355,7 +355,9 @@ def _load_manual_listings() -> list[dict]:
     """
     client = _get_supabase_client()
     if not client:
+        log.warning("_load_manual_listings: geen Supabase-client — check SUPABASE_URL/SUPABASE_KEY")
         return []
+    log.info("_load_manual_listings: client aangemaakt, query uitvoeren…")
     try:
         resp = (
             client.table("listings")
