@@ -383,6 +383,25 @@ def _enrich_manual_listing(url: str) -> dict:
         return {}
 
     text = soup.get_text(" ", strip=True)
+
+    # Detecteer JavaScript-blokkade en herlaad via Playwright
+    if "javascript is disabled" in text.lower() or len(text.strip()) < 200:
+        try:
+            from playwright.sync_api import sync_playwright
+            with sync_playwright() as p:
+                browser = p.chromium.launch(
+                    args=["--no-sandbox", "--disable-dev-shm-usage"]
+                )
+                page = browser.new_page()
+                page.goto(url, timeout=20_000, wait_until="networkidle")
+                page.wait_for_timeout(2000)
+                content = page.content()
+                browser.close()
+            soup = BeautifulSoup(content, "html.parser")
+            text = soup.get_text(" ", strip=True)
+        except Exception as exc:
+            log.debug("Playwright herlaad mislukt voor %s: %s", url, exc)
+
     price = extract_price(text)
 
     bed_m = (
