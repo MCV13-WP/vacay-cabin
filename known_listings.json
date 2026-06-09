@@ -57,7 +57,7 @@
     "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -237,7 +237,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -840,13 +840,13 @@
   },
   "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe": {
     "source": "Handmatig toegevoegd",
-    "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
+    "title": "JavaScript is disabled",
     "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe",
-    "price": 299500,
-    "bedrooms": 6,
-    "persons": 12,
+    "price": null,
+    "bedrooms": null,
+    "persons": null,
     "location": "",
-    "image": "https://cdn-cms.bookingexperts.com/uploads/theming/logo/image/13/10/logo_succesparken_e89a71b4-67d7-42fa-a26e-c9f7144cd506.svg",
+    "image": "https://cdn-cms.bookingexperts.com/media/4563/4/optimized.jpg",
     "sold": false,
     "raw": "",
     "is_manual": true,
@@ -856,19 +856,23 @@
       {
         "date": "2026-06-09",
         "price": 299500
+      },
+      {
+        "date": "2026-06-09",
+        "price": null
       }
     ],
     "price_trend": "unknown"
   },
   "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond": {
     "source": "Handmatig toegevoegd",
-    "title": "Te koop luxe 10 persoons wellnessbungalow 313 op eigen grond",
+    "title": "JavaScript is disabled",
     "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond",
     "price": null,
-    "bedrooms": 5,
-    "persons": 10,
+    "bedrooms": null,
+    "persons": null,
     "location": "",
-    "image": "https://cdn-cms.bookingexperts.com/uploads/theming/logo/image/13/10/logo_succesparken_e89a71b4-67d7-42fa-a26e-c9f7144cd506.svg",
+    "image": "https://cdn-cms.bookingexperts.com/media/3882/72/optimized.jpg",
     "sold": false,
     "raw": "",
     "is_manual": true,
