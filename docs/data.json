@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T14:19:38.659253+00:00",
+  "generated_at": "2026-06-10T17:03:35.216029+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -895,10 +895,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-09T14:19:37.765207+00:00",
-    "runtime_sec": 877.1,
-    "total_scraped": 1609,
-    "total_filtered": 29,
+    "timestamp": "2026-06-10T17:03:34.169397+00:00",
+    "runtime_sec": 811.6,
+    "total_scraped": 962,
+    "total_filtered": 7,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -913,27 +913,21 @@
         "new": 0,
         "error": null
       },
-      "Marktplaats": {
-        "found": 1,
-        "in_results": 0,
+      "Recreatievastgoed.nl": {
+        "found": 506,
+        "in_results": 5,
         "new": 0,
         "error": null
       },
-      "Recreatievastgoed.nl": {
-        "found": 507,
-        "in_results": 8,
+      "RecreatiewoningenTekoop.nl": {
+        "found": 64,
+        "in_results": 0,
         "new": 0,
         "error": null
       },
       "UwBuitenleven.nl": {
         "found": 43,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 554,
-        "in_results": 19,
         "new": 0,
         "error": null
       },
@@ -945,12 +939,6 @@
       },
       "Vakantiemakelaar.nl": {
         "found": 3,
-        "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "Veluwechalets.nl": {
-        "found": 155,
         "in_results": 0,
         "new": 0,
         "error": null
