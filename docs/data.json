@@ -1,20 +1,6 @@
 {
-  "generated_at": "2026-06-11T18:05:12.615844+00:00",
-  "new_listings": [
-    {
-      "source": "Handmatig toegevoegd",
-      "title": "Uniek gelegen 10-persoons Eikenhoeve nr 226 met sauna, direct aan het bos van Drents Landschap",
-      "url": "https://www.succesparken.nl/uniek-gelegen-10-persoons-eikenhoeve-nr-226-met-sauna-direct-aan-het-bos-van-drents-landschap",
-      "price": 349500,
-      "bedrooms": 5,
-      "persons": 10,
-      "location": "",
-      "image": "https://cdn-cms.bookingexperts.com/media/4503/46/optimized.jpg",
-      "sold": false,
-      "raw": "",
-      "is_manual": true
-    }
-  ],
+  "generated_at": "2026-06-12T16:47:48.605500+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -254,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -276,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -365,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -409,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -931,11 +917,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-11T18:05:11.488191+00:00",
-    "runtime_sec": 676.9,
-    "total_scraped": 1495,
-    "total_filtered": 27,
-    "total_new": 1,
+    "timestamp": "2026-06-12T16:47:47.342610+00:00",
+    "runtime_sec": 835.6,
+    "total_scraped": 1688,
+    "total_filtered": 28,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -950,8 +936,8 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 514,
-        "in_results": 5,
+        "found": 517,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
@@ -973,8 +959,20 @@
         "new": 0,
         "error": null
       },
+      "VakantiehuisTekoop.nl": {
+        "found": 36,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
       "Vakantiemakelaar.nl": {
         "found": 3,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Veluwechalets.nl": {
+        "found": 154,
         "in_results": 0,
         "new": 0,
         "error": null
