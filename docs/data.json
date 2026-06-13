@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T16:47:48.605500+00:00",
+  "generated_at": "2026-06-13T12:15:53.538130+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -917,9 +917,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-12T16:47:47.342610+00:00",
-    "runtime_sec": 835.6,
-    "total_scraped": 1688,
+    "timestamp": "2026-06-13T12:15:52.399116+00:00",
+    "runtime_sec": 745.1,
+    "total_scraped": 1653,
     "total_filtered": 28,
     "total_new": 0,
     "per_source": {
@@ -930,7 +930,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 304,
+        "found": 303,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -954,14 +954,8 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 559,
+        "found": 561,
         "in_results": 19,
-        "new": 0,
-        "error": null
-      },
-      "VakantiehuisTekoop.nl": {
-        "found": 36,
-        "in_results": 0,
         "new": 0,
         "error": null
       },
