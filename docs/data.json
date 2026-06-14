@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T12:15:53.538130+00:00",
+  "generated_at": "2026-06-14T12:34:03.461655+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -917,10 +917,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-13T12:15:52.399116+00:00",
-    "runtime_sec": 745.1,
-    "total_scraped": 1653,
-    "total_filtered": 28,
+    "timestamp": "2026-06-14T12:34:02.229378+00:00",
+    "runtime_sec": 833.2,
+    "total_scraped": 1691,
+    "total_filtered": 32,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -937,7 +937,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 517,
-        "in_results": 6,
+        "in_results": 10,
         "new": 0,
         "error": null
       },
@@ -948,14 +948,20 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 43,
+        "found": 44,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 561,
+        "found": 562,
         "in_results": 19,
+        "new": 0,
+        "error": null
+      },
+      "VakantiehuisTekoop.nl": {
+        "found": 36,
+        "in_results": 0,
         "new": 0,
         "error": null
       },
