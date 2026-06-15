@@ -1,6 +1,33 @@
 {
-  "generated_at": "2026-06-14T12:34:03.461655+00:00",
-  "new_listings": [],
+  "generated_at": "2026-06-15T19:47:27.915244+00:00",
+  "new_listings": [
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/beekbergen/huis-lage-bergweg-31-h4/44498985/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "screenshots/https___www_funda_nl_detail_recreatie_beekbergen_huis_lage_b.png",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/halle/huis-halseweg-54-10/80850973/?utm_source=Iterable&utm_medium=email&utm_campaign=NAF_email&utm_content=2024_redesign",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "screenshots/https___www_funda_nl_detail_recreatie_halle_huis_halseweg_54.png",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -38,7 +65,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -240,7 +267,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +422,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -914,14 +941,58 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/beekbergen/huis-lage-bergweg-31-h4/44498985/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "screenshots/https___www_funda_nl_detail_recreatie_beekbergen_huis_lage_b.png",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-15",
+      "price_history": [
+        {
+          "date": "2026-06-15",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/halle/huis-halseweg-54-10/80850973/?utm_source=Iterable&utm_medium=email&utm_campaign=NAF_email&utm_content=2024_redesign",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "screenshots/https___www_funda_nl_detail_recreatie_halle_huis_halseweg_54.png",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-15",
+      "price_history": [
+        {
+          "date": "2026-06-15",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-14T12:34:02.229378+00:00",
-    "runtime_sec": 833.2,
-    "total_scraped": 1691,
-    "total_filtered": 32,
-    "total_new": 0,
+    "timestamp": "2026-06-15T19:47:27.079286+00:00",
+    "runtime_sec": 734.7,
+    "total_scraped": 1133,
+    "total_filtered": 10,
+    "total_new": 2,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -930,14 +1001,20 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 303,
+        "found": 304,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Marktplaats": {
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 517,
-        "in_results": 10,
+        "in_results": 5,
         "new": 0,
         "error": null
       },
@@ -950,12 +1027,6 @@
       "UwBuitenleven.nl": {
         "found": 44,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 562,
-        "in_results": 19,
         "new": 0,
         "error": null
       },
