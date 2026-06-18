@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -956,8 +956,29 @@
     ],
     "price_trend": "unknown"
   },
+  "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709": {
+    "source": "UwTweedeHuisMakelaar.nl",
+    "title": "Wiersse 8 kavel H709",
+    "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
+    "price": 275000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Wiersse 8 kavel H709",
+    "image": "",
+    "sold": false,
+    "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken",
+    "offline": false,
+    "first_seen": "2026-06-18",
+    "price_history": [
+      {
+        "date": "2026-06-18",
+        "price": 275000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-06-15",
+    "last_new_found": "2026-06-18",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,

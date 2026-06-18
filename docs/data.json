@@ -1,6 +1,19 @@
 {
-  "generated_at": "2026-06-17T17:22:27.231702+00:00",
-  "new_listings": [],
+  "generated_at": "2026-06-18T16:59:03.959910+00:00",
+  "new_listings": [
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse 8 kavel H709",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
+      "price": 275000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse 8 kavel H709",
+      "image": "",
+      "sold": false,
+      "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken"
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -38,7 +51,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +320,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -958,14 +971,35 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "UwTweedeHuisMakelaar.nl",
+      "title": "Wiersse 8 kavel H709",
+      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
+      "price": 275000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Wiersse 8 kavel H709",
+      "image": "",
+      "sold": false,
+      "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken",
+      "offline": false,
+      "first_seen": "2026-06-18",
+      "price_history": [
+        {
+          "date": "2026-06-18",
+          "price": 275000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-17T17:22:25.964904+00:00",
-    "runtime_sec": 912.1,
-    "total_scraped": 1703,
-    "total_filtered": 33,
-    "total_new": 0,
+    "timestamp": "2026-06-18T16:59:03.191088+00:00",
+    "runtime_sec": 634.6,
+    "total_scraped": 1552,
+    "total_filtered": 31,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -980,14 +1014,14 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 1,
+        "found": 2,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 518,
-        "in_results": 9,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
@@ -1004,9 +1038,9 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 567,
-        "in_results": 19,
-        "new": 0,
+        "found": 569,
+        "in_results": 20,
+        "new": 1,
         "error": null
       },
       "VakantiehuisTekoop.nl": {
@@ -1017,12 +1051,6 @@
       },
       "Vakantiemakelaar.nl": {
         "found": 3,
-        "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "Veluwechalets.nl": {
-        "found": 154,
         "in_results": 0,
         "new": 0,
         "error": null
