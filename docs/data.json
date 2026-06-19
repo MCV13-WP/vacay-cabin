@@ -1,17 +1,70 @@
 {
-  "generated_at": "2026-06-18T16:59:03.959910+00:00",
+  "generated_at": "2026-06-19T16:31:28.451058+00:00",
   "new_listings": [
     {
-      "source": "UwTweedeHuisMakelaar.nl",
-      "title": "Wiersse 8 kavel H709",
-      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
-      "price": 275000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Wiersse 8 kavel H709",
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/ruinen-gem-de-wolden/huis-gijsselterweg-30-11/89656684/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
       "image": "",
       "sold": false,
-      "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken"
+      "raw": "",
+      "is_manual": true
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/zoeken/koop?selected_area=[%22regio-veluwe,50km%22]&price=%220-350000%22&object_type=[%22house%22]&availability=[%22available%22]&bedrooms=%224-%22&zoning=[%22recreational%22]&surrounding=[%22in_recreation_park%22]&sort=%22date_down%22&utm_content=2024_redesign&utm_campaign=NAF_email&utm_medium=email&utm_source=Iterable",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/gramsbergen/huis-boslaan-1-r104/44405754/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/lochem/huis-ploegdijk-2-700/43952825/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/ijhorst/huis-veldhuisweg-4-129/89298841/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true
     }
   ],
   "all_listings": [
@@ -51,7 +104,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -253,7 +306,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -342,7 +395,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -408,7 +461,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -992,14 +1045,124 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/ruinen-gem-de-wolden/huis-gijsselterweg-30-11/89656684/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-19",
+      "price_history": [
+        {
+          "date": "2026-06-19",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/zoeken/koop?selected_area=[%22regio-veluwe,50km%22]&price=%220-350000%22&object_type=[%22house%22]&availability=[%22available%22]&bedrooms=%224-%22&zoning=[%22recreational%22]&surrounding=[%22in_recreation_park%22]&sort=%22date_down%22&utm_content=2024_redesign&utm_campaign=NAF_email&utm_medium=email&utm_source=Iterable",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-19",
+      "price_history": [
+        {
+          "date": "2026-06-19",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/gramsbergen/huis-boslaan-1-r104/44405754/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-19",
+      "price_history": [
+        {
+          "date": "2026-06-19",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/lochem/huis-ploegdijk-2-700/43952825/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-19",
+      "price_history": [
+        {
+          "date": "2026-06-19",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
+    },
+    {
+      "source": "Handmatig toegevoegd",
+      "title": "Je bent bijna op de pagina die je zoekt",
+      "url": "https://www.funda.nl/detail/recreatie/ijhorst/huis-veldhuisweg-4-129/89298841/",
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
+      "location": "",
+      "image": "",
+      "sold": false,
+      "raw": "",
+      "is_manual": true,
+      "offline": false,
+      "first_seen": "2026-06-19",
+      "price_history": [
+        {
+          "date": "2026-06-19",
+          "price": null
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-18T16:59:03.191088+00:00",
-    "runtime_sec": 634.6,
-    "total_scraped": 1552,
-    "total_filtered": 31,
-    "total_new": 1,
+    "timestamp": "2026-06-19T16:31:27.375128+00:00",
+    "runtime_sec": 901.4,
+    "total_scraped": 1146,
+    "total_filtered": 16,
+    "total_new": 5,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1008,7 +1171,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 306,
+        "found": 308,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1032,15 +1195,9 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 44,
+        "found": 45,
         "in_results": 0,
         "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 569,
-        "in_results": 20,
-        "new": 1,
         "error": null
       },
       "VakantiehuisTekoop.nl": {
@@ -1051,6 +1208,12 @@
       },
       "Vakantiemakelaar.nl": {
         "found": 3,
+        "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Veluwechalets.nl": {
+        "found": 155,
         "in_results": 0,
         "new": 0,
         "error": null
