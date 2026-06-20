@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -259,7 +259,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -967,7 +967,7 @@
     "image": "",
     "sold": false,
     "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken",
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-18",
     "price_history": [
       {
@@ -1087,8 +1087,29 @@
     ],
     "price_trend": "unknown"
   },
+  "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h709": {
+    "source": "UwTweedeHuisMakelaar.nl",
+    "title": "Wiersse kavel H709",
+    "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h709/",
+    "price": 275000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Wiersse kavel H709",
+    "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/318623-281847235-536x353.jpg",
+    "sold": false,
+    "raw": "Nieuw aanbod Wiersse kavel H709 EuroParcs De Achterhoek Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                      ",
+    "offline": false,
+    "first_seen": "2026-06-20",
+    "price_history": [
+      {
+        "date": "2026-06-20",
+        "price": 275000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-06-19",
+    "last_new_found": "2026-06-20",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
