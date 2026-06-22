@@ -4,97 +4,165 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vacay Cabin — Woning toevoegen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --vc-primary: #2B7A4B;
+      --vc-primary-dark: #1E5A36;
+      --vc-primary-light: #E8F3EC;
+      --vc-accent: #7B5EA7;
+      --vc-accent-light: #EEEAF5;
+      --vc-bg: #F5F4F1;
+      --vc-text: #1A2B20;
+      --vc-text-secondary: #637168;
+      --vc-text-tertiary: #94A09A;
+      --vc-border: #DFDDD8;
+      --vc-border-subtle: #EEECE7;
+      --vc-red: #C44A35;
+      --vc-font-display: 'Lora', Georgia, serif;
+      --vc-font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --vc-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f8f9fa;
+      font-family: var(--vc-font-body);
+      background: var(--vc-bg);
+      color: var(--vc-text);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       padding: 20px;
+      -webkit-font-smoothing: antialiased;
+      position: relative; overflow: hidden;
     }
+    body::before {
+      content: '';
+      position: fixed; top: -100px; right: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(43,122,75,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed; bottom: -80px; left: -40px;
+      width: 250px; height: 250px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,94,167,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    ::selection { background: var(--vc-primary-light); color: var(--vc-primary-dark); }
+
     .card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      background: white; border-radius: 18px;
+      padding: 28px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 4px 24px rgba(26,43,32,0.08), 0 1px 4px rgba(26,43,32,0.04);
+      border: 1px solid var(--vc-border-subtle);
+      position: relative; z-index: 1;
+    }
+    .brand-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+    }
+    .brand-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--vc-primary-dark), var(--vc-primary));
+      display: flex; align-items: center; justify-content: center;
     }
     h1 {
-      color: #2d6a4f;
-      font-size: 20px;
-      margin-bottom: 4px;
+      font-family: var(--vc-font-display);
+      color: var(--vc-text);
+      font-size: 18px; font-weight: 600;
+      letter-spacing: -0.02em;
     }
     p.sub {
-      color: #666;
-      font-size: 13px;
-      margin-bottom: 20px;
+      color: var(--vc-text-secondary);
+      font-size: 13px; margin-bottom: 24px; margin-top: 2px;
     }
     label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 6px;
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--vc-text); margin-bottom: 6px;
     }
     input[type="url"], input[type="text"] {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #dee2e6;
-      border-radius: 8px;
-      font-size: 14px;
-      margin-bottom: 16px;
-      outline: none;
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--vc-border);
+      border-radius: 10px; font-size: 14px;
+      margin-bottom: 18px; outline: none;
+      font-family: var(--vc-font-body);
+      color: var(--vc-text); background: white;
+      transition: border-color .18s, box-shadow .18s;
     }
     input:focus {
-      border-color: #2d6a4f;
+      border-color: var(--vc-primary);
+      box-shadow: 0 0 0 3px rgba(43,122,75,0.1);
     }
+    input::placeholder { color: var(--vc-text-tertiary); }
+
     .favorite-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #333;
-      cursor: pointer;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 22px; font-size: 14px;
+      color: var(--vc-text); cursor: pointer;
+      padding: 10px 14px; border-radius: 10px;
+      background: var(--vc-accent-light);
+      border: 1px solid rgba(123,94,167,0.15);
+      transition: background .15s;
     }
+    .favorite-row:hover { background: #E5E0F0; }
     .favorite-row input {
-      width: 18px;
-      height: 18px;
-      accent-color: #c0392b;
-      cursor: pointer;
+      width: 18px; height: 18px;
+      accent-color: var(--vc-accent); cursor: pointer;
     }
+    .favorite-row span { color: var(--vc-accent); font-weight: 500; }
+
     button {
       width: 100%;
-      background: #2d6a4f;
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
+      background: linear-gradient(135deg, var(--vc-primary-dark), var(--vc-primary));
+      color: white; border: none;
+      padding: 14px; border-radius: 12px;
+      font-size: 15px; font-weight: 600;
       cursor: pointer;
+      font-family: var(--vc-font-body);
+      box-shadow: 0 2px 8px rgba(43,122,75,0.25);
+      transition: opacity .15s;
     }
-    button:active { background: #1b4332; }
-    button:disabled { background: #adb5bd; }
+    button:active { opacity: .85; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+
     #status {
-      margin-top: 16px;
-      font-size: 14px;
-      text-align: center;
-      min-height: 20px;
-      line-height: 1.5;
+      margin-top: 16px; font-size: 14px;
+      text-align: center; min-height: 20px; line-height: 1.5;
     }
-    .ok  { color: #2d6a4f; }
-    .err { color: #c0392b; }
+    .ok {
+      color: var(--vc-primary);
+      background: var(--vc-primary-light);
+      padding: 10px 14px; border-radius: 10px;
+      border: 1px solid rgba(43,122,75,0.15);
+    }
+    .err {
+      color: var(--vc-red);
+      background: #FDF0ED;
+      padding: 10px 14px; border-radius: 10px;
+      border: 1px solid rgba(196,74,53,0.15);
+    }
+
+    .back-link {
+      display: block; text-align: center;
+      margin-top: 16px; font-size: 13px;
+      color: var(--vc-text-tertiary);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--vc-primary); }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>🏡 Vacay Cabin</h1>
-    <p class="sub">Voeg een woning toe aan je lijst</p>
+    <div class="brand-row">
+      <div class="brand-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"></path>
+          <path d="M12 22v-3"></path>
+        </svg>
+      </div>
+      <h1>Woning toevoegen</h1>
+    </div>
+    <p class="sub">Voeg handmatig een woning toe aan je Vacay Cabin lijst</p>
 
     <label for="url-input">URL van de woning</label>
     <input type="url" id="url-input" placeholder="https://www.recreatievastgoed.nl/..." />
@@ -104,21 +172,26 @@
 
     <label class="favorite-row">
       <input type="checkbox" id="favorite">
-      ❤️ Direct toevoegen aan favorieten
+      <span>Direct toevoegen aan favorieten</span>
     </label>
 
-    <button id="btn">➕ Voeg toe aan mijn lijst</button>
+    <button id="btn">Toevoegen aan mijn lijst</button>
     <p id="status"></p>
+
+    <a href="index.html" class="back-link">← Terug naar overzicht</a>
   </div>
 
   <script>
     // ── Beveiliging: pincode ──────────────────────────────
-    const PINCODE = "3210";  // bijv. "vacay2024"
+    const PINCODE = "3210";
     const ingevoerd = sessionStorage.getItem("vacay_auth");
     if (ingevoerd !== PINCODE) {
-      const poging = prompt("🔒 Voer de toegangscode in:");
+      const poging = prompt("Voer de toegangscode in:");
       if (poging !== PINCODE) {
-        document.body.innerHTML = "<p style='text-align:center;margin-top:40px;font-family:sans-serif;color:#c0392b;'>❌ Geen toegang.</p>";
+        document.body.innerHTML = `<div style="text-align:center;margin-top:40px;font-family:'Plus Jakarta Sans',sans-serif;color:#C44A35;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:8px;">
+            <circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/>
+          </svg><br>Geen toegang.</div>`;
         throw new Error("Geen toegang");
       }
       sessionStorage.setItem("vacay_auth", PINCODE);
@@ -139,7 +212,7 @@
       const status   = document.getElementById("status");
 
       if (!urlVal.startsWith("http")) {
-        status.textContent = "❌ Vul een geldige URL in die begint met https://";
+        status.textContent = "Vul een geldige URL in die begint met https://";
         status.className   = "err";
         return;
       }
@@ -175,8 +248,8 @@
         });
 
         if (res.ok || res.status === 409) {
-          const favTekst = isFav ? " en toegevoegd aan favorieten ❤️" : "";
-          status.textContent = `✅ Toegevoegd${favTekst}! Scraper verrijkt details morgenochtend om 07:00.`;
+          const favTekst = isFav ? " en toegevoegd aan favorieten" : "";
+          status.textContent = `Toegevoegd${favTekst}! De scraper verrijkt details morgenochtend om 07:00.`;
           status.className   = "ok";
           document.getElementById("url-input").value   = "";
           document.getElementById("title-input").value = "";
@@ -184,12 +257,12 @@
           btn.disabled = false;
         } else {
           const err = await res.text();
-          status.textContent = `❌ Fout ${res.status}: ${err.slice(0, 100)}`;
+          status.textContent = `Fout ${res.status}: ${err.slice(0, 100)}`;
           status.className   = "err";
           btn.disabled = false;
         }
       } catch (e) {
-        status.textContent = `❌ Netwerkfout: ${e.message}`;
+        status.textContent = `Netwerkfout: ${e.message}`;
         status.className   = "err";
         btn.disabled = false;
       }

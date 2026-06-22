@@ -4,181 +4,98 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vakantiewoningen Te Koop</title>
+  <title>Vacay Cabin</title>
   <!-- Supabase JS client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <!-- Leaflet voor de kaart -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green:   #2d6a4f;
-      --green-l: #40916c;
-      --accent:  #f4a261;
-      --bg:      #f8f9fa;
-      --card-bg: #ffffff;
-      --text:    #212529;
-      --muted:   #6c757d;
-      --border:  #dee2e6;
-      --radius:  12px;
-      --shadow:  0 2px 12px rgba(0,0,0,.08);
+      --vc-primary: #2B7A4B;
+      --vc-primary-dark: #1E5A36;
+      --vc-primary-light: #E8F3EC;
+      --vc-primary-50: #F0F7F2;
+      --vc-accent: #7B5EA7;
+      --vc-accent-light: #EEEAF5;
+      --vc-heide-dark: #5A4080;
+      --vc-bg: #F5F4F1;
+      --vc-surface: #FFFFFF;
+      --vc-text: #1A2B20;
+      --vc-text-secondary: #637168;
+      --vc-text-tertiary: #94A09A;
+      --vc-border: #DFDDD8;
+      --vc-border-subtle: #EEECE7;
+      --vc-red: #C44A35;
+      --vc-shadow-sm: 0 1px 3px rgba(26,43,32,0.06), 0 1px 2px rgba(26,43,32,0.04);
+      --vc-shadow-md: 0 4px 12px rgba(26,43,32,0.08), 0 2px 4px rgba(26,43,32,0.04);
+      --vc-shadow-lg: 0 8px 28px rgba(26,43,32,0.12), 0 2px 6px rgba(26,43,32,0.06);
+      --vc-radius: 14px;
+      --vc-font-display: 'Lora', Georgia, serif;
+      --vc-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --vc-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-           background: var(--bg); color: var(--text); }
+    body {
+      font-family: var(--vc-font-body);
+      background: var(--vc-bg);
+      color: var(--vc-text);
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: var(--vc-primary-light); color: var(--vc-primary-dark); }
 
     /* ── Header ── */
     header {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-l) 100%);
-      color: #fff; padding: 2rem 1.5rem 1.5rem;
-    }
-    header h1 { font-size: 1.6rem; font-weight: 700; }
-    header p  { opacity: .85; margin-top: .3rem; font-size: .9rem; }
-    #last-updated { font-size: .78rem; opacity: .7; margin-top: .4rem; }
-
-    /* ── Tabs ── */
-    .tabs { display: flex; background: var(--green); padding: 0 1.5rem; gap: .25rem; overflow-x: auto; }
-    .tab-btn {
-      padding: .65rem 1.2rem; border: none; background: transparent;
-      color: rgba(255,255,255,.7); cursor: pointer; font-size: .875rem;
-      border-bottom: 3px solid transparent; transition: all .2s; white-space: nowrap;
-    }
-    .tab-btn.active { color: #fff; border-bottom-color: var(--accent); font-weight: 600; }
-    .tab-btn:hover  { color: #fff; }
-
-    /* ── Toolbar (sort + search) ── */
-    .toolbar {
-      background: #fff; border-bottom: 1px solid var(--border);
-      padding: .75rem 1.5rem; display: flex; gap: .75rem;
-      align-items: center; flex-wrap: wrap;
-    }
-    .sort-group { display: flex; gap: .35rem; }
-    .sort-btn {
-      padding: .35rem .8rem; border: 1px solid var(--border); border-radius: 20px;
-      background: #fff; color: var(--muted); font-size: .78rem; cursor: pointer;
-      transition: all .15s;
-    }
-    .sort-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
-    .search-wrap { flex: 1; min-width: 180px; }
-    .search-wrap input {
-      width: 100%; padding: .4rem .8rem; border: 1px solid var(--border);
-      border-radius: 20px; font-size: .85rem; outline: none; color: var(--text);
-    }
-    .search-wrap input:focus { border-color: var(--green); }
-
-    /* ── Stats bar ── */
-    .stats {
-      background: #fff; border-bottom: 1px solid var(--border);
-      padding: .5rem 1.5rem; font-size: .78rem; color: var(--muted);
-      display: flex; gap: 1.5rem; flex-wrap: wrap;
-    }
-    .stats strong { color: var(--text); }
-
-    /* ── Grid ── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.25rem; padding: 1.5rem; max-width: 1400px; margin: 0 auto;
-    }
-
-    /* ── Card ── */
-    .card {
-      background: var(--card-bg); border-radius: var(--radius);
-      box-shadow: var(--shadow); overflow: hidden;
-      display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s;
+      background: linear-gradient(135deg, var(--vc-primary-dark) 0%, var(--vc-primary) 60%, #3A9660 100%);
+      color: #fff;
+      padding: 2rem 2rem 1.5rem;
       position: relative;
+      overflow: hidden;
     }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,.13); }
-    .card.is-offline { opacity: .72; }
-
-    .card-img {
-      width: 100%; height: 180px; object-fit: cover; background: var(--border); display: block;
+    header::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(123,94,167,0.12);
     }
-    .card-img-placeholder {
-      width: 100%; height: 180px; background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    header::after {
+      content: '';
+      position: absolute; bottom: -50px; right: 80px;
+      width: 140px; height: 140px; border-radius: 50%;
+      background: rgba(123,94,167,0.08);
+    }
+    .header-inner {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: .5rem; position: relative; z-index: 1;
+    }
+    .brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+    .brand-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(255,255,255,0.2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; color: #adb5bd;
     }
-
-    /* ── Status banner ── */
-    .status-banner {
-      position: absolute; top: 10px; left: 0;
-      padding: 4px 14px 4px 10px; font-size: .7rem; font-weight: 700;
-      letter-spacing: .05em; text-transform: uppercase;
-      border-radius: 0 20px 20px 0; color: #fff;
+    header h1 {
+      font-family: var(--vc-font-display);
+      font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em;
     }
-    .status-banner.offline  { background: #6c757d; }
-    .status-banner.verkocht { background: #c0392b; }
+    header p { opacity: .8; margin-top: .3rem; font-size: .85rem; }
+    #last-updated { font-size: .75rem; opacity: .6; margin-top: .4rem; }
 
-    /* ── Fav button ── */
-    .fav-btn {
-      position: absolute; top: 8px; right: 8px;
-      background: rgba(255,255,255,.9); border: none; border-radius: 50%;
-      width: 36px; height: 36px; font-size: 1.15rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: transform .15s; line-height: 1;
+    /* ── User bar ── */
+    #user-bar {
+      font-size: .82rem; color: rgba(255,255,255,.9);
+      text-align: right; white-space: nowrap; padding-top: .15rem;
     }
-    .fav-btn:hover { transform: scale(1.15); }
-
-    .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .45rem; }
-
-    .badge-source {
-      display: inline-block; font-size: .68rem; font-weight: 600; padding: .18rem .5rem;
-      border-radius: 20px; letter-spacing: .03em; text-transform: uppercase;
-    }
-    .badge-new {
-      display: inline-block; font-size: .68rem; font-weight: 700; padding: .18rem .5rem;
-      border-radius: 20px; background: var(--accent); color: #fff; margin-left: .3rem;
-    }
-
-    .card-title { font-size: 1rem; font-weight: 700; line-height: 1.3; color: var(--text); }
-
-    .card-price { font-size: 1.25rem; font-weight: 800; color: var(--green); display: flex; align-items: baseline; gap: .4rem; }
-    .card-price span { font-size: .8rem; font-weight: 400; color: var(--muted); }
-    .price-trend { font-size: .8rem; font-weight: 700; }
-    .price-trend.up   { color: #c0392b; }
-    .price-trend.down { color: #27ae60; }
-
-    .card-specs { display: flex; gap: .75rem; font-size: .83rem; color: var(--muted); flex-wrap: wrap; }
-    .spec { display: flex; align-items: center; gap: .25rem; }
-    .card-location { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; }
-    .first-seen { font-size: .72rem; color: #adb5bd; }
-
-    .card-link {
-      display: block; margin-top: auto; padding: .6rem 1rem; text-align: center;
-      background: var(--green); color: #fff; text-decoration: none;
-      border-radius: 8px; font-size: .875rem; font-weight: 600; transition: background .2s;
-    }
-    .card-link:hover { background: var(--green-l); }
-
-    /* ── Empty state ── */
-    .empty { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--muted); }
-    .empty .icon { font-size: 3rem; margin-bottom: 1rem; }
-
-    /* ── Tab content ── */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* ── Map ── */
-    #map { height: 600px; width: 100%; }
-    .map-wrap { padding: 1rem 1.5rem; max-width: 1400px; margin: 0 auto; }
-    .map-info { padding: .5rem 1.5rem; font-size: .8rem; color: var(--muted); }
-
-    /* ── Loading ── */
-    #loading { text-align: center; padding: 4rem; font-size: 1.1rem; color: var(--muted); }
-    .spinner {
-      width: 40px; height: 40px; border: 4px solid var(--border);
-      border-top-color: var(--green); border-radius: 50%;
-      animation: spin .8s linear infinite; margin: 0 auto 1rem;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── User bar (rechtsboven in header) ── */
-    .header-inner { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .5rem; }
-    #user-bar { font-size: .82rem; color: rgba(255,255,255,.9); text-align: right; white-space: nowrap; padding-top: .15rem; }
     #user-bar span { opacity: .85; }
-    #admin-link { margin-left: .75rem; color: var(--accent); font-weight: 600; text-decoration: none; }
-    #admin-link:hover { text-decoration: underline; }
+    #admin-link {
+      margin-left: .75rem; color: rgba(255,255,255,.85);
+      font-weight: 600; text-decoration: none;
+      background: rgba(255,255,255,0.15); padding: 3px 10px;
+      border-radius: 6px; font-size: .78rem;
+    }
+    #admin-link:hover { background: rgba(255,255,255,0.25); }
     #logout-btn {
       margin-left: .75rem; background: rgba(255,255,255,.15);
       border: 1px solid rgba(255,255,255,.3); color: #fff;
@@ -186,12 +103,226 @@
     }
     #logout-btn:hover { background: rgba(255,255,255,.25); }
 
-    @media (max-width: 480px) {
-      .grid { padding: 1rem; gap: 1rem; }
+    /* ── Tabs ── */
+    .tabs {
+      display: flex; background: var(--vc-primary-dark);
+      padding: 0 2rem; gap: 4px; overflow-x: auto;
+    }
+    .tab-btn {
+      padding: .7rem 1.2rem; border: none; background: transparent;
+      color: rgba(255,255,255,.6); cursor: pointer; font-size: .85rem;
+      font-family: var(--vc-font-body); font-weight: 500;
+      border-bottom: 3px solid transparent; transition: all .2s; white-space: nowrap;
+    }
+    .tab-btn.active {
+      color: #fff; border-bottom-color: var(--vc-accent); font-weight: 600;
+    }
+    .tab-btn:hover { color: #fff; }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      background: var(--vc-surface); border-bottom: 1px solid var(--vc-border);
+      padding: .75rem 2rem; display: flex; gap: .75rem;
+      align-items: center; flex-wrap: wrap;
+    }
+    .sort-group { display: flex; gap: .35rem; align-items: center; }
+    .sort-label {
+      font-size: .78rem; color: var(--vc-text-tertiary); margin-right: .25rem;
+    }
+    .sort-btn {
+      padding: .35rem .8rem; border: 1px solid var(--vc-border); border-radius: 100px;
+      background: var(--vc-surface); color: var(--vc-text-secondary);
+      font-size: .78rem; cursor: pointer; font-family: var(--vc-font-body);
+      transition: all .15s;
+    }
+    .sort-btn.active {
+      background: var(--vc-primary); color: #fff; border-color: var(--vc-primary);
+    }
+    .sort-btn:hover:not(.active) { border-color: var(--vc-primary); color: var(--vc-primary); }
+    .search-wrap { flex: 1; min-width: 180px; }
+    .search-wrap input {
+      width: 100%; padding: .5rem 1rem; border: 1px solid var(--vc-border);
+      border-radius: 10px; font-size: .85rem; outline: none; color: var(--vc-text);
+      font-family: var(--vc-font-body); background: var(--vc-surface);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-wrap input:focus {
+      border-color: var(--vc-primary);
+      box-shadow: 0 0 0 3px rgba(43,122,75,0.1);
+    }
+    .search-wrap input::placeholder { color: var(--vc-text-tertiary); }
+
+    /* ── Stats bar ── */
+    .stats {
+      background: var(--vc-surface); border-bottom: 1px solid var(--vc-border-subtle);
+      padding: .6rem 2rem; font-size: .8rem; color: var(--vc-text-secondary);
+      display: flex; gap: 1.5rem; flex-wrap: wrap;
+    }
+    .stats strong { color: var(--vc-text); }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem; padding: 1.5rem 2rem; max-width: 1400px; margin: 0 auto;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--vc-surface); border-radius: var(--vc-radius);
+      border: 1px solid var(--vc-border-subtle);
+      box-shadow: var(--vc-shadow-sm); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .22s ease, box-shadow .22s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--vc-shadow-lg);
+    }
+    .card.is-offline { opacity: .72; }
+
+    .card-img {
+      width: 100%; height: 190px; object-fit: cover;
+      background: var(--vc-border); display: block;
+    }
+    .card-img-placeholder {
+      width: 100%; height: 190px;
+      background: linear-gradient(145deg, #2d5a3f 0%, #4a8c6a 55%, #8cc4a0 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* ── Status banner ── */
+    .status-banner {
+      position: absolute; top: 12px; left: 0;
+      padding: 4px 14px 4px 10px; font-size: .68rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      border-radius: 0 8px 8px 0; color: #fff;
+    }
+    .status-banner.offline  { background: #6c757d; }
+    .status-banner.verkocht { background: var(--vc-red); }
+
+    /* ── Fav button ── */
+    .fav-btn {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(255,255,255,.92); border: none; border-radius: 50%;
+      width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,.15); transition: transform .15s; line-height: 1;
+      backdrop-filter: blur(4px);
+    }
+    .fav-btn:hover { transform: scale(1.15); }
+
+    .card-body {
+      padding: 16px 18px 18px; flex: 1;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+
+    .badge-source {
+      display: inline-block; font-size: .68rem; font-weight: 600; padding: 3px 8px;
+      border-radius: 6px; letter-spacing: .02em;
+    }
+    .badge-new {
+      display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 8px;
+      border-radius: 6px; background: var(--vc-primary); color: #fff; margin-left: 4px;
+      letter-spacing: .03em;
+    }
+
+    .card-title {
+      font-family: var(--vc-font-display);
+      font-size: 1rem; font-weight: 600; line-height: 1.3; color: var(--vc-text);
+    }
+
+    .card-price {
+      font-family: var(--vc-font-mono);
+      font-size: 1.2rem; font-weight: 600; color: var(--vc-text);
+      display: flex; align-items: baseline; gap: .4rem;
+    }
+    .card-price span {
+      font-family: var(--vc-font-body);
+      font-size: .78rem; font-weight: 400; color: var(--vc-text-tertiary);
+    }
+    .price-trend { font-size: .78rem; font-weight: 700; font-family: var(--vc-font-body); }
+    .price-trend.up   { color: var(--vc-red); }
+    .price-trend.down { color: var(--vc-primary); }
+
+    .card-specs {
+      display: flex; gap: .75rem; font-size: .82rem;
+      color: var(--vc-text-secondary); flex-wrap: wrap;
+    }
+    .spec { display: flex; align-items: center; gap: .25rem; }
+    .card-location {
+      font-size: .8rem; color: var(--vc-text-tertiary);
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .first-seen { font-size: .72rem; color: var(--vc-text-tertiary); }
+
+    .card-link {
+      display: block; margin-top: auto; padding: .65rem 1rem; text-align: center;
+      background: var(--vc-primary); color: #fff; text-decoration: none;
+      border-radius: 10px; font-size: .85rem; font-weight: 600;
+      font-family: var(--vc-font-body);
+      transition: background .2s;
+    }
+    .card-link:hover { background: var(--vc-primary-dark); }
+
+    /* ── Energy label badge ── */
+    .energy-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: .68rem; font-weight: 600; padding: 3px 8px;
+      border-radius: 6px; margin-left: 4px;
+    }
+
+    /* ── Empty state ── */
+    .empty {
+      grid-column: 1/-1; text-align: center; padding: 4rem 1rem;
+      color: var(--vc-text-secondary);
+    }
+    .empty .icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: .5; }
+    .empty strong { color: var(--vc-text); }
+
+    /* ── Tab content ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── Map ── */
+    #map { height: 600px; width: 100%; border-radius: 12px; }
+    .map-wrap { padding: 1rem 2rem; max-width: 1400px; margin: 0 auto; }
+    .map-info {
+      padding: .5rem 2rem; font-size: .8rem; color: var(--vc-text-secondary);
+    }
+
+    /* Custom Leaflet popup */
+    .leaflet-popup-content-wrapper {
+      border-radius: 12px !important;
+      box-shadow: var(--vc-shadow-lg) !important;
+      border: 1px solid var(--vc-border-subtle);
+    }
+    .leaflet-popup-content { margin: 14px 16px !important; }
+
+    /* ── Loading ── */
+    #loading {
+      text-align: center; padding: 5rem; font-size: 1rem;
+      color: var(--vc-text-secondary);
+      font-family: var(--vc-font-body);
+    }
+    .spinner {
+      width: 40px; height: 40px; border: 3px solid var(--vc-border);
+      border-top-color: var(--vc-primary); border-radius: 50%;
+      animation: spin .8s linear infinite; margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .grid { padding: 1rem; gap: 1rem; grid-template-columns: 1fr; }
       header { padding: 1.5rem 1rem 1rem; }
-      .tabs  { padding: 0 .5rem; }
+      .tabs  { padding: 0 .75rem; }
       .toolbar { padding: .6rem 1rem; }
+      .stats { padding: .5rem 1rem; }
       #user-bar { font-size: .75rem; }
+      .map-wrap { padding: 1rem; }
+      #map { border-radius: 8px; }
     }
   </style>
 </head>
@@ -200,41 +331,48 @@
 <header>
   <div class="header-inner">
     <div>
-      <h1>🏡 Vakantiewoningen Te Koop</h1>
-      <p>Recreatiewoningen op vakantieparken · max €350.000 · min 4 slaapkamers · min 8 personen</p>
+      <div class="brand-row">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"></path>
+            <path d="M12 22v-3"></path>
+          </svg>
+        </div>
+        <h1>Vacay Cabin</h1>
+      </div>
+      <p>Recreatiewoningen te koop · max €350.000 · 4+ slaapkamers · 8+ personen</p>
       <div id="last-updated">Wordt geladen…</div>
     </div>
     <div id="user-bar" style="display:none">
       <span id="user-email"></span>
-      <a id="admin-link" href="admin.html" style="display:none">⚙️ Beheer</a>
+      <a id="admin-link" href="admin.html" style="display:none">Beheer</a>
       <button id="logout-btn" onclick="signOut()">Uitloggen</button>
     </div>
   </div>
 </header>
 
 <nav class="tabs">
-  <button class="tab-btn active" onclick="switchTab('nieuw',     this)">⭐ Nieuw</button>
-  <button class="tab-btn"       onclick="switchTab('alle',       this)">🏘 Alle woningen</button>
-  <button class="tab-btn"       onclick="switchTab('favorieten', this)" id="fav-tab-btn">❤️ Favorieten</button>
-  <button class="tab-btn"       onclick="switchTab('kaart',      this)">🗺️ Kaart</button>
-  <button class="tab-btn" onclick="window.open('toevoegen.html','_blank')">➕ Woning toevoegen</button>
+  <button class="tab-btn active" onclick="switchTab('nieuw',     this)">Nieuw</button>
+  <button class="tab-btn"       onclick="switchTab('alle',       this)">Alle woningen</button>
+  <button class="tab-btn"       onclick="switchTab('favorieten', this)" id="fav-tab-btn">Favorieten</button>
+  <button class="tab-btn"       onclick="switchTab('kaart',      this)">Kaart</button>
+  <button class="tab-btn" onclick="window.open('toevoegen.html','_blank')">+ Toevoegen</button>
 </nav>
 
-<div id="loading"><div class="spinner"></div>Woningen worden geladen…</div>
+<div id="loading"><div class="spinner"></div>Woningen laden…</div>
 
 <div id="content" style="display:none">
   <div class="stats" id="stats-bar"></div>
 
-  <!-- Toolbar: zichtbaar op Nieuw + Alle + Favorieten -->
   <div class="toolbar" id="toolbar">
     <div class="sort-group">
-      <span style="font-size:.78rem;color:var(--muted);margin-right:.25rem;">Sorteren:</span>
-      <button class="sort-btn active" onclick="setSort('price_desc', this)">💰 Duurste</button>
-      <button class="sort-btn"       onclick="setSort('price_asc',  this)">🏷️ Goedkoopste</button>
-      <button class="sort-btn"       onclick="setSort('newest',     this)">🆕 Nieuwste</button>
+      <span class="sort-label">Sorteren:</span>
+      <button class="sort-btn active" onclick="setSort('price_desc', this)">Duurste</button>
+      <button class="sort-btn"       onclick="setSort('price_asc',  this)">Goedkoopste</button>
+      <button class="sort-btn"       onclick="setSort('newest',     this)">Nieuwste</button>
     </div>
     <div class="search-wrap">
-      <input id="search-input" type="search" placeholder="🔍  Zoek op locatie, prijs of bron…"
+      <input id="search-input" type="search" placeholder="Zoek op locatie, prijs of bron…"
              oninput="onSearch()" />
     </div>
   </div>
@@ -263,8 +401,6 @@
   // ════════════════════════════════════════════════════════
   //  Supabase configuratie
   // ════════════════════════════════════════════════════════
-
-  // Vervang onderstaande waarden met jouw Supabase project-URL en publishable key.
   const SUPABASE_URL      = "https://nkhwuaiklfpsrrosyyqk.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_x4Sfl5T_3iv9At7JazC2jw_LeDzRq6E";
 
@@ -275,9 +411,8 @@
   // ════════════════════════════════════════════════════════
   //  Auth helpers
   // ════════════════════════════════════════════════════════
-
   async function checkAuth() {
-    if (!_sb) return;   // geen Supabase → geen auth-check
+    if (!_sb) return;
     const { data: { session } } = await _sb.auth.getSession();
     if (!session) {
       window.location.replace("login.html");
@@ -304,23 +439,43 @@
   // ════════════════════════════════════════════════════════
   //  Constanten & globale staat
   // ════════════════════════════════════════════════════════
-
   const SOURCE_COLORS = {
-    "Recreatievastgoed.nl":      "#2d6a4f",
-    "Landal Makelaardij":        "#1565c0",
-    "Marktplaats":               "#d32f2f",
-    "VakantiehuisTekoop.nl":     "#6a1b9a",
-    "Jaap.nl":                   "#e67e22",
-    "Huislijn.nl":               "#0097a7",
-    "RecreatiewoningenTekoop.nl":"#00796b",
-    "EuroParcs Makelaardij":     "#e53935",
-    "Veluwechalets.nl":          "#558b2f",
-    "UwTweedeHuisMakelaar.nl":  "#f57c00",
-    "UwBuitenleven.nl":          "#0288d1",
-    "TopParkenVerkoop.nl":       "#7b1fa2",
-    "Vakantiemakelaar.nl":       "#c0392b",
-    "CenterParcs Vastgoed":      "#1a237e",
+    "Recreatievastgoed.nl":      { bg: "#E8F3EC", text: "#1E5A36" },
+    "Landal Makelaardij":        { bg: "#E3EEF5", text: "#1C4F68" },
+    "Marktplaats":               { bg: "#FDE8E8", text: "#9B2C2C" },
+    "VakantiehuisTekoop.nl":     { bg: "#EEEAF5", text: "#5A4080" },
+    "Jaap.nl":                   { bg: "#FDF5E8", text: "#8A5E1A" },
+    "Huislijn.nl":               { bg: "#E0F4F4", text: "#0E6B6B" },
+    "RecreatiewoningenTekoop.nl":{ bg: "#E0F2E9", text: "#1A6B4A" },
+    "EuroParcs Makelaardij":     { bg: "#FDE8E8", text: "#9B2C2C" },
+    "Veluwechalets.nl":          { bg: "#E8F0E0", text: "#3A6B1A" },
+    "UwTweedeHuisMakelaar.nl":   { bg: "#FFF0E0", text: "#8A5500" },
+    "UwBuitenleven.nl":          { bg: "#E3EEF5", text: "#0E4F7A" },
+    "TopParkenVerkoop.nl":       { bg: "#EEEAF5", text: "#5A1A8A" },
+    "Vakantiemakelaar.nl":       { bg: "#FDE8E8", text: "#8A1A1A" },
+    "CenterParcs Vastgoed":      { bg: "#E3E8F5", text: "#1A237E" },
+    "Handmatig toegevoegd":      { bg: "#EEEAF5", text: "#7B5EA7" },
+    "Funda":                     { bg: "#FDF5E8", text: "#8A5E1A" },
   };
+
+  // Placeholder gradients for cards without images
+  const CARD_GRADIENTS = [
+    "linear-gradient(145deg, #2d5a3f 0%, #4a8c6a 55%, #8cc4a0 100%)",
+    "linear-gradient(145deg, #5a4a2d 0%, #9c8a5a 55%, #d4c4a0 100%)",
+    "linear-gradient(145deg, #2d4a5a 0%, #4a80a0 55%, #8ac4d8 100%)",
+    "linear-gradient(145deg, #3d6a2d 0%, #6a9c4a 55%, #a8d898 100%)",
+    "linear-gradient(145deg, #5a3d60 0%, #8a6a98 55%, #c4a8d4 100%)",
+    "linear-gradient(145deg, #5a4030 0%, #9c7048 55%, #d4b088 100%)",
+  ];
+
+  function getGradient(title) {
+    let hash = 0;
+    for (let i = 0; i < (title||"").length; i++) {
+      hash = ((hash << 5) - hash) + title.charCodeAt(i);
+      hash |= 0;
+    }
+    return CARD_GRADIENTS[Math.abs(hash) % CARD_GRADIENTS.length];
+  }
 
   const FAV_KEY = "vacay_favs_v1";
   let ALL_LISTINGS  = [];
@@ -332,7 +487,6 @@
   // ════════════════════════════════════════════════════════
   //  Favorieten (localStorage)
   // ════════════════════════════════════════════════════════
-
   function getFavs() {
     try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); }
     catch { return new Set(); }
@@ -348,7 +502,6 @@
   // ════════════════════════════════════════════════════════
   //  Helpers
   // ════════════════════════════════════════════════════════
-
   function fmt_price(p) {
     return p ? "€ " + p.toLocaleString("nl-NL") : "Prijs onbekend";
   }
@@ -385,11 +538,10 @@
   // ════════════════════════════════════════════════════════
   //  Card HTML
   // ════════════════════════════════════════════════════════
-
   function card_html(l, is_new) {
     const favs  = getFavs();
     const isFav = favs.has(l.url);
-    const color = SOURCE_COLORS[l.source] || "#555";
+    const sc    = SOURCE_COLORS[l.source] || { bg: "#F0EDE8", text: "#637168" };
     const price = fmt_price(l.price);
     const slpk  = l.bedrooms ? `${l.bedrooms} slpk` : "? slpk";
     const pers  = l.persons  ? `${l.persons} pers`  : "? pers";
@@ -397,19 +549,30 @@
     const new_b = is_new ? `<span class="badge-new">NIEUW</span>` : "";
     const trend = price_trend_html(l.price_history);
     const first = l.first_seen
-      ? `<div class="first-seen">Eerste keer gezien: ${l.first_seen}</div>` : "";
+      ? `<div class="first-seen">Gevonden op ${l.first_seen}</div>` : "";
 
     let statusBanner = "";
-    if (l.offline)   statusBanner = `<div class="status-banner offline">📴 Offline</div>`;
-    else if (l.sold) statusBanner = `<div class="status-banner verkocht">🔴 Verkocht</div>`;
+    if (l.offline)   statusBanner = `<div class="status-banner offline">Offline</div>`;
+    else if (l.sold) statusBanner = `<div class="status-banner verkocht">Verkocht</div>`;
 
     const safeUrl = (l.url || "#").replace(/"/g, "%22");
+    const grad = getGradient(l.title || l.url);
 
     const img = l.image
       ? `<img class="card-img" src="${l.image}" alt="" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-        + `<div class="card-img-placeholder" style="display:none">🏡</div>`
-      : `<div class="card-img-placeholder">🏡</div>`;
+        + `<div class="card-img-placeholder" style="display:none;background:${grad}">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+           </div>`
+      : `<div class="card-img-placeholder" style="background:${grad}">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+         </div>`;
 
     return `
       <div class="card${l.offline || l.sold ? ' is-offline' : ''}">
@@ -421,7 +584,7 @@
         </button>
         <div class="card-body">
           <div>
-            <span class="badge-source" style="background:${color}22;color:${color}">${l.source}</span>
+            <span class="badge-source" style="background:${sc.bg};color:${sc.text}">${l.source}</span>
             ${new_b}
           </div>
           <div class="card-title">${l.title}</div>
@@ -440,7 +603,6 @@
   // ════════════════════════════════════════════════════════
   //  Event handlers
   // ════════════════════════════════════════════════════════
-
   function onFavClick(btn, encodedUrl) {
     const url    = decodeURIComponent(encodedUrl);
     const nowFav = toggleFav(url);
@@ -471,13 +633,18 @@
   // ════════════════════════════════════════════════════════
   //  Renderers
   // ════════════════════════════════════════════════════════
-
   function render_grid(containerId, items, is_new_fn) {
     const g = document.getElementById(containerId);
     const processed = apply_sort(apply_search(items));
     if (!processed.length) {
-      g.innerHTML = `<div class="empty"><div class="icon">🔍</div>
-        <strong>Geen woningen gevonden</strong><br>Pas de zoekopdracht aan.</div>`;
+      g.innerHTML = `<div class="empty">
+        <div class="icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--vc-text-tertiary)">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+        </div>
+        <strong>Geen woningen gevonden</strong><br>
+        <span style="color:var(--vc-text-tertiary)">Pas de zoekopdracht aan.</span></div>`;
     } else {
       g.innerHTML = processed.map(l => card_html(l, is_new_fn(l))).join("");
     }
@@ -487,8 +654,14 @@
     const nieuw = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
     if (!nieuw.length && !currentSearch) {
       document.getElementById("grid-nieuw").innerHTML =
-        `<div class="empty"><div class="icon">✅</div>
-         <strong>Geen nieuwe woningen</strong><br>Alle woningen zijn al bekend. Kom morgen terug!</div>`;
+        `<div class="empty">
+          <div class="icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--vc-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/>
+            </svg>
+          </div>
+         <strong>Geen nieuwe woningen</strong><br>
+         <span style="color:var(--vc-text-tertiary)">Alle woningen zijn al bekend. Kom morgen terug!</span></div>`;
       return;
     }
     render_grid("grid-nieuw", nieuw, () => true);
@@ -502,13 +675,18 @@
     const favs  = getFavs();
     const items = ALL_LISTINGS.filter(l => favs.has(l.url));
     const btn   = document.getElementById("fav-tab-btn");
-    if (btn) btn.textContent = items.length ? `❤️ Favorieten (${items.length})` : "❤️ Favorieten";
+    if (btn) btn.textContent = items.length ? `Favorieten (${items.length})` : "Favorieten";
 
     if (!items.length && !currentSearch) {
       document.getElementById("grid-favorieten").innerHTML =
-        `<div class="empty"><div class="icon">🤍</div>
+        `<div class="empty">
+          <div class="icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--vc-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </div>
          <strong>Nog geen favorieten</strong><br>
-         Klik op het hartje 🤍 op een woning om hem hier op te slaan.</div>`;
+         <span style="color:var(--vc-text-tertiary)">Klik op het hartje op een woning om hem hier op te slaan.</span></div>`;
       return;
     }
     render_grid("grid-favorieten", items, l => NEW_URLS.has(l.url));
@@ -521,69 +699,75 @@
 
     if (!leafletMap) {
       leafletMap = L.map("map").setView([52.3, 5.6], 7);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/">CARTO</a>',
         maxZoom: 18,
       }).addTo(leafletMap);
     }
 
-    // Verwijder bestaande markers
     leafletMap.eachLayer(layer => {
       if (layer instanceof L.Marker) leafletMap.removeLayer(layer);
     });
 
-   const favs = getFavs();
+    const favs = getFavs();
 
     withCoords.forEach(l => {
       const isNew = NEW_URLS.has(l.url);
       const isFav = favs.has(l.url);
 
-      // Kleur en emoji op basis van status
-      let bgColor, emoji;
+      // Kleur op basis van status
+      let pinColor, pinBg;
       if (l.offline) {
-        bgColor = "#6c757d"; emoji = "📴";
+        pinColor = "#6c757d"; pinBg = "#f0f0f0";
       } else if (l.sold) {
-        bgColor = "#c0392b"; emoji = "🔴";
-      } else if (isFav && isNew) {
-        bgColor = "#c0392b"; emoji = "❤️⭐";
+        pinColor = "#C44A35"; pinBg = "#FDF0ED";
       } else if (isFav) {
-        bgColor = "#c0392b"; emoji = "❤️";
+        pinColor = "#7B5EA7"; pinBg = "#EEEAF5";
       } else if (isNew) {
-        bgColor = "#f4a261"; emoji = "⭐";
+        pinColor = "#2B7A4B"; pinBg = "#E8F3EC";
       } else {
-        bgColor = "#2d6a4f"; emoji = "🏡";
+        pinColor = "#1A2B20"; pinBg = "#ffffff";
       }
+
+      const priceLabel = l.price ? `€${Math.round(l.price/1000)}k` : "?";
 
       const icon = L.divIcon({
         className: "",
-        html: `<div style="background:${bgColor};color:#fff;border-radius:50%;
-                           width:36px;height:36px;display:flex;align-items:center;
-                           justify-content:center;font-size:14px;
-                           box-shadow:0 2px 6px rgba(0,0,0,.3);
-                           border:2px solid #fff;">${emoji}</div>`,
-        iconSize:   [36, 36],
-        iconAnchor: [18, 18],
-        popupAnchor:[0, -20],
+        html: `<div style="
+          background:${pinBg}; color:${pinColor}; border:2px solid ${pinColor};
+          border-radius:8px; padding:4px 10px;
+          font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600;
+          white-space:nowrap; box-shadow:0 2px 6px rgba(0,0,0,.15);
+          position:relative; text-align:center;
+        ">${priceLabel}${isNew ? '<span style="position:absolute;top:-5px;right:-5px;width:10px;height:10px;border-radius:50%;background:#2B7A4B;border:2px solid white;"></span>' : ''}${isFav ? '<span style="position:absolute;top:-5px;left:-5px;width:10px;height:10px;border-radius:50%;background:#7B5EA7;border:2px solid white;"></span>' : ''}<div style="
+            position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
+            width:0;height:0; border-left:5px solid transparent;
+            border-right:5px solid transparent; border-top:6px solid ${pinColor};
+          "></div></div>`,
+        iconSize:   [80, 36],
+        iconAnchor: [40, 38],
+        popupAnchor:[0, -40],
       });
 
       const popupHtml = `
-        <div style="min-width:200px;font-family:sans-serif;">
-          <div style="font-size:11px;font-weight:700;color:#2d6a4f;text-transform:uppercase;margin-bottom:4px;">
+        <div style="min-width:200px;font-family:'Plus Jakarta Sans',sans-serif;">
+          <div style="font-size:11px;font-weight:600;color:var(--vc-primary);margin-bottom:6px;display:flex;align-items:center;gap:6px;">
             ${l.source}
-            ${isNew ? ' · <span style="color:#f4a261">⭐ NIEUW</span>' : ""}
-            ${isFav ? ' · <span style="color:#c0392b">❤️ FAVORIET</span>' : ""}
+            ${isNew ? '<span style="background:#E8F3EC;color:#1E5A36;padding:2px 6px;border-radius:4px;font-size:10px;">NIEUW</span>' : ""}
+            ${isFav ? '<span style="background:#EEEAF5;color:#7B5EA7;padding:2px 6px;border-radius:4px;font-size:10px;">FAVORIET</span>' : ""}
           </div>
-          <strong style="font-size:13px;">${l.title}</strong><br>
-          <span style="font-size:15px;font-weight:800;color:#2d6a4f;">${fmt_price(l.price)}</span><br>
-          <span style="font-size:12px;color:#555;">🛏 ${l.bedrooms || "?"} slpk &nbsp; 👥 ${l.persons || "?"} pers</span><br>
+          <strong style="font-family:'Lora',Georgia,serif;font-size:14px;font-weight:600;">${l.title}</strong><br>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;color:#1A2B20;">${fmt_price(l.price)}</span><br>
+          <span style="font-size:12px;color:#637168;">🛏 ${l.bedrooms || "?"} slpk · 👥 ${l.persons || "?"} pers</span><br>
           <a href="${l.url}" target="_blank" rel="noopener"
-             style="display:inline-block;margin-top:8px;background:#2d6a4f;color:#fff;
-                    text-decoration:none;padding:5px 12px;border-radius:6px;font-size:12px;">
-            Bekijk →
+             style="display:inline-block;margin-top:8px;background:#2B7A4B;color:#fff;
+                    text-decoration:none;padding:6px 14px;border-radius:8px;font-size:12px;
+                    font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;">
+            Bekijk woning →
           </a>
         </div>`;
 
-     // Kleine offset voor markers op exact dezelfde locatie
+      // Kleine offset voor markers op exact dezelfde locatie
       const sameSpot = withCoords.filter(x => x.lat === l.lat && x.lng === l.lng);
       const idx = sameSpot.indexOf(l);
       const offsetLat = idx > 0 ? (idx * 0.002) * (idx % 2 === 0 ? 1 : -1) : 0;
@@ -594,7 +778,6 @@
         .bindPopup(popupHtml);
     });
 
-    // Zoom naar markers als aanwezig
     if (withCoords.length) {
       const group = L.featureGroup(
         withCoords.map(l => L.marker([l.lat, l.lng]))
@@ -606,7 +789,6 @@
   // ════════════════════════════════════════════════════════
   //  Tab wisselen
   // ════════════════════════════════════════════════════════
-
   function switchTab(name, btn) {
     activeTabName = name;
     document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
@@ -614,7 +796,6 @@
     document.getElementById("tab-" + name).classList.add("active");
     btn.classList.add("active");
 
-    // Toolbar tonen/verbergen
     document.getElementById("toolbar").style.display =
       name === "kaart" ? "none" : "flex";
 
@@ -627,8 +808,6 @@
   // ════════════════════════════════════════════════════════
   //  Data laden
   // ════════════════════════════════════════════════════════
-
-  // ── Supabase data laden ───────────────────────────────────
   async function loadFromSupabase() {
     if (!_sb) return false;
     try {
@@ -639,7 +818,6 @@
       if (error) throw error;
 
       ALL_LISTINGS = (data || []);
-      // price_history is opgeslagen als JSON-string in Supabase
       ALL_LISTINGS.forEach(l => {
         if (typeof l.price_history === "string") {
           try { l.price_history = JSON.parse(l.price_history); }
@@ -654,7 +832,6 @@
     }
   }
 
-  // ── data.json fallback laden ──────────────────────────────
   async function loadFromDataJson() {
     const resp = await fetch("data.json?_=" + Date.now());
     if (!resp.ok) throw new Error("HTTP " + resp.status);
@@ -664,14 +841,12 @@
     return data.generated_at || null;
   }
 
-  // ── Hoofd laad-functie ────────────────────────────────────
   async function load() {
     try {
       let ts       = null;
       let fromSupa = await loadFromSupabase();
 
       if (!fromSupa) {
-        // Fallback: data.json
         ts = await loadFromDataJson();
       }
 
@@ -686,11 +861,13 @@
 
       const nieuw      = ALL_LISTINGS.filter(l => NEW_URLS.has(l.url));
       const withCoords = ALL_LISTINGS.filter(l => l.lat && l.lng).length;
+      const favCount   = getFavs().size;
       document.getElementById("stats-bar").innerHTML =
         `<span>⭐ <strong>${nieuw.length}</strong> nieuw</span>` +
         `<span>🏘 <strong>${ALL_LISTINGS.length}</strong> totaal</span>` +
+        `<span>❤️ <strong>${favCount}</strong> favorieten</span>` +
         `<span>🗺️ <strong>${withCoords}</strong> op kaart</span>` +
-        `<span>🔄 ${tsLabel}</span>`;
+        `<span style="margin-left:auto;opacity:.7;">🔄 ${tsLabel}</span>`;
 
       renderNieuw();
       renderAlle();
@@ -698,10 +875,13 @@
 
     } catch (e) {
       document.getElementById("loading").innerHTML =
-        `<div class="icon" style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+        `<div style="text-align:center;padding:4rem;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--vc-red)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1rem;">
+            <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
+          </svg><br>
          <strong>Kon woningdata niet laden.</strong><br>
-         Controleer of de scraper al een keer gedraaid heeft.<br>
-         <small style="color:#aaa">${e}</small>`;
+         <span style="color:var(--vc-text-tertiary)">Controleer of de scraper al een keer gedraaid heeft.</span><br>
+         <small style="color:var(--vc-text-tertiary)">${e}</small></div>`;
     }
   }
 
