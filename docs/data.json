@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T12:41:17.332380+00:00",
+  "generated_at": "2026-06-22T19:10:07.967722+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1113,10 +1113,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-21T12:41:16.292662+00:00",
-    "runtime_sec": 946.2,
-    "total_scraped": 1677,
-    "total_filtered": 35,
+    "timestamp": "2026-06-22T19:10:07.011538+00:00",
+    "runtime_sec": 926.9,
+    "total_scraped": 1140,
+    "total_filtered": 19,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1126,25 +1126,25 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 308,
+        "found": 306,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 516,
-        "in_results": 5,
+        "found": 515,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 24,
+        "found": 64,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1152,12 +1152,6 @@
       "UwBuitenleven.nl": {
         "found": 45,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 573,
-        "in_results": 20,
         "new": 0,
         "error": null
       },
