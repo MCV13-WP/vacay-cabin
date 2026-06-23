@@ -259,7 +259,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -348,7 +348,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -392,7 +392,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -449,7 +449,7 @@
     "location": "Daelenbroeck kavel R 523",
     "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/298359-279089502-536x353.jpg",
     "sold": false,
-    "raw": "Nieuw aanbod Daelenbroeck kavel R 523 EuroParcs Limburg Susteren, Limburg - 460m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 300.000                           ",
+    "raw": "Daelenbroeck kavel R 523 EuroParcs Limburg Susteren, Limburg - 460m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2014 Koopkavel Btw vrij 12 personen € 300.000                                        ",
     "offline": false,
     "first_seen": "2026-06-07",
     "price_history": [
@@ -1108,8 +1108,52 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.funda.nl/detail/recreatie/hoge-hexel/huis-boomsweg-1-zh59/80863613": {
+    "source": "Handmatig toegevoegd",
+    "title": "Je bent bijna op de pagina die je zoekt",
+    "url": "https://www.funda.nl/detail/recreatie/hoge-hexel/huis-boomsweg-1-zh59/80863613/",
+    "price": null,
+    "bedrooms": null,
+    "persons": null,
+    "location": "",
+    "image": "",
+    "sold": false,
+    "raw": "",
+    "is_manual": true,
+    "offline": false,
+    "first_seen": "2026-06-23",
+    "price_history": [
+      {
+        "date": "2026-06-23",
+        "price": null
+      }
+    ],
+    "price_trend": "unknown"
+  },
+  "https://www.funda.nl/detail/recreatie/loosdrecht/huis-bloklaan-22-agp25/44400694": {
+    "source": "Handmatig toegevoegd",
+    "title": "Je bent bijna op de pagina die je zoekt",
+    "url": "https://www.funda.nl/detail/recreatie/loosdrecht/huis-bloklaan-22-agp25/44400694/",
+    "price": null,
+    "bedrooms": null,
+    "persons": null,
+    "location": "",
+    "image": "",
+    "sold": false,
+    "raw": "",
+    "is_manual": true,
+    "offline": false,
+    "first_seen": "2026-06-23",
+    "price_history": [
+      {
+        "date": "2026-06-23",
+        "price": null
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-06-20",
+    "last_new_found": "2026-06-23",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
