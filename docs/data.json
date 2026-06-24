@@ -1,33 +1,6 @@
 {
-  "generated_at": "2026-06-23T14:22:05.423450+00:00",
-  "new_listings": [
-    {
-      "source": "Handmatig toegevoegd",
-      "title": "Je bent bijna op de pagina die je zoekt",
-      "url": "https://www.funda.nl/detail/recreatie/hoge-hexel/huis-boomsweg-1-zh59/80863613/",
-      "price": null,
-      "bedrooms": null,
-      "persons": null,
-      "location": "",
-      "image": "",
-      "sold": false,
-      "raw": "",
-      "is_manual": true
-    },
-    {
-      "source": "Handmatig toegevoegd",
-      "title": "Je bent bijna op de pagina die je zoekt",
-      "url": "https://www.funda.nl/detail/recreatie/loosdrecht/huis-bloklaan-22-agp25/44400694/",
-      "price": null,
-      "bedrooms": null,
-      "persons": null,
-      "location": "",
-      "image": "",
-      "sold": false,
-      "raw": "",
-      "is_manual": true
-    }
-  ],
+  "generated_at": "2026-06-24T12:53:27.667945+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -289,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -334,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1184,11 +1157,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-23T14:22:04.361968+00:00",
-    "runtime_sec": 1016.6,
-    "total_scraped": 1676,
+    "timestamp": "2026-06-24T12:53:26.487579+00:00",
+    "runtime_sec": 1058.6,
+    "total_scraped": 1675,
     "total_filtered": 39,
-    "total_new": 2,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1209,7 +1182,7 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 515,
+        "found": 514,
         "in_results": 7,
         "new": 0,
         "error": null
