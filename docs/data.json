@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T12:53:27.667945+00:00",
+  "generated_at": "2026-06-25T13:43:07.926045+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -329,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -552,12 +552,12 @@
       "title": "Daelenbroeck kavel R 816",
       "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-r-816/",
       "price": 284750,
-      "bedrooms": 6,
-      "persons": 12,
+      "bedrooms": 5,
+      "persons": 10,
       "location": "Daelenbroeck kavel R 816",
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/11/81310-253056168-536x353.jpg",
       "sold": false,
-      "raw": "Daelenbroeck kavel R 816 EuroParcs Limburg Susteren, Limburg - 328m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 284.750                                        ",
+      "raw": "Daelenbroeck kavel R 816 EuroParcs Limburg Susteren, Limburg - 328m² perceeloppervlakte - 5 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 10 personen € 284.750                                        ",
       "offline": false,
       "first_seen": "2026-06-07",
       "price_history": [
@@ -1157,10 +1157,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-06-24T12:53:26.487579+00:00",
-    "runtime_sec": 1058.6,
-    "total_scraped": 1675,
-    "total_filtered": 39,
+    "timestamp": "2026-06-25T13:43:06.715403+00:00",
+    "runtime_sec": 945.3,
+    "total_scraped": 1715,
+    "total_filtered": 38,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1176,19 +1176,19 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 514,
-        "in_results": 7,
+        "found": 515,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 24,
+        "found": 64,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1200,7 +1200,7 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 572,
+        "found": 571,
         "in_results": 20,
         "new": 0,
         "error": null
@@ -1218,7 +1218,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 156,
+        "found": 157,
         "in_results": 0,
         "new": 0,
         "error": null
