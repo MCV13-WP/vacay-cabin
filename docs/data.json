@@ -1,31 +1,6 @@
 {
-  "generated_at": "2026-07-02T12:47:23.745304+00:00",
-  "new_listings": [
-    {
-      "source": "UwTweedeHuisMakelaar.nl",
-      "title": "Wiersse kavel H747",
-      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-kavel-h747/",
-      "price": 255000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Wiersse kavel H747",
-      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/07/328521-283505703-536x353.jpg",
-      "sold": false,
-      "raw": "Nieuw aanbod Wiersse kavel H747 EuroParcs De Achterhoek Lochem, Gelderland - 458m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 255.000                                      "
-    },
-    {
-      "source": "UwTweedeHuisMakelaar.nl",
-      "title": "Villa Avantage kavel PB20",
-      "url": "https://uwtweedehuismakelaar.nl/aanbod/villa-avantage-kavel-pb20/",
-      "price": 323750,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Villa Avantage kavel PB20",
-      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/07/328248-277190894-536x353.jpg",
-      "sold": false,
-      "raw": "Nieuw aanbod Villa Avantage kavel PB20 EuroParcs De Zanding Otterlo, Gelderland - 451m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2019 Ondererfpacht Exclusief BTW 8 personen € 323.750             "
-    }
-  ],
+  "generated_at": "2026-07-03T12:42:06.242707+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -265,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -354,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -376,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -398,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -751,7 +726,7 @@
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34379-240670904-536x353.jpg",
       "sold": false,
       "raw": "Pavilion Delice kavel 670 EuroParcs Limburg Susteren, Limburg - 291m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2016 Koopkavel Exclusief BTW 8 personen € 199.500                                   ",
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-07",
       "price_history": [
         {
@@ -1224,11 +1199,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-02T12:47:22.590793+00:00",
-    "runtime_sec": 1023.5,
-    "total_scraped": 1703,
-    "total_filtered": 40,
-    "total_new": 2,
+    "timestamp": "2026-07-03T12:42:05.246409+00:00",
+    "runtime_sec": 861.7,
+    "total_scraped": 1704,
+    "total_filtered": 41,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1243,14 +1218,14 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 1,
+        "found": 2,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 500,
-        "in_results": 6,
+        "found": 502,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
@@ -1267,9 +1242,9 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 577,
-        "in_results": 22,
-        "new": 2,
+        "found": 575,
+        "in_results": 21,
+        "new": 0,
         "error": null
       },
       "VakantiehuisTekoop.nl": {
