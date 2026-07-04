@@ -237,7 +237,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -282,7 +282,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -326,7 +326,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -348,7 +348,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -370,7 +370,7 @@
     "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
     "lat": 52.0449873,
     "lng": 4.7224789,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -720,10 +720,10 @@
     "bedrooms": 4,
     "persons": 8,
     "location": "Pavilion Delice kavel 670",
-    "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34379-240670904-536x353.jpg",
+    "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/07/332700-240670904-536x353.jpg",
     "sold": false,
-    "raw": "Pavilion Delice kavel 670 EuroParcs Limburg Susteren, Limburg - 291m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2016 Koopkavel Exclusief BTW 8 personen € 199.500                                   ",
-    "offline": true,
+    "raw": "Nieuw aanbod Pavilion Delice kavel 670 EuroParcs Limburg Susteren, Limburg - 291m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2016 Koopkavel Exclusief BTW 8 personen € 199.500                      ",
+    "offline": false,
     "first_seen": "2026-06-07",
     "price_history": [
       {
