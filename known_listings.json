@@ -237,7 +237,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -259,7 +259,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -370,7 +370,7 @@
     "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
     "lat": 52.0449873,
     "lng": 4.7224789,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -392,7 +392,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
