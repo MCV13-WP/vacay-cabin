@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T08:43:46.293396+00:00",
+  "generated_at": "2026-07-08T07:47:56.481130+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -329,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1199,10 +1199,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-07T08:43:45.118418+00:00",
-    "runtime_sec": 920.7,
-    "total_scraped": 1131,
-    "total_filtered": 18,
+    "timestamp": "2026-07-08T07:47:55.617496+00:00",
+    "runtime_sec": 823.1,
+    "total_scraped": 1709,
+    "total_filtered": 40,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1218,13 +1218,13 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 1,
+        "found": 2,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 503,
+        "found": 501,
         "in_results": 6,
         "new": 0,
         "error": null
@@ -1238,6 +1238,12 @@
       "UwBuitenleven.nl": {
         "found": 41,
         "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "UwTweedeHuisMakelaar.nl": {
+        "found": 579,
+        "in_results": 22,
         "new": 0,
         "error": null
       },
