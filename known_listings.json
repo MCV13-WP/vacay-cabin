@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -828,7 +828,7 @@
     "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
     "sold": false,
     "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          ",
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-07",
     "price_history": [
       {
@@ -1194,8 +1194,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond": {
+    "source": "VakantiehuisTekoop.nl",
+    "title": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+    "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond",
+    "price": 57499,
+    "bedrooms": null,
+    "persons": null,
+    "location": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+    "image": "",
+    "sold": false,
+    "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
+    "lat": 52.9248068,
+    "lng": 4.7535072,
+    "offline": false,
+    "first_seen": "2026-07-09",
+    "price_history": [
+      {
+        "date": "2026-07-09",
+        "price": 57499
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-07-02",
+    "last_new_found": "2026-07-09",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,

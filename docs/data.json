@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-07-08T07:47:56.481130+00:00",
-  "new_listings": [],
+  "generated_at": "2026-07-09T08:49:47.745941+00:00",
+  "new_listings": [
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond",
+      "price": 57499,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+      "image": "",
+      "sold": false,
+      "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
+      "lat": 52.9248068,
+      "lng": 4.7535072
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -38,7 +53,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -831,7 +846,7 @@
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
       "sold": false,
       "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          ",
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-07",
       "price_history": [
         {
@@ -1196,14 +1211,37 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond",
+      "price": 57499,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
+      "image": "",
+      "sold": false,
+      "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
+      "lat": 52.9248068,
+      "lng": 4.7535072,
+      "offline": false,
+      "first_seen": "2026-07-09",
+      "price_history": [
+        {
+          "date": "2026-07-09",
+          "price": 57499
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-08T07:47:55.617496+00:00",
-    "runtime_sec": 823.1,
-    "total_scraped": 1709,
+    "timestamp": "2026-07-09T08:49:46.426736+00:00",
+    "runtime_sec": 983.4,
+    "total_scraped": 1708,
     "total_filtered": 40,
-    "total_new": 0,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1212,7 +1250,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 306,
+        "found": 305,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1224,7 +1262,7 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 501,
+        "found": 500,
         "in_results": 6,
         "new": 0,
         "error": null
@@ -1243,14 +1281,14 @@
       },
       "UwTweedeHuisMakelaar.nl": {
         "found": 579,
-        "in_results": 22,
+        "in_results": 21,
         "new": 0,
         "error": null
       },
       "VakantiehuisTekoop.nl": {
         "found": 36,
-        "in_results": 0,
-        "new": 0,
+        "in_results": 1,
+        "new": 1,
         "error": null
       },
       "Vakantiemakelaar.nl": {
@@ -1260,7 +1298,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 160,
+        "found": 161,
         "in_results": 0,
         "new": 0,
         "error": null
