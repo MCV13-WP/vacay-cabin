@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -237,7 +237,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -326,7 +326,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
