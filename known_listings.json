@@ -35,7 +35,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -1207,7 +1207,7 @@
     "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
     "lat": 52.9248068,
     "lng": 4.7535072,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-07-09",
     "price_history": [
       {
