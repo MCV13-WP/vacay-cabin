@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T07:31:21.165318+00:00",
+  "generated_at": "2026-07-15T07:36:36.018411+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-14T07:31:19.688308+00:00",
-    "runtime_sec": 1024.0,
-    "total_scraped": 1705,
-    "total_filtered": 40,
+    "timestamp": "2026-07-15T07:36:34.636382+00:00",
+    "runtime_sec": 1009.1,
+    "total_scraped": 1205,
+    "total_filtered": 33,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1235,7 +1235,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 305,
+        "found": 306,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1243,12 +1243,6 @@
       "Marktplaats": {
         "found": 2,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "Recreatievastgoed.nl": {
-        "found": 500,
-        "in_results": 7,
         "new": 0,
         "error": null
       },
@@ -1265,7 +1259,7 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 575,
+        "found": 576,
         "in_results": 21,
         "new": 0,
         "error": null
@@ -1283,7 +1277,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 162,
+        "found": 161,
         "in_results": 0,
         "new": 0,
         "error": null
