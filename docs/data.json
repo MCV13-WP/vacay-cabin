@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T07:36:36.018411+00:00",
+  "generated_at": "2026-07-16T07:42:37.435561+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1210,7 +1210,7 @@
       "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
       "lat": 52.9248068,
       "lng": 4.7535072,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-07-09",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-15T07:36:34.636382+00:00",
-    "runtime_sec": 1009.1,
-    "total_scraped": 1205,
-    "total_filtered": 33,
+    "timestamp": "2026-07-16T07:42:36.312266+00:00",
+    "runtime_sec": 946.6,
+    "total_scraped": 1705,
+    "total_filtered": 41,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1235,7 +1235,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 306,
+        "found": 307,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1243,6 +1243,12 @@
       "Marktplaats": {
         "found": 2,
         "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "Recreatievastgoed.nl": {
+        "found": 500,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
@@ -1277,7 +1283,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 161,
+        "found": 160,
         "in_results": 0,
         "new": 0,
         "error": null
