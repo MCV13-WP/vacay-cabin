@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -326,7 +326,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -370,7 +370,7 @@
     "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
     "lat": 52.0449873,
     "lng": 4.7224789,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {

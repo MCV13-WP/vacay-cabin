@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T07:37:17.491530+00:00",
+  "generated_at": "2026-07-18T07:18:17.653043+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -329,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-17T07:37:16.365192+00:00",
-    "runtime_sec": 894.1,
-    "total_scraped": 1669,
-    "total_filtered": 39,
+    "timestamp": "2026-07-18T07:18:16.347858+00:00",
+    "runtime_sec": 944.5,
+    "total_scraped": 1128,
+    "total_filtered": 18,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1235,7 +1235,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 308,
+        "found": 309,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1247,13 +1247,13 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 500,
+        "found": 495,
         "in_results": 6,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 24,
+        "found": 64,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1261,12 +1261,6 @@
       "UwBuitenleven.nl": {
         "found": 42,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 577,
-        "in_results": 21,
         "new": 0,
         "error": null
       },
