@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T07:18:17.653043+00:00",
+  "generated_at": "2026-07-19T07:45:29.668150+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-18T07:18:16.347858+00:00",
-    "runtime_sec": 944.5,
-    "total_scraped": 1128,
-    "total_filtered": 18,
+    "timestamp": "2026-07-19T07:45:28.637380+00:00",
+    "runtime_sec": 879.2,
+    "total_scraped": 1209,
+    "total_filtered": 33,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1246,12 +1246,6 @@
         "new": 0,
         "error": null
       },
-      "Recreatievastgoed.nl": {
-        "found": 495,
-        "in_results": 6,
-        "new": 0,
-        "error": null
-      },
       "RecreatiewoningenTekoop.nl": {
         "found": 64,
         "in_results": 0,
@@ -1261,6 +1255,12 @@
       "UwBuitenleven.nl": {
         "found": 42,
         "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "UwTweedeHuisMakelaar.nl": {
+        "found": 576,
+        "in_results": 21,
         "new": 0,
         "error": null
       },
