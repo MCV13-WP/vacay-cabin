@@ -259,7 +259,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -348,7 +348,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -370,7 +370,7 @@
     "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
     "lat": 52.0449873,
     "lng": 4.7224789,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -1097,7 +1097,7 @@
     "location": "Wiersse kavel H709",
     "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/318623-281847235-536x353.jpg",
     "sold": false,
-    "raw": "Nieuw aanbod Wiersse kavel H709 EuroParcs De Achterhoek Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                      ",
+    "raw": "Wiersse kavel H709 EuroParcs De Achterhoek Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Be",
     "offline": false,
     "first_seen": "2026-06-20",
     "price_history": [

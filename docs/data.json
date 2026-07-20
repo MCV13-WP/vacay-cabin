@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T07:45:29.668150+00:00",
+  "generated_at": "2026-07-20T08:28:08.653142+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1100,7 +1100,7 @@
       "location": "Wiersse kavel H709",
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/06/318623-281847235-536x353.jpg",
       "sold": false,
-      "raw": "Nieuw aanbod Wiersse kavel H709 EuroParcs De Achterhoek Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                      ",
+      "raw": "Wiersse kavel H709 EuroParcs De Achterhoek Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Be",
       "offline": false,
       "first_seen": "2026-06-20",
       "price_history": [
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-19T07:45:28.637380+00:00",
-    "runtime_sec": 879.2,
-    "total_scraped": 1209,
-    "total_filtered": 33,
+    "timestamp": "2026-07-20T08:28:07.569058+00:00",
+    "runtime_sec": 1012.1,
+    "total_scraped": 1703,
+    "total_filtered": 38,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1246,6 +1246,12 @@
         "new": 0,
         "error": null
       },
+      "Recreatievastgoed.nl": {
+        "found": 495,
+        "in_results": 5,
+        "new": 0,
+        "error": null
+      },
       "RecreatiewoningenTekoop.nl": {
         "found": 64,
         "in_results": 0,
@@ -1259,7 +1265,7 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 576,
+        "found": 575,
         "in_results": 21,
         "new": 0,
         "error": null
