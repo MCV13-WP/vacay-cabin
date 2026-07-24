@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-23T07:52:43.827421+00:00",
+  "generated_at": "2026-07-24T07:53:24.492586+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-23T07:52:42.307616+00:00",
-    "runtime_sec": 924.9,
-    "total_scraped": 1705,
-    "total_filtered": 40,
+    "timestamp": "2026-07-24T07:53:23.610686+00:00",
+    "runtime_sec": 984.3,
+    "total_scraped": 1703,
+    "total_filtered": 39,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1241,14 +1241,14 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 492,
-        "in_results": 7,
+        "found": 490,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
@@ -1283,7 +1283,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 166,
+        "found": 167,
         "in_results": 0,
         "new": 0,
         "error": null
