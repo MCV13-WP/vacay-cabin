@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T08:04:41.584269+00:00",
+  "generated_at": "2026-07-30T07:54:34.831933+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-07-29T08:04:40.142555+00:00",
-    "runtime_sec": 990.5,
-    "total_scraped": 1704,
-    "total_filtered": 38,
+    "timestamp": "2026-07-30T07:54:33.472470+00:00",
+    "runtime_sec": 982.8,
+    "total_scraped": 1126,
+    "total_filtered": 17,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1247,7 +1247,7 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 486,
+        "found": 487,
         "in_results": 5,
         "new": 0,
         "error": null
@@ -1261,12 +1261,6 @@
       "UwBuitenleven.nl": {
         "found": 42,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 579,
-        "in_results": 21,
         "new": 0,
         "error": null
       },
