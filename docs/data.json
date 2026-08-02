@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T08:03:40.694055+00:00",
+  "generated_at": "2026-08-02T07:51:16.734789+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -329,7 +329,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1165,7 +1165,7 @@
       "location": "Wiersse kavel H747",
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/07/328521-283505703-536x353.jpg",
       "sold": false,
-      "raw": "Nieuw aanbod Wiersse kavel H747 EuroParcs De Achterhoek Lochem, Gelderland - 458m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 255.000                                      ",
+      "raw": "Wiersse kavel H747 EuroParcs De Achterhoek Lochem, Gelderland - 458m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 255.000                                            k.k. Be",
       "offline": false,
       "first_seen": "2026-07-02",
       "price_history": [
@@ -1186,7 +1186,7 @@
       "location": "Villa Avantage kavel PB20",
       "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2026/07/328248-277190894-536x353.jpg",
       "sold": false,
-      "raw": "Nieuw aanbod Villa Avantage kavel PB20 EuroParcs De Zanding Otterlo, Gelderland - 451m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2019 Ondererfpacht Exclusief BTW 8 personen € 323.750             ",
+      "raw": "Villa Avantage kavel PB20 EuroParcs De Zanding Otterlo, Gelderland - 451m² perceeloppervlakte - 4 slaapkamers - Bouwjaar 2019 Ondererfpacht Exclusief BTW 8 personen € 323.750                          ",
       "offline": false,
       "first_seen": "2026-07-02",
       "price_history": [
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-01T08:03:39.546428+00:00",
-    "runtime_sec": 1933.6,
-    "total_scraped": 1711,
-    "total_filtered": 40,
+    "timestamp": "2026-08-02T07:51:15.545146+00:00",
+    "runtime_sec": 955.4,
+    "total_scraped": 1712,
+    "total_filtered": 42,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1241,14 +1241,14 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 3,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 486,
-        "in_results": 7,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
