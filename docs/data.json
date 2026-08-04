@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T08:50:53.593877+00:00",
+  "generated_at": "2026-08-04T08:37:46.245904+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-03T08:50:52.357612+00:00",
-    "runtime_sec": 956.1,
-    "total_scraped": 1711,
-    "total_filtered": 40,
+    "timestamp": "2026-08-04T08:37:44.935728+00:00",
+    "runtime_sec": 3243.4,
+    "total_scraped": 1122,
+    "total_filtered": 19,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1259,14 +1259,8 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 41,
+        "found": 40,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 588,
-        "in_results": 21,
         "new": 0,
         "error": null
       },
