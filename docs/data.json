@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T06:27:42.842848+00:00",
+  "generated_at": "2026-08-08T06:01:10.352141+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-07T06:27:41.761163+00:00",
-    "runtime_sec": 953.7,
-    "total_scraped": 1130,
-    "total_filtered": 18,
+    "timestamp": "2026-08-08T06:01:09.509221+00:00",
+    "runtime_sec": 865.3,
+    "total_scraped": 1131,
+    "total_filtered": 19,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1235,20 +1235,20 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 309,
+        "found": 311,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 486,
-        "in_results": 6,
+        "found": 485,
+        "in_results": 7,
         "new": 0,
         "error": null
       },
@@ -1259,7 +1259,7 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 40,
+        "found": 41,
         "in_results": 0,
         "new": 0,
         "error": null
