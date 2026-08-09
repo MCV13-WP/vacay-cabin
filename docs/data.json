@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T06:01:10.352141+00:00",
+  "generated_at": "2026-08-09T06:06:56.156800+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -395,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-08T06:01:09.509221+00:00",
-    "runtime_sec": 865.3,
-    "total_scraped": 1131,
-    "total_filtered": 19,
+    "timestamp": "2026-08-09T06:06:54.937581+00:00",
+    "runtime_sec": 941.3,
+    "total_scraped": 1132,
+    "total_filtered": 18,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1247,8 +1247,8 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 485,
-        "in_results": 7,
+        "found": 486,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
