@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T06:12:22.705017+00:00",
+  "generated_at": "2026-08-12T06:34:27.107264+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -262,7 +262,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1222,10 +1222,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-11T06:12:21.476018+00:00",
-    "runtime_sec": 918.9,
-    "total_scraped": 1129,
-    "total_filtered": 19,
+    "timestamp": "2026-08-12T06:34:26.166271+00:00",
+    "runtime_sec": 894.9,
+    "total_scraped": 1134,
+    "total_filtered": 16,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1235,20 +1235,20 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 309,
+        "found": 312,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Marktplaats": {
-        "found": 1,
+        "found": 2,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 487,
-        "in_results": 7,
+        "found": 488,
+        "in_results": 4,
         "new": 0,
         "error": null
       },
