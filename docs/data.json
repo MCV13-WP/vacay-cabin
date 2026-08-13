@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-08-12T06:34:27.107264+00:00",
-  "new_listings": [],
+  "generated_at": "2026-08-13T06:37:18.241489+00:00",
+  "new_listings": [
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Otterlo – Gelderland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/vijverlaan-1-p38-otterlo/",
+      "price": 265000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Otterlo, Gelderland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/08/94557-174059.jpg",
+      "sold": false,
+      "raw": "Otterlo Gelderland | Nederland € 265.000,- 8 94 m²",
+      "lat": 52.101527,
+      "lng": 5.7720833
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -38,7 +53,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -240,7 +255,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -262,7 +277,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +388,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1219,14 +1234,37 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Otterlo – Gelderland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/vijverlaan-1-p38-otterlo/",
+      "price": 265000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Otterlo, Gelderland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/08/94557-174059.jpg",
+      "sold": false,
+      "raw": "Otterlo Gelderland | Nederland € 265.000,- 8 94 m²",
+      "lat": 52.101527,
+      "lng": 5.7720833,
+      "offline": false,
+      "first_seen": "2026-08-13",
+      "price_history": [
+        {
+          "date": "2026-08-13",
+          "price": 265000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-12T06:34:26.166271+00:00",
-    "runtime_sec": 894.9,
-    "total_scraped": 1134,
-    "total_filtered": 16,
-    "total_new": 0,
+    "timestamp": "2026-08-13T06:37:16.943602+00:00",
+    "runtime_sec": 963.0,
+    "total_scraped": 1720,
+    "total_filtered": 43,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1241,15 +1279,15 @@
         "error": null
       },
       "Marktplaats": {
-        "found": 2,
+        "found": 1,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 488,
-        "in_results": 4,
-        "new": 0,
+        "found": 490,
+        "in_results": 10,
+        "new": 1,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
@@ -1261,6 +1299,12 @@
       "UwBuitenleven.nl": {
         "found": 41,
         "in_results": 0,
+        "new": 0,
+        "error": null
+      },
+      "UwTweedeHuisMakelaar.nl": {
+        "found": 585,
+        "in_results": 21,
         "new": 0,
         "error": null
       },
