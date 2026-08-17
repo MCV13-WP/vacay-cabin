@@ -237,7 +237,7 @@
     "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
     "lat": 53.3738667,
     "lng": 6.1277868,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -326,7 +326,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 269.500,- 8 130 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -392,7 +392,7 @@
     "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
     "lat": 52.4195869,
     "lng": 5.0707855,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
@@ -1240,8 +1240,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://recreatievastgoed.nl/woning/buinerweg-8-235-235-ees": {
+    "source": "Recreatievastgoed.nl",
+    "title": "Ees – Drenthe | Nederland",
+    "url": "https://recreatievastgoed.nl/woning/buinerweg-8-235-235-ees/",
+    "price": 325000,
+    "bedrooms": 5,
+    "persons": 10,
+    "location": "Ees, Drenthe | Nederland",
+    "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/08/94678-174406-scaled.jpg",
+    "sold": false,
+    "raw": "Ees Drenthe | Nederland € 325.000,- 124 m²",
+    "lat": 52.9079628,
+    "lng": 6.8056074,
+    "offline": false,
+    "first_seen": "2026-08-17",
+    "price_history": [
+      {
+        "date": "2026-08-17",
+        "price": 325000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-08-13",
+    "last_new_found": "2026-08-17",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
