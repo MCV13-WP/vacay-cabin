@@ -1,21 +1,6 @@
 {
-  "generated_at": "2026-08-17T05:54:57.567872+00:00",
-  "new_listings": [
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Ees – Drenthe | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/buinerweg-8-235-235-ees/",
-      "price": 325000,
-      "bedrooms": 5,
-      "persons": 10,
-      "location": "Ees, Drenthe | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/08/94678-174406-scaled.jpg",
-      "sold": false,
-      "raw": "Ees Drenthe | Nederland € 325.000,- 124 m²",
-      "lat": 52.9079628,
-      "lng": 6.8056074
-    }
-  ],
+  "generated_at": "2026-08-18T06:01:17.563805+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -53,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -75,7 +60,7 @@
       "raw": "Anjum Friesland | Nederland € 229.500,- 8 128 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -300,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -322,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -388,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -410,7 +395,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1283,11 +1268,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-17T05:54:56.435724+00:00",
-    "runtime_sec": 915.1,
-    "total_scraped": 1141,
-    "total_filtered": 22,
-    "total_new": 1,
+    "timestamp": "2026-08-18T06:01:16.297596+00:00",
+    "runtime_sec": 1030.5,
+    "total_scraped": 1143,
+    "total_filtered": 21,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1296,7 +1281,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 312,
+        "found": 313,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1309,8 +1294,8 @@
       },
       "Recreatievastgoed.nl": {
         "found": 493,
-        "in_results": 10,
-        "new": 1,
+        "in_results": 9,
+        "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
@@ -1338,7 +1323,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 177,
+        "found": 178,
         "in_results": 0,
         "new": 0,
         "error": null
