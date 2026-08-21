@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T05:52:15.651117+00:00",
+  "generated_at": "2026-08-21T05:53:59.324872+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -38,7 +38,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 145 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -307,7 +307,7 @@
       "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
       "lat": 52.9335602,
       "lng": 5.0308692,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1268,10 +1268,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-20T05:52:14.428616+00:00",
-    "runtime_sec": 917.7,
-    "total_scraped": 1733,
-    "total_filtered": 43,
+    "timestamp": "2026-08-21T05:53:58.115324+00:00",
+    "runtime_sec": 951.2,
+    "total_scraped": 1147,
+    "total_filtered": 22,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1281,7 +1281,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 314,
+        "found": 313,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1293,13 +1293,13 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 493,
+        "found": 495,
         "in_results": 10,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 62,
+        "found": 63,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1307,12 +1307,6 @@
       "UwBuitenleven.nl": {
         "found": 41,
         "in_results": 0,
-        "new": 0,
-        "error": null
-      },
-      "UwTweedeHuisMakelaar.nl": {
-        "found": 587,
-        "in_results": 21,
         "new": 0,
         "error": null
       },
@@ -1329,7 +1323,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 180,
+        "found": 179,
         "in_results": 0,
         "new": 0,
         "error": null
