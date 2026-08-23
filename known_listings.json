@@ -304,7 +304,7 @@
     "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
     "lat": 52.9335602,
     "lng": 5.0308692,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-06-05",
     "price_history": [
       {
