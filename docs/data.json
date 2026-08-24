@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T05:51:29.096028+00:00",
+  "generated_at": "2026-08-24T05:59:51.299903+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -240,7 +240,7 @@
       "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
       "lat": 53.3738667,
       "lng": 6.1277868,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -285,7 +285,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -351,7 +351,7 @@
       "raw": "Uitdam Noord-Holland | Nederland € 350.000,- 8 86 m²",
       "lat": 52.4195869,
       "lng": 5.0707855,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -373,7 +373,7 @@
       "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
       "lat": 52.0449873,
       "lng": 4.7224789,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-06-05",
       "price_history": [
         {
@@ -1268,10 +1268,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-08-23T05:51:27.756786+00:00",
-    "runtime_sec": 998.4,
-    "total_scraped": 1737,
-    "total_filtered": 42,
+    "timestamp": "2026-08-24T05:59:50.044938+00:00",
+    "runtime_sec": 1004.0,
+    "total_scraped": 1735,
+    "total_filtered": 43,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1294,7 +1294,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 502,
-        "in_results": 9,
+        "in_results": 10,
         "new": 0,
         "error": null
       },
@@ -1311,7 +1311,7 @@
         "error": null
       },
       "UwTweedeHuisMakelaar.nl": {
-        "found": 582,
+        "found": 581,
         "in_results": 21,
         "new": 0,
         "error": null
@@ -1329,7 +1329,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 180,
+        "found": 179,
         "in_results": 0,
         "new": 0,
         "error": null
