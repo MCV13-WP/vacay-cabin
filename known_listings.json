@@ -67,28 +67,6 @@
     ],
     "price_trend": "unknown"
   },
-  "https://recreatievastgoed.nl/woning/skanserwei-28-408-anjum": {
-    "source": "Recreatievastgoed.nl",
-    "title": "Anjum – Friesland | Nederland",
-    "url": "https://recreatievastgoed.nl/woning/skanserwei-28-408-anjum/",
-    "price": 299500,
-    "bedrooms": 5,
-    "persons": 10,
-    "location": "Anjum, Friesland | Nederland",
-    "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/02/88730-163913.jpg",
-    "sold": false,
-    "raw": "Anjum Friesland | Nederland € 299.500,- 10 158 m²",
-    "lat": 53.3738667,
-    "lng": 6.1277868,
-    "offline": false,
-    "first_seen": "2026-06-05",
-    "price_history": [
-      {
-        "date": "2026-06-05",
-        "price": 299500
-      }
-    ]
-  },
   "https://recreatievastgoed.nl/woning/euverem-52-38-gulpen": {
     "source": "Recreatievastgoed.nl",
     "title": "Gulpen – Limburg | Nederland",
@@ -729,27 +707,6 @@
     ],
     "price_trend": "unknown"
   },
-  "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842": {
-    "source": "UwTweedeHuisMakelaar.nl",
-    "title": "Daelenbroeck kavel 842",
-    "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842/",
-    "price": 274750,
-    "bedrooms": 6,
-    "persons": 12,
-    "location": "Daelenbroeck kavel 842",
-    "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
-    "sold": false,
-    "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          ",
-    "offline": true,
-    "first_seen": "2026-06-07",
-    "price_history": [
-      {
-        "date": "2026-06-07",
-        "price": 274750
-      }
-    ],
-    "price_trend": "unknown"
-  },
   "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe": {
     "source": "Handmatig toegevoegd",
     "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
@@ -1175,8 +1132,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.recreatiewoningentekoop.nl/recreatiewoning/nederland/limburg/helden/de-heldense-bossen-6-3": {
+    "source": "RecreatiewoningenTekoop.nl",
+    "title": "De Heldense Bossen 6, Helden",
+    "url": "https://www.recreatiewoningentekoop.nl/recreatiewoning/nederland/limburg/helden/de-heldense-bossen-6-3",
+    "price": 42500,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Helden, Limburg",
+    "image": "https://cdn.recreatiewoningentekoop.nl/16/66b8829711a36.jpg",
+    "sold": false,
+    "raw": "6 foto's € 42.500 v.o.n. De Heldense Bossen 6, Helden Helden, Limburg 8 personen Chalet ♥",
+    "lat": 51.3203339,
+    "lng": 6.000166,
+    "offline": false,
+    "first_seen": "2026-09-05",
+    "price_history": [
+      {
+        "date": "2026-09-05",
+        "price": 42500
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-08-17",
+    "last_new_found": "2026-09-05",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,

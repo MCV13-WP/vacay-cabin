@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-09-04T09:45:14.463282+00:00",
-  "new_listings": [],
+  "generated_at": "2026-09-05T09:10:55.468259+00:00",
+  "new_listings": [
+    {
+      "source": "RecreatiewoningenTekoop.nl",
+      "title": "De Heldense Bossen 6, Helden",
+      "url": "https://www.recreatiewoningentekoop.nl/recreatiewoning/nederland/limburg/helden/de-heldense-bossen-6-3",
+      "price": 42500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Helden, Limburg",
+      "image": "https://cdn.recreatiewoningentekoop.nl/16/66b8829711a36.jpg",
+      "sold": false,
+      "raw": "6 foto's € 42.500 v.o.n. De Heldense Bossen 6, Helden Helden, Limburg 8 personen Chalet ♥",
+      "lat": 51.3203339,
+      "lng": 6.000166
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -69,28 +84,6 @@
         }
       ],
       "price_trend": "unknown"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-408-anjum/",
-      "price": 299500,
-      "bedrooms": 5,
-      "persons": 10,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2026/02/88730-163913.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 299.500,- 10 158 m²",
-      "lat": 53.3738667,
-      "lng": 6.1277868,
-      "offline": false,
-      "first_seen": "2026-06-05",
-      "price_history": [
-        {
-          "date": "2026-06-05",
-          "price": 299500
-        }
-      ]
     },
     {
       "source": "Recreatievastgoed.nl",
@@ -733,27 +726,6 @@
       "price_trend": "unknown"
     },
     {
-      "source": "UwTweedeHuisMakelaar.nl",
-      "title": "Daelenbroeck kavel 842",
-      "url": "https://uwtweedehuismakelaar.nl/aanbod/daelenbroeck-kavel-842/",
-      "price": 274750,
-      "bedrooms": 6,
-      "persons": 12,
-      "location": "Daelenbroeck kavel 842",
-      "image": "https://uwtweedehuismakelaar.nl/wp-content/uploads/2025/09/34403-240693168-536x353.jpg",
-      "sold": false,
-      "raw": "Daelenbroeck kavel 842 EuroParcs Limburg Susteren, Limburg - 483m² perceeloppervlakte - 6 slaapkamers - Bouwjaar 2016 Koopkavel Btw vrij 12 personen € 274.750                                          ",
-      "offline": true,
-      "first_seen": "2026-06-07",
-      "price_history": [
-        {
-          "date": "2026-06-07",
-          "price": 274750
-        }
-      ],
-      "price_trend": "unknown"
-    },
-    {
       "source": "Handmatig toegevoegd",
       "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
       "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe",
@@ -1177,14 +1149,37 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "RecreatiewoningenTekoop.nl",
+      "title": "De Heldense Bossen 6, Helden",
+      "url": "https://www.recreatiewoningentekoop.nl/recreatiewoning/nederland/limburg/helden/de-heldense-bossen-6-3",
+      "price": 42500,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Helden, Limburg",
+      "image": "https://cdn.recreatiewoningentekoop.nl/16/66b8829711a36.jpg",
+      "sold": false,
+      "raw": "6 foto's € 42.500 v.o.n. De Heldense Bossen 6, Helden Helden, Limburg 8 personen Chalet ♥",
+      "lat": 51.3203339,
+      "lng": 6.000166,
+      "offline": false,
+      "first_seen": "2026-09-05",
+      "price_history": [
+        {
+          "date": "2026-09-05",
+          "price": 42500
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-04T09:45:13.222044+00:00",
-    "runtime_sec": 1159.0,
-    "total_scraped": 1152,
-    "total_filtered": 24,
-    "total_new": 0,
+    "timestamp": "2026-09-05T09:10:54.309689+00:00",
+    "runtime_sec": 988.1,
+    "total_scraped": 1147,
+    "total_filtered": 21,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1205,15 +1200,15 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 500,
-        "in_results": 12,
+        "found": 501,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 62,
-        "in_results": 0,
-        "new": 0,
+        "found": 53,
+        "in_results": 1,
+        "new": 1,
         "error": null
       },
       "UwBuitenleven.nl": {
@@ -1235,7 +1230,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 178,
+        "found": 181,
         "in_results": 0,
         "new": 0,
         "error": null
