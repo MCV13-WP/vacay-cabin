@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T09:29:52.708263+00:00",
+  "generated_at": "2026-09-07T10:21:20.053026+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -202,51 +202,6 @@
         {
           "date": "2026-06-05",
           "price": 229000
-        }
-      ]
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Nunspeet – Gelderland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet/",
-      "price": 339000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Nunspeet, Gelderland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85668-158333.jpg",
-      "sold": false,
-      "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
-      "lat": 52.3372909,
-      "lng": 5.7956364,
-      "offline": false,
-      "first_seen": "2026-06-05",
-      "price_history": [
-        {
-          "date": "2026-06-05",
-          "price": 339000
-        }
-      ],
-      "price_trend": "unknown"
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Uitdam – Noord-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/zeedijk-2-315-uitdam/",
-      "price": 299000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Uitdam, Noord-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/70089-128917.jpg",
-      "sold": false,
-      "raw": "Uitdam Noord-Holland | Nederland € 299.000,- 8 77 m²",
-      "lat": 52.4195869,
-      "lng": 5.0707855,
-      "offline": false,
-      "first_seen": "2026-06-05",
-      "price_history": [
-        {
-          "date": "2026-06-05",
-          "price": 299000
         }
       ]
     },
@@ -1160,10 +1115,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-06T09:29:51.702640+00:00",
-    "runtime_sec": 900.8,
+    "timestamp": "2026-09-07T10:21:18.857302+00:00",
+    "runtime_sec": 1047.7,
     "total_scraped": 1146,
-    "total_filtered": 21,
+    "total_filtered": 20,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1186,7 +1141,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 500,
-        "in_results": 8,
+        "in_results": 7,
         "new": 0,
         "error": null
       },
