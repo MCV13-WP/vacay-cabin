@@ -202,28 +202,6 @@
       }
     ]
   },
-  "https://recreatievastgoed.nl/woning/akkerweg-41-den-oever": {
-    "source": "Recreatievastgoed.nl",
-    "title": "Den Oever – Noord-Holland | Nederland",
-    "url": "https://recreatievastgoed.nl/woning/akkerweg-41-den-oever/",
-    "price": 47775,
-    "bedrooms": null,
-    "persons": null,
-    "location": "Den Oever, Noord-Holland | Nederland",
-    "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85341-158716.jpeg",
-    "sold": false,
-    "raw": "Den Oever Noord-Holland | Nederland € 47.775,- 248 m²",
-    "lat": 52.9335602,
-    "lng": 5.0308692,
-    "offline": false,
-    "first_seen": "2026-06-05",
-    "price_history": [
-      {
-        "date": "2026-06-05",
-        "price": 47775
-      }
-    ]
-  },
   "https://recreatievastgoed.nl/woning/verlengde-breevaart-3-86-reeuwijk": {
     "source": "Recreatievastgoed.nl",
     "title": "Reeuwijk – Zuid-Holland | Nederland",
