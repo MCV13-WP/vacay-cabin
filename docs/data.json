@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T09:45:49.786231+00:00",
+  "generated_at": "2026-09-09T09:46:43.326153+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1093,9 +1093,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-08T09:45:48.763258+00:00",
-    "runtime_sec": 1008.7,
-    "total_scraped": 1145,
+    "timestamp": "2026-09-09T09:46:42.312334+00:00",
+    "runtime_sec": 900.9,
+    "total_scraped": 1150,
     "total_filtered": 20,
     "total_new": 0,
     "per_source": {
@@ -1106,7 +1106,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 315,
+        "found": 319,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1118,7 +1118,7 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 500,
+        "found": 501,
         "in_results": 7,
         "new": 0,
         "error": null
@@ -1130,7 +1130,7 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 41,
+        "found": 42,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1148,7 +1148,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 180,
+        "found": 179,
         "in_results": 0,
         "new": 0,
         "error": null
