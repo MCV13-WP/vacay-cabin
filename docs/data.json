@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-09-09T09:46:43.326153+00:00",
-  "new_listings": [],
+  "generated_at": "2026-09-10T09:47:29.505413+00:00",
+  "new_listings": [
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Nunspeet – Gelderland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet/",
+      "price": 339000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Nunspeet, Gelderland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85668-158333.jpg",
+      "sold": false,
+      "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
+      "lat": 52.3372909,
+      "lng": 5.7956364
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -1090,14 +1105,37 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "Recreatievastgoed.nl",
+      "title": "Nunspeet – Gelderland | Nederland",
+      "url": "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet/",
+      "price": 339000,
+      "bedrooms": 4,
+      "persons": 8,
+      "location": "Nunspeet, Gelderland | Nederland",
+      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85668-158333.jpg",
+      "sold": false,
+      "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
+      "lat": 52.3372909,
+      "lng": 5.7956364,
+      "offline": false,
+      "first_seen": "2026-09-10",
+      "price_history": [
+        {
+          "date": "2026-09-10",
+          "price": 339000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-09T09:46:42.312334+00:00",
-    "runtime_sec": 900.9,
-    "total_scraped": 1150,
-    "total_filtered": 20,
-    "total_new": 0,
+    "timestamp": "2026-09-10T09:47:28.404810+00:00",
+    "runtime_sec": 1006.0,
+    "total_scraped": 1153,
+    "total_filtered": 22,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1118,9 +1156,9 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 501,
-        "in_results": 7,
-        "new": 0,
+        "found": 504,
+        "in_results": 9,
+        "new": 1,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {

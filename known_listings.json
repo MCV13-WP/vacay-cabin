@@ -1088,8 +1088,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet": {
+    "source": "Recreatievastgoed.nl",
+    "title": "Nunspeet – Gelderland | Nederland",
+    "url": "https://recreatievastgoed.nl/woning/randmeerweg-14-60-nunspeet/",
+    "price": 339000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "Nunspeet, Gelderland | Nederland",
+    "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/85668-158333.jpg",
+    "sold": false,
+    "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
+    "lat": 52.3372909,
+    "lng": 5.7956364,
+    "offline": false,
+    "first_seen": "2026-09-10",
+    "price_history": [
+      {
+        "date": "2026-09-10",
+        "price": 339000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-09-05",
+    "last_new_found": "2026-09-10",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
