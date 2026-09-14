@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T10:20:46.457239+00:00",
+  "generated_at": "2026-09-14T10:46:05.539264+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -182,50 +182,6 @@
       "offline": true,
       "lat": 52.1289693,
       "lng": 5.2046134
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Anjum – Friesland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/skanserwei-28-426-anjum/",
-      "price": 229000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Anjum, Friesland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/68647-130001.jpg",
-      "sold": false,
-      "raw": "Anjum Friesland | Nederland € 229.000,- 8 133 m²",
-      "lat": 53.3738667,
-      "lng": 6.1277868,
-      "offline": false,
-      "first_seen": "2026-06-05",
-      "price_history": [
-        {
-          "date": "2026-06-05",
-          "price": 229000
-        }
-      ]
-    },
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Reeuwijk – Zuid-Holland | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/verlengde-breevaart-3-86-reeuwijk/",
-      "price": 309500,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Reeuwijk, Zuid-Holland | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/02/65579-129850.jpg",
-      "sold": false,
-      "raw": "Reeuwijk Zuid-Holland | Nederland € 309.500,- 8 108 m²",
-      "lat": 52.0449873,
-      "lng": 4.7224789,
-      "offline": false,
-      "first_seen": "2026-06-05",
-      "price_history": [
-        {
-          "date": "2026-06-05",
-          "price": 309500
-        }
-      ]
     },
     {
       "source": "VakantiehuisTekoop.nl",
@@ -1116,10 +1072,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-13T10:20:45.452421+00:00",
-    "runtime_sec": 854.9,
+    "timestamp": "2026-09-14T10:46:04.198111+00:00",
+    "runtime_sec": 985.6,
     "total_scraped": 1148,
-    "total_filtered": 23,
+    "total_filtered": 22,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1142,7 +1098,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 502,
-        "in_results": 10,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
