@@ -714,27 +714,6 @@
     ],
     "price_trend": "unknown"
   },
-  "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709": {
-    "source": "UwTweedeHuisMakelaar.nl",
-    "title": "Wiersse 8 kavel H709",
-    "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
-    "price": 275000,
-    "bedrooms": 4,
-    "persons": 8,
-    "location": "Wiersse 8 kavel H709",
-    "image": "",
-    "sold": false,
-    "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken",
-    "offline": true,
-    "first_seen": "2026-06-18",
-    "price_history": [
-      {
-        "date": "2026-06-18",
-        "price": 275000
-      }
-    ],
-    "price_trend": "unknown"
-  },
   "https://www.funda.nl/detail/recreatie/ruinen-gem-de-wolden/huis-gijsselterweg-30-11/89656684": {
     "source": "Handmatig toegevoegd",
     "title": "Je bent bijna op de pagina die je zoekt",

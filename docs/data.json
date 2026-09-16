@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T10:10:03.624382+00:00",
+  "generated_at": "2026-09-16T10:04:59.069241+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -718,27 +718,6 @@
       "price_trend": "unknown"
     },
     {
-      "source": "UwTweedeHuisMakelaar.nl",
-      "title": "Wiersse 8 kavel H709",
-      "url": "https://uwtweedehuismakelaar.nl/aanbod/wiersse-8-kavel-h709/",
-      "price": 275000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "Wiersse 8 kavel H709",
-      "image": "",
-      "sold": false,
-      "raw": "Nieuw aanbod Wiersse 8 kavel H709 Lochem, Gelderland - 347m² perceeloppervlakte - 4 slaapkamers Koopkavel Exclusief BTW 8 personen € 275.000                                            k.k. Bekijken",
-      "offline": true,
-      "first_seen": "2026-06-18",
-      "price_history": [
-        {
-          "date": "2026-06-18",
-          "price": 275000
-        }
-      ],
-      "price_trend": "unknown"
-    },
-    {
       "source": "Handmatig toegevoegd",
       "title": "Je bent bijna op de pagina die je zoekt",
       "url": "https://www.funda.nl/detail/recreatie/ruinen-gem-de-wolden/huis-gijsselterweg-30-11/89656684/",
@@ -1072,10 +1051,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-15T10:10:02.627356+00:00",
-    "runtime_sec": 902.0,
-    "total_scraped": 1148,
-    "total_filtered": 20,
+    "timestamp": "2026-09-16T10:04:57.740761+00:00",
+    "runtime_sec": 1029.4,
+    "total_scraped": 1152,
+    "total_filtered": 23,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1085,7 +1064,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 319,
+        "found": 322,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1097,8 +1076,8 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 502,
-        "in_results": 7,
+        "found": 504,
+        "in_results": 10,
         "new": 0,
         "error": null
       },
@@ -1127,7 +1106,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 178,
+        "found": 177,
         "in_results": 0,
         "new": 0,
         "error": null
