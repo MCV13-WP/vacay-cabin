@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T10:04:59.069241+00:00",
+  "generated_at": "2026-09-17T10:11:14.541922+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1051,9 +1051,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-16T10:04:57.740761+00:00",
-    "runtime_sec": 1029.4,
-    "total_scraped": 1152,
+    "timestamp": "2026-09-17T10:11:13.562354+00:00",
+    "runtime_sec": 983.5,
+    "total_scraped": 1184,
     "total_filtered": 23,
     "total_new": 0,
     "per_source": {
@@ -1076,7 +1076,7 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 504,
+        "found": 536,
         "in_results": 10,
         "new": 0,
         "error": null
