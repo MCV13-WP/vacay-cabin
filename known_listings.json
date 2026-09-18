@@ -1046,8 +1046,29 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4081/boshuisje-drenthe": {
+    "source": "VakantiehuisTekoop.nl",
+    "title": "Boshuisje Drenthe IJhorst",
+    "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4081/boshuisje-drenthe",
+    "price": 175000,
+    "bedrooms": null,
+    "persons": null,
+    "location": "Boshuisje Drenthe IJhorst",
+    "image": "",
+    "sold": false,
+    "raw": "Boshuisje Drenthe IJhorst Nederland € 175.000 k.k. Particuliere verkoop Favorieten Deel deze woning Al 143 keer bekeken",
+    "offline": false,
+    "first_seen": "2026-09-18",
+    "price_history": [
+      {
+        "date": "2026-09-18",
+        "price": 175000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-09-10",
+    "last_new_found": "2026-09-18",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,

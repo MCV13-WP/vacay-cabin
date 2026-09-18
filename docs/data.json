@@ -1,6 +1,19 @@
 {
-  "generated_at": "2026-09-17T10:11:14.541922+00:00",
-  "new_listings": [],
+  "generated_at": "2026-09-18T11:01:16.124535+00:00",
+  "new_listings": [
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Boshuisje Drenthe IJhorst",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4081/boshuisje-drenthe",
+      "price": 175000,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Boshuisje Drenthe IJhorst",
+      "image": "",
+      "sold": false,
+      "raw": "Boshuisje Drenthe IJhorst Nederland € 175.000 k.k. Particuliere verkoop Favorieten Deel deze woning Al 143 keer bekeken"
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -1048,14 +1061,35 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Boshuisje Drenthe IJhorst",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4081/boshuisje-drenthe",
+      "price": 175000,
+      "bedrooms": null,
+      "persons": null,
+      "location": "Boshuisje Drenthe IJhorst",
+      "image": "",
+      "sold": false,
+      "raw": "Boshuisje Drenthe IJhorst Nederland € 175.000 k.k. Particuliere verkoop Favorieten Deel deze woning Al 143 keer bekeken",
+      "offline": false,
+      "first_seen": "2026-09-18",
+      "price_history": [
+        {
+          "date": "2026-09-18",
+          "price": 175000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-17T10:11:13.562354+00:00",
-    "runtime_sec": 983.5,
-    "total_scraped": 1184,
+    "timestamp": "2026-09-18T11:01:14.997153+00:00",
+    "runtime_sec": 5304.9,
+    "total_scraped": 1180,
     "total_filtered": 23,
-    "total_new": 0,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1064,7 +1098,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 322,
+        "found": 318,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1077,7 +1111,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 536,
-        "in_results": 10,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
@@ -1095,8 +1129,8 @@
       },
       "VakantiehuisTekoop.nl": {
         "found": 36,
-        "in_results": 0,
-        "new": 0,
+        "in_results": 1,
+        "new": 1,
         "error": null
       },
       "Vakantiemakelaar.nl": {
