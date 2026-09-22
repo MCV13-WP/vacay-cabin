@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-21T10:50:57.272296+00:00",
+  "generated_at": "2026-09-22T10:03:48.762710+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1072,10 +1072,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-21T10:50:56.097402+00:00",
-    "runtime_sec": 993.2,
+    "timestamp": "2026-09-22T10:03:47.364574+00:00",
+    "runtime_sec": 1034.6,
     "total_scraped": 1182,
-    "total_filtered": 20,
+    "total_filtered": 28,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1085,7 +1085,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 321,
+        "found": 320,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1098,7 +1098,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 536,
-        "in_results": 7,
+        "in_results": 15,
         "new": 0,
         "error": null
       },
@@ -1127,7 +1127,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 176,
+        "found": 177,
         "in_results": 0,
         "new": 0,
         "error": null
