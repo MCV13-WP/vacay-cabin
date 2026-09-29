@@ -962,7 +962,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-09-10",
     "price_history": [
       {
@@ -983,7 +983,7 @@
     "image": "",
     "sold": false,
     "raw": "Boshuisje Drenthe IJhorst Nederland € 175.000 k.k. Particuliere verkoop Favorieten Deel deze woning Al 143 keer bekeken",
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-09-18",
     "price_history": [
       {
