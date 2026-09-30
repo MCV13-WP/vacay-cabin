@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T11:29:46.840757+00:00",
+  "generated_at": "2026-09-30T11:20:16.218328+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -965,7 +965,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1064,10 +1064,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-09-29T11:29:45.788658+00:00",
-    "runtime_sec": 935.2,
-    "total_scraped": 1178,
-    "total_filtered": 20,
+    "timestamp": "2026-09-30T11:20:15.009063+00:00",
+    "runtime_sec": 1057.0,
+    "total_scraped": 1179,
+    "total_filtered": 22,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1090,7 +1090,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 535,
-        "in_results": 7,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
@@ -1119,7 +1119,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 174,
+        "found": 175,
         "in_results": 0,
         "new": 0,
         "error": null
