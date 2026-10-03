@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T11:16:46.929080+00:00",
+  "generated_at": "2026-10-03T10:34:00.257457+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -986,7 +986,7 @@
       "image": "",
       "sold": false,
       "raw": "Boshuisje Drenthe IJhorst Nederland € 175.000 k.k. Particuliere verkoop Favorieten Deel deze woning Al 143 keer bekeken",
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-09-18",
       "price_history": [
         {
@@ -1064,10 +1064,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-02T11:16:45.945748+00:00",
-    "runtime_sec": 1073.8,
+    "timestamp": "2026-10-03T10:33:59.197342+00:00",
+    "runtime_sec": 936.7,
     "total_scraped": 1178,
-    "total_filtered": 27,
+    "total_filtered": 21,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1090,7 +1090,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 535,
-        "in_results": 14,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
