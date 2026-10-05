@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-04T11:19:26.209009+00:00",
+  "generated_at": "2026-10-05T12:29:22.769590+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1064,10 +1064,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-04T11:19:25.137301+00:00",
-    "runtime_sec": 1013.2,
-    "total_scraped": 1178,
-    "total_filtered": 20,
+    "timestamp": "2026-10-05T12:29:21.569002+00:00",
+    "runtime_sec": 1139.4,
+    "total_scraped": 1177,
+    "total_filtered": 22,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1089,8 +1089,8 @@
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 535,
-        "in_results": 7,
+        "found": 534,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
