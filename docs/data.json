@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T12:29:22.769590+00:00",
+  "generated_at": "2026-10-06T12:10:25.651476+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1064,9 +1064,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-05T12:29:21.569002+00:00",
-    "runtime_sec": 1139.4,
-    "total_scraped": 1177,
+    "timestamp": "2026-10-06T12:10:24.666336+00:00",
+    "runtime_sec": 985.9,
+    "total_scraped": 1178,
     "total_filtered": 22,
     "total_new": 0,
     "per_source": {
@@ -1077,7 +1077,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 320,
+        "found": 319,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1119,7 +1119,7 @@
         "error": null
       },
       "Veluwechalets.nl": {
-        "found": 174,
+        "found": 176,
         "in_results": 0,
         "new": 0,
         "error": null
