@@ -857,29 +857,6 @@
     ],
     "price_trend": "unknown"
   },
-  "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond": {
-    "source": "VakantiehuisTekoop.nl",
-    "title": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
-    "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/3981/rust-ruimte-en-uitzicht-op-het-water-in-drenthe-vanaf-je-eigen-grond",
-    "price": 57499,
-    "bedrooms": null,
-    "persons": null,
-    "location": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster",
-    "image": "",
-    "sold": false,
-    "raw": "Rust, ruimte en uitzicht op het water In Drenthe vanaf je eigen grond. Wijster Nederland € 57.499 k.k. UwChaletmakelaar Favorieten Deel deze woning Al 71 keer bekeken",
-    "lat": 52.9248068,
-    "lng": 4.7535072,
-    "offline": true,
-    "first_seen": "2026-07-09",
-    "price_history": [
-      {
-        "date": "2026-07-09",
-        "price": 57499
-      }
-    ],
-    "price_trend": "unknown"
-  },
   "https://recreatievastgoed.nl/woning/vijverlaan-1-p38-otterlo": {
     "source": "Recreatievastgoed.nl",
     "title": "Otterlo – Gelderland | Nederland",
