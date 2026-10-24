@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T10:04:45.764461+00:00",
+  "generated_at": "2026-10-24T09:33:57.719490+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1041,9 +1041,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-23T10:04:44.968279+00:00",
-    "runtime_sec": 745.2,
-    "total_scraped": 990,
+    "timestamp": "2026-10-24T09:33:56.682320+00:00",
+    "runtime_sec": 650.6,
+    "total_scraped": 972,
     "total_filtered": 22,
     "total_new": 0,
     "per_source": {
@@ -1054,7 +1054,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 309,
+        "found": 291,
         "in_results": 0,
         "new": 0,
         "error": null
