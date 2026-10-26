@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T09:51:47.836280+00:00",
+  "generated_at": "2026-10-26T11:11:19.388996+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -942,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1041,9 +1041,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-25T09:51:46.853884+00:00",
-    "runtime_sec": 656.8,
-    "total_scraped": 972,
+    "timestamp": "2026-10-26T11:11:18.228379+00:00",
+    "runtime_sec": 794.8,
+    "total_scraped": 968,
     "total_filtered": 21,
     "total_new": 0,
     "per_source": {
@@ -1054,7 +1054,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 291,
+        "found": 289,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1066,7 +1066,7 @@
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
-        "found": 51,
+        "found": 49,
         "in_results": 1,
         "new": 0,
         "error": null
