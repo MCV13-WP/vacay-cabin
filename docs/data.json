@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T11:11:19.388996+00:00",
+  "generated_at": "2026-10-27T10:29:49.575450+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1041,9 +1041,9 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-26T11:11:18.228379+00:00",
-    "runtime_sec": 794.8,
-    "total_scraped": 968,
+    "timestamp": "2026-10-27T10:29:48.438319+00:00",
+    "runtime_sec": 678.1,
+    "total_scraped": 971,
     "total_filtered": 21,
     "total_new": 0,
     "per_source": {
@@ -1054,7 +1054,7 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 289,
+        "found": 291,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1072,7 +1072,7 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 42,
+        "found": 43,
         "in_results": 0,
         "new": 0,
         "error": null
