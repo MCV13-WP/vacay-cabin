@@ -939,7 +939,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-09-10",
     "price_history": [
       {
@@ -1036,8 +1036,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://recreatievastgoed.nl/woning/de-kamp-5-well": {
+    "source": "Recreatievastgoed.nl",
+    "title": "Well – Limburg | Nederland",
+    "url": "https://recreatievastgoed.nl/woning/de-kamp-5-well/",
+    "price": 239000,
+    "bedrooms": null,
+    "persons": null,
+    "location": "Well, Limburg | Nederland",
+    "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/96314-159113.jpg",
+    "sold": false,
+    "raw": "Well Limburg | Nederland € 239.000,-",
+    "lat": 51.5545649,
+    "lng": 6.0931309,
+    "offline": false,
+    "first_seen": "2026-10-29",
+    "price_history": [
+      {
+        "date": "2026-10-29",
+        "price": 239000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-09-26",
+    "last_new_found": "2026-10-29",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
