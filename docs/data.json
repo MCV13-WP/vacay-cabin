@@ -1,21 +1,6 @@
 {
-  "generated_at": "2026-10-29T11:35:21.477616+00:00",
-  "new_listings": [
-    {
-      "source": "Recreatievastgoed.nl",
-      "title": "Well – Limburg | Nederland",
-      "url": "https://recreatievastgoed.nl/woning/de-kamp-5-well/",
-      "price": 239000,
-      "bedrooms": null,
-      "persons": null,
-      "location": "Well, Limburg | Nederland",
-      "image": "https://recreatievastgoed.nl/wp-content/uploads/2025/11/96314-159113.jpg",
-      "sold": false,
-      "raw": "Well Limburg | Nederland € 239.000,-",
-      "lat": 51.5545649,
-      "lng": 6.0931309
-    }
-  ],
+  "generated_at": "2026-10-30T11:31:28.513052+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -957,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1079,11 +1064,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-29T11:35:20.675901+00:00",
-    "runtime_sec": 691.4,
-    "total_scraped": 984,
-    "total_filtered": 22,
-    "total_new": 1,
+    "timestamp": "2026-10-30T11:31:27.377599+00:00",
+    "runtime_sec": 928.4,
+    "total_scraped": 969,
+    "total_filtered": 27,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1092,15 +1077,15 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 291,
+        "found": 276,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 546,
-        "in_results": 9,
-        "new": 1,
+        "in_results": 14,
+        "new": 0,
         "error": null
       },
       "RecreatiewoningenTekoop.nl": {
