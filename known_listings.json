@@ -1049,7 +1049,7 @@
     "raw": "Well Limburg | Nederland € 239.000,-",
     "lat": 51.5545649,
     "lng": 6.0931309,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-10-29",
     "price_history": [
       {

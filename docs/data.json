@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T10:59:15.467262+00:00",
+  "generated_at": "2026-11-01T11:56:23.778348+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1052,7 +1052,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1064,10 +1064,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-10-31T10:59:14.383828+00:00",
-    "runtime_sec": 620.2,
+    "timestamp": "2026-11-01T11:56:22.717451+00:00",
+    "runtime_sec": 613.2,
     "total_scraped": 967,
-    "total_filtered": 24,
+    "total_filtered": 23,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1084,7 +1084,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 546,
-        "in_results": 11,
+        "in_results": 10,
         "new": 0,
         "error": null
       },
