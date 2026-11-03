@@ -1059,8 +1059,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.vakantiemakelaar.nl/woning/gelderland/europarcs-de-zanding/nr-38-ponybos-type-het-geheim-van-otterlo-8p": {
+    "source": "Vakantiemakelaar.nl",
+    "title": "EuroParcs De Zanding Otterlo, Gelderland 8-persoons vrijstaa",
+    "url": "https://www.vakantiemakelaar.nl/woning/gelderland/europarcs-de-zanding/nr-38-ponybos-type-het-geheim-van-otterlo-8p/",
+    "price": 265000,
+    "bedrooms": 4,
+    "persons": 8,
+    "location": "EuroParcs De Zanding Otterlo, Gelderland",
+    "image": "https://api.vakantiemakelaar.nl/uploads/object/460x259/16c0b66b56f7809316bd7bcd14115ef060114bf7.jpg",
+    "sold": false,
+    "raw": "EuroParcs De Zanding Otterlo, Gelderland 8-persoons vrijstaande recreatiewoning nr. 38 Ponybos – type Het Geheim van Otterlo 8P 94m 2 / 320m 2 € 265.000 k.k. btw vrij Tipwoning Bekijk woning Bewaren",
+    "lat": 52.0906214,
+    "lng": 5.779915,
+    "offline": false,
+    "first_seen": "2026-11-03",
+    "price_history": [
+      {
+        "date": "2026-11-03",
+        "price": 265000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-10-29",
+    "last_new_found": "2026-11-03",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,
