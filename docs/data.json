@@ -1,21 +1,6 @@
 {
-  "generated_at": "2026-11-03T12:52:57.080679+00:00",
-  "new_listings": [
-    {
-      "source": "Vakantiemakelaar.nl",
-      "title": "EuroParcs De Zanding Otterlo, Gelderland 8-persoons vrijstaa",
-      "url": "https://www.vakantiemakelaar.nl/woning/gelderland/europarcs-de-zanding/nr-38-ponybos-type-het-geheim-van-otterlo-8p/",
-      "price": 265000,
-      "bedrooms": 4,
-      "persons": 8,
-      "location": "EuroParcs De Zanding Otterlo, Gelderland",
-      "image": "https://api.vakantiemakelaar.nl/uploads/object/460x259/16c0b66b56f7809316bd7bcd14115ef060114bf7.jpg",
-      "sold": false,
-      "raw": "EuroParcs De Zanding Otterlo, Gelderland 8-persoons vrijstaande recreatiewoning nr. 38 Ponybos – type Het Geheim van Otterlo 8P 94m 2 / 320m 2 € 265.000 k.k. btw vrij Tipwoning Bekijk woning Bewaren",
-      "lat": 52.0906214,
-      "lng": 5.779915
-    }
-  ],
+  "generated_at": "2026-11-04T13:03:27.020337+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -957,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1067,7 +1052,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1102,11 +1087,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-03T12:52:55.964761+00:00",
-    "runtime_sec": 656.5,
-    "total_scraped": 967,
-    "total_filtered": 23,
-    "total_new": 1,
+    "timestamp": "2026-11-04T13:03:25.788279+00:00",
+    "runtime_sec": 657.1,
+    "total_scraped": 968,
+    "total_filtered": 25,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1115,14 +1100,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 274,
+        "found": 275,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 546,
-        "in_results": 9,
+        "in_results": 11,
         "new": 0,
         "error": null
       },
@@ -1147,7 +1132,7 @@
       "Vakantiemakelaar.nl": {
         "found": 3,
         "in_results": 1,
-        "new": 1,
+        "new": 0,
         "error": null
       }
     }
