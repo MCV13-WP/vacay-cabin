@@ -939,7 +939,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-09-10",
     "price_history": [
       {
@@ -972,13 +972,13 @@
   },
   "https://www.succesparken.nl/uniek-gelegen-10-persoons-eikenhoeve-nr-226-met-sauna-direct-aan-het-bos-van-drents-landschap": {
     "source": "Handmatig toegevoegd",
-    "title": "Uniek gelegen 10-persoons Eikenhoeve nr 226 met sauna, direct aan het bos van Drents Landschap",
+    "title": "403 ERROR",
     "url": "https://www.succesparken.nl/uniek-gelegen-10-persoons-eikenhoeve-nr-226-met-sauna-direct-aan-het-bos-van-drents-landschap",
-    "price": 349500,
-    "bedrooms": 5,
-    "persons": 10,
+    "price": null,
+    "bedrooms": null,
+    "persons": null,
     "location": "",
-    "image": "https://cdn-cms.bookingexperts.com/media/4503/46/optimized.jpg",
+    "image": "",
     "sold": false,
     "raw": "",
     "is_manual": true,
@@ -988,19 +988,23 @@
       {
         "date": "2026-09-26",
         "price": 349500
+      },
+      {
+        "date": "2026-11-07",
+        "price": null
       }
     ],
     "price_trend": "unknown"
   },
   "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond": {
     "source": "Handmatig toegevoegd",
-    "title": "Te koop luxe 10 persoons wellnessbungalow 313 op eigen grond",
+    "title": "403 ERROR",
     "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond",
     "price": null,
-    "bedrooms": 5,
-    "persons": 10,
+    "bedrooms": null,
+    "persons": null,
     "location": "",
-    "image": "https://cdn-cms.bookingexperts.com/media/3882/72/optimized.jpg",
+    "image": "",
     "sold": false,
     "raw": "",
     "is_manual": true,
@@ -1016,13 +1020,13 @@
   },
   "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe": {
     "source": "Handmatig toegevoegd",
-    "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
+    "title": "403 ERROR",
     "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe",
-    "price": 299500,
-    "bedrooms": 6,
-    "persons": 12,
+    "price": null,
+    "bedrooms": null,
+    "persons": null,
     "location": "",
-    "image": "https://cdn-cms.bookingexperts.com/media/4563/4/optimized.jpg",
+    "image": "",
     "sold": false,
     "raw": "",
     "is_manual": true,
@@ -1032,6 +1036,10 @@
       {
         "date": "2026-09-26",
         "price": 299500
+      },
+      {
+        "date": "2026-11-07",
+        "price": null
       }
     ],
     "price_trend": "unknown"
