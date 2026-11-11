@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T13:33:43.802330+00:00",
+  "generated_at": "2026-11-11T12:43:35.366221+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -942,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1060,7 +1060,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1083,7 +1083,7 @@
       "raw": "EuroParcs De Zanding Otterlo, Gelderland 8-persoons vrijstaande recreatiewoning nr. 38 Ponybos – type Het Geheim van Otterlo 8P 94m 2 / 320m 2 € 265.000 k.k. btw vrij Tipwoning Bekijk woning Bewaren",
       "lat": 52.0906214,
       "lng": 5.779915,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-11-03",
       "price_history": [
         {
@@ -1095,10 +1095,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-10T13:33:42.740505+00:00",
-    "runtime_sec": 586.6,
-    "total_scraped": 978,
-    "total_filtered": 24,
+    "timestamp": "2026-11-11T12:43:34.405023+00:00",
+    "runtime_sec": 618.8,
+    "total_scraped": 975,
+    "total_filtered": 20,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1108,14 +1108,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 266,
+        "found": 263,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 565,
-        "in_results": 10,
+        "in_results": 7,
         "new": 0,
         "error": null
       },
@@ -1139,7 +1139,7 @@
       },
       "Vakantiemakelaar.nl": {
         "found": 3,
-        "in_results": 1,
+        "in_results": 0,
         "new": 0,
         "error": null
       }
