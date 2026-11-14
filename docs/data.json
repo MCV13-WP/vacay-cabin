@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T13:07:14.326314+00:00",
+  "generated_at": "2026-11-14T12:09:30.597956+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -942,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1060,7 +1060,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1095,10 +1095,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-13T13:07:13.123804+00:00",
-    "runtime_sec": 630.5,
-    "total_scraped": 973,
-    "total_filtered": 20,
+    "timestamp": "2026-11-14T12:09:29.535713+00:00",
+    "runtime_sec": 579.8,
+    "total_scraped": 971,
+    "total_filtered": 22,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1108,14 +1108,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 261,
+        "found": 259,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 565,
-        "in_results": 7,
+        "in_results": 9,
         "new": 0,
         "error": null
       },
