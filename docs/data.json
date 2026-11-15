@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T12:09:30.597956+00:00",
+  "generated_at": "2026-11-15T12:44:46.032703+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -942,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1095,8 +1095,8 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-14T12:09:29.535713+00:00",
-    "runtime_sec": 579.8,
+    "timestamp": "2026-11-15T12:44:44.767028+00:00",
+    "runtime_sec": 527.8,
     "total_scraped": 971,
     "total_filtered": 22,
     "total_new": 0,
