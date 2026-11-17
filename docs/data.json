@@ -1,6 +1,19 @@
 {
-  "generated_at": "2026-11-16T13:37:33.565978+00:00",
-  "new_listings": [],
+  "generated_at": "2026-11-17T14:26:48.855848+00:00",
+  "new_listings": [
+    {
+      "source": "Vakantiemakelaar.nl",
+      "title": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaa",
+      "url": "https://www.vakantiemakelaar.nl/woning/drenthe/landal-het-land-van-bartje/nr-235-type-10lk/",
+      "price": 325000,
+      "bedrooms": 5,
+      "persons": 10,
+      "location": "Landal Het Land van Bartje Ees, Drenthe",
+      "image": "https://api.vakantiemakelaar.nl/uploads/object/460x259/7014b180da8c966b1fd8b620efbf00572e172a9b.jpg",
+      "sold": false,
+      "raw": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaande luxe recreatiewonig nr. 235 – type 10LK 124m 2 / 1029m 2 € 325.000 k.k. Rendement Tipwoning Bekijk woning Bewaren"
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -942,7 +955,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -975,13 +988,13 @@
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "403 ERROR",
+      "title": "Uniek gelegen 10-persoons Eikenhoeve nr 226 met sauna, direct aan het bos van Drents Landschap",
       "url": "https://www.succesparken.nl/uniek-gelegen-10-persoons-eikenhoeve-nr-226-met-sauna-direct-aan-het-bos-van-drents-landschap",
-      "price": null,
-      "bedrooms": null,
-      "persons": null,
+      "price": 349500,
+      "bedrooms": 5,
+      "persons": 10,
       "location": "",
-      "image": "",
+      "image": "https://cdn-cms.bookingexperts.com/media/4503/46/optimized.jpg",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -995,19 +1008,23 @@
         {
           "date": "2026-11-07",
           "price": null
+        },
+        {
+          "date": "2026-11-17",
+          "price": 349500
         }
       ],
-      "price_trend": "unknown"
+      "price_trend": "stable"
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "403 ERROR",
+      "title": "Te koop luxe 10 persoons wellnessbungalow 313 op eigen grond",
       "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond",
       "price": null,
-      "bedrooms": null,
-      "persons": null,
+      "bedrooms": 5,
+      "persons": 10,
       "location": "",
-      "image": "",
+      "image": "https://cdn-cms.bookingexperts.com/media/3882/72/optimized.jpg",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -1023,13 +1040,13 @@
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "403 ERROR",
+      "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
       "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe",
-      "price": null,
-      "bedrooms": null,
-      "persons": null,
+      "price": 299500,
+      "bedrooms": 6,
+      "persons": 12,
       "location": "",
-      "image": "",
+      "image": "https://cdn-cms.bookingexperts.com/media/4563/4/optimized.jpg",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -1043,9 +1060,13 @@
         {
           "date": "2026-11-07",
           "price": null
+        },
+        {
+          "date": "2026-11-17",
+          "price": 299500
         }
       ],
-      "price_trend": "unknown"
+      "price_trend": "stable"
     },
     {
       "source": "Recreatievastgoed.nl",
@@ -1060,7 +1081,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1092,14 +1113,35 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "Vakantiemakelaar.nl",
+      "title": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaa",
+      "url": "https://www.vakantiemakelaar.nl/woning/drenthe/landal-het-land-van-bartje/nr-235-type-10lk/",
+      "price": 325000,
+      "bedrooms": 5,
+      "persons": 10,
+      "location": "Landal Het Land van Bartje Ees, Drenthe",
+      "image": "https://api.vakantiemakelaar.nl/uploads/object/460x259/7014b180da8c966b1fd8b620efbf00572e172a9b.jpg",
+      "sold": false,
+      "raw": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaande luxe recreatiewonig nr. 235 – type 10LK 124m 2 / 1029m 2 € 325.000 k.k. Rendement Tipwoning Bekijk woning Bewaren",
+      "offline": false,
+      "first_seen": "2026-11-17",
+      "price_history": [
+        {
+          "date": "2026-11-17",
+          "price": 325000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-16T13:37:32.386729+00:00",
-    "runtime_sec": 570.8,
-    "total_scraped": 972,
-    "total_filtered": 21,
-    "total_new": 0,
+    "timestamp": "2026-11-17T14:26:47.649610+00:00",
+    "runtime_sec": 731.9,
+    "total_scraped": 973,
+    "total_filtered": 24,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1108,14 +1150,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 260,
+        "found": 261,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
-        "found": 565,
-        "in_results": 8,
+        "found": 566,
+        "in_results": 10,
         "new": 0,
         "error": null
       },
@@ -1126,7 +1168,7 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 43,
+        "found": 42,
         "in_results": 0,
         "new": 0,
         "error": null
@@ -1139,8 +1181,8 @@
       },
       "Vakantiemakelaar.nl": {
         "found": 3,
-        "in_results": 0,
-        "new": 0,
+        "in_results": 1,
+        "new": 1,
         "error": null
       }
     }
