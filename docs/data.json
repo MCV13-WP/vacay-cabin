@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-11-17T14:26:48.855848+00:00",
-  "new_listings": [
-    {
-      "source": "Vakantiemakelaar.nl",
-      "title": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaa",
-      "url": "https://www.vakantiemakelaar.nl/woning/drenthe/landal-het-land-van-bartje/nr-235-type-10lk/",
-      "price": 325000,
-      "bedrooms": 5,
-      "persons": 10,
-      "location": "Landal Het Land van Bartje Ees, Drenthe",
-      "image": "https://api.vakantiemakelaar.nl/uploads/object/460x259/7014b180da8c966b1fd8b620efbf00572e172a9b.jpg",
-      "sold": false,
-      "raw": "Landal Het Land van Bartje Ees, Drenthe 10-persoons vrijstaande luxe recreatiewonig nr. 235 – type 10LK 124m 2 / 1029m 2 € 325.000 k.k. Rendement Tipwoning Bekijk woning Bewaren"
-    }
-  ],
+  "generated_at": "2026-11-18T13:55:29.829026+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -988,13 +975,13 @@
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "Uniek gelegen 10-persoons Eikenhoeve nr 226 met sauna, direct aan het bos van Drents Landschap",
+      "title": "403 ERROR",
       "url": "https://www.succesparken.nl/uniek-gelegen-10-persoons-eikenhoeve-nr-226-met-sauna-direct-aan-het-bos-van-drents-landschap",
-      "price": 349500,
-      "bedrooms": 5,
-      "persons": 10,
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
       "location": "",
-      "image": "https://cdn-cms.bookingexperts.com/media/4503/46/optimized.jpg",
+      "image": "",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -1012,19 +999,23 @@
         {
           "date": "2026-11-17",
           "price": 349500
+        },
+        {
+          "date": "2026-11-18",
+          "price": null
         }
       ],
       "price_trend": "stable"
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "Te koop luxe 10 persoons wellnessbungalow 313 op eigen grond",
+      "title": "403 ERROR",
       "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-luxe-10-persoons-wellnessbungalow-313-op-eigen-grond",
       "price": null,
-      "bedrooms": 5,
-      "persons": 10,
+      "bedrooms": null,
+      "persons": null,
       "location": "",
-      "image": "https://cdn-cms.bookingexperts.com/media/3882/72/optimized.jpg",
+      "image": "",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -1040,13 +1031,13 @@
     },
     {
       "source": "Handmatig toegevoegd",
-      "title": "Te koop 12 persoons recreatiewoning nr 6, Exclusief investeren in recreatief vastgoed in Drenthe,",
+      "title": "403 ERROR",
       "url": "https://www.succesparken.nl/landgoed-het-grote-zand/te-koop-12-persoons-recreatiewoning-nr-6-exclusief-investeren-in-recreatief-vastgoed-in-drenthe",
-      "price": 299500,
-      "bedrooms": 6,
-      "persons": 12,
+      "price": null,
+      "bedrooms": null,
+      "persons": null,
       "location": "",
-      "image": "https://cdn-cms.bookingexperts.com/media/4563/4/optimized.jpg",
+      "image": "",
       "sold": false,
       "raw": "",
       "is_manual": true,
@@ -1064,6 +1055,10 @@
         {
           "date": "2026-11-17",
           "price": 299500
+        },
+        {
+          "date": "2026-11-18",
+          "price": null
         }
       ],
       "price_trend": "stable"
@@ -1137,11 +1132,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-17T14:26:47.649610+00:00",
-    "runtime_sec": 731.9,
-    "total_scraped": 973,
-    "total_filtered": 24,
-    "total_new": 1,
+    "timestamp": "2026-11-18T13:55:28.894984+00:00",
+    "runtime_sec": 637.5,
+    "total_scraped": 972,
+    "total_filtered": 22,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1150,14 +1145,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 261,
+        "found": 260,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 566,
-        "in_results": 10,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
@@ -1182,7 +1177,7 @@
       "Vakantiemakelaar.nl": {
         "found": 3,
         "in_results": 1,
-        "new": 1,
+        "new": 0,
         "error": null
       }
     }
