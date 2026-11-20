@@ -939,7 +939,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-09-10",
     "price_history": [
       {
@@ -1073,7 +1073,7 @@
     "raw": "Well Limburg | Nederland € 239.000,-",
     "lat": 51.5545649,
     "lng": 6.0931309,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-10-29",
     "price_history": [
       {
@@ -1127,8 +1127,31 @@
     ],
     "price_trend": "unknown"
   },
+  "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4171/moderne-luxe-10-p-vakantiewoning-op-europarcs-limburg-6-slaapkamers-2-badkamers-en-ruime-tuin": {
+    "source": "VakantiehuisTekoop.nl",
+    "title": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+    "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4171/moderne-luxe-10-p-vakantiewoning-op-europarcs-limburg-6-slaapkamers-2-badkamers-en-ruime-tuin",
+    "price": 298000,
+    "bedrooms": 6,
+    "persons": 10,
+    "location": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+    "image": "",
+    "sold": false,
+    "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
+    "lat": 51.9662759,
+    "lng": 5.6898926,
+    "offline": false,
+    "first_seen": "2026-11-20",
+    "price_history": [
+      {
+        "date": "2026-11-20",
+        "price": 298000
+      }
+    ],
+    "price_trend": "unknown"
+  },
   "_meta": {
-    "last_new_found": "2026-11-17",
+    "last_new_found": "2026-11-20",
     "source_zero_streak": {
       "VakantiehuisTekoop.nl": 0,
       "Veluwechalets.nl": 0,

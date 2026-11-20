@@ -1,6 +1,21 @@
 {
-  "generated_at": "2026-11-19T14:24:18.824222+00:00",
-  "new_listings": [],
+  "generated_at": "2026-11-20T14:05:40.222589+00:00",
+  "new_listings": [
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4171/moderne-luxe-10-p-vakantiewoning-op-europarcs-limburg-6-slaapkamers-2-badkamers-en-ruime-tuin",
+      "price": 298000,
+      "bedrooms": 6,
+      "persons": 10,
+      "location": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+      "image": "",
+      "sold": false,
+      "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
+      "lat": 51.9662759,
+      "lng": 5.6898926
+    }
+  ],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -942,7 +957,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1076,7 +1091,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1129,14 +1144,37 @@
         }
       ],
       "price_trend": "unknown"
+    },
+    {
+      "source": "VakantiehuisTekoop.nl",
+      "title": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4171/moderne-luxe-10-p-vakantiewoning-op-europarcs-limburg-6-slaapkamers-2-badkamers-en-ruime-tuin",
+      "price": 298000,
+      "bedrooms": 6,
+      "persons": 10,
+      "location": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
+      "image": "",
+      "sold": false,
+      "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
+      "lat": 51.9662759,
+      "lng": 5.6898926,
+      "offline": false,
+      "first_seen": "2026-11-20",
+      "price_history": [
+        {
+          "date": "2026-11-20",
+          "price": 298000
+        }
+      ],
+      "price_trend": "unknown"
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-19T14:24:17.847427+00:00",
-    "runtime_sec": 615.6,
-    "total_scraped": 961,
-    "total_filtered": 28,
-    "total_new": 0,
+    "timestamp": "2026-11-20T14:05:39.033823+00:00",
+    "runtime_sec": 629.7,
+    "total_scraped": 956,
+    "total_filtered": 23,
+    "total_new": 1,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1145,14 +1183,14 @@
         "error": null
       },
       "Landal Makelaardij": {
-        "found": 249,
+        "found": 250,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "Recreatievastgoed.nl": {
         "found": 566,
-        "in_results": 14,
+        "in_results": 6,
         "new": 0,
         "error": null
       },
@@ -1163,15 +1201,15 @@
         "error": null
       },
       "UwBuitenleven.nl": {
-        "found": 42,
+        "found": 36,
         "in_results": 0,
         "new": 0,
         "error": null
       },
       "VakantiehuisTekoop.nl": {
         "found": 36,
-        "in_results": 0,
-        "new": 0,
+        "in_results": 3,
+        "new": 1,
         "error": null
       },
       "Vakantiemakelaar.nl": {
