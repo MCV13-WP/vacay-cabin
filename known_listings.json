@@ -939,7 +939,7 @@
     "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
     "lat": 52.3372909,
     "lng": 5.7956364,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-09-10",
     "price_history": [
       {
@@ -1073,7 +1073,7 @@
     "raw": "Well Limburg | Nederland € 239.000,-",
     "lat": 51.5545649,
     "lng": 6.0931309,
-    "offline": true,
+    "offline": false,
     "first_seen": "2026-10-29",
     "price_history": [
       {
@@ -1140,7 +1140,7 @@
     "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
     "lat": 51.9662759,
     "lng": 5.6898926,
-    "offline": false,
+    "offline": true,
     "first_seen": "2026-11-20",
     "price_history": [
       {

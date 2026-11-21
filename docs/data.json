@@ -1,21 +1,6 @@
 {
-  "generated_at": "2026-11-20T14:05:40.222589+00:00",
-  "new_listings": [
-    {
-      "source": "VakantiehuisTekoop.nl",
-      "title": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
-      "url": "https://www.vakantiehuistekoop.nl/nl/recreatiewoningen-te-koop/4171/moderne-luxe-10-p-vakantiewoning-op-europarcs-limburg-6-slaapkamers-2-badkamers-en-ruime-tuin",
-      "price": 298000,
-      "bedrooms": 6,
-      "persons": 10,
-      "location": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren",
-      "image": "",
-      "sold": false,
-      "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
-      "lat": 51.9662759,
-      "lng": 5.6898926
-    }
-  ],
+  "generated_at": "2026-11-21T13:28:36.246015+00:00",
+  "new_listings": [],
   "all_listings": [
     {
       "source": "Recreatievastgoed.nl",
@@ -957,7 +942,7 @@
       "raw": "Nunspeet Gelderland | Nederland € 339.000,- 8 65 m²",
       "lat": 52.3372909,
       "lng": 5.7956364,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-09-10",
       "price_history": [
         {
@@ -1091,7 +1076,7 @@
       "raw": "Well Limburg | Nederland € 239.000,-",
       "lat": 51.5545649,
       "lng": 6.0931309,
-      "offline": true,
+      "offline": false,
       "first_seen": "2026-10-29",
       "price_history": [
         {
@@ -1158,7 +1143,7 @@
       "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
       "lat": 51.9662759,
       "lng": 5.6898926,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-11-20",
       "price_history": [
         {
@@ -1170,11 +1155,11 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-20T14:05:39.033823+00:00",
-    "runtime_sec": 629.7,
+    "timestamp": "2026-11-21T13:28:35.043335+00:00",
+    "runtime_sec": 584.2,
     "total_scraped": 956,
-    "total_filtered": 23,
-    "total_new": 1,
+    "total_filtered": 22,
+    "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
         "found": 3,
@@ -1190,7 +1175,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 566,
-        "in_results": 6,
+        "in_results": 8,
         "new": 0,
         "error": null
       },
@@ -1208,8 +1193,8 @@
       },
       "VakantiehuisTekoop.nl": {
         "found": 36,
-        "in_results": 3,
-        "new": 1,
+        "in_results": 0,
+        "new": 0,
         "error": null
       },
       "Vakantiemakelaar.nl": {
