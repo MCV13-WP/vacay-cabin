@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T15:05:09.948447+00:00",
+  "generated_at": "2026-11-27T15:02:44.455806+00:00",
   "new_listings": [],
   "all_listings": [
     {
@@ -1159,7 +1159,7 @@
       "raw": "Moderne, luxe 10 p vakantiewoning op Europarcs Limburg, 6 slaapkamers, 2 badkamers en ruime tuin. Susteren Nederland € 298.000 k.k. Maurice Eijpe Makelaardij en Planologisch Advies Favorieten Deel dez",
       "lat": 51.9662759,
       "lng": 5.6898926,
-      "offline": false,
+      "offline": true,
       "first_seen": "2026-11-20",
       "price_history": [
         {
@@ -1171,10 +1171,10 @@
     }
   ],
   "run_stats": {
-    "timestamp": "2026-11-26T15:05:08.672695+00:00",
-    "runtime_sec": 658.5,
+    "timestamp": "2026-11-27T15:02:43.507968+00:00",
+    "runtime_sec": 658.6,
     "total_scraped": 957,
-    "total_filtered": 27,
+    "total_filtered": 26,
     "total_new": 0,
     "per_source": {
       "CenterParcs Vastgoed": {
@@ -1191,7 +1191,7 @@
       },
       "Recreatievastgoed.nl": {
         "found": 566,
-        "in_results": 11,
+        "in_results": 13,
         "new": 0,
         "error": null
       },
@@ -1209,7 +1209,7 @@
       },
       "VakantiehuisTekoop.nl": {
         "found": 36,
-        "in_results": 3,
+        "in_results": 0,
         "new": 0,
         "error": null
       },
